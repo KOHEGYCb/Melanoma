@@ -3,7 +3,9 @@ package by.bntu.dmitry.dao;
 import by.bntu.dmitry.connectionpool.ConnectionPool;
 import by.bntu.dmitry.constants.SQLColumns;
 import by.bntu.dmitry.constants.SQLRequests;
+import by.bntu.dmitry.entities.Pacient;
 import by.bntu.dmitry.entities.User;
+import by.bntu.dmitry.enums.Role;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,6 +105,28 @@ public enum UserDAO implements AbstractDAO<User> {
         return user;
     }
 
+    public ArrayList<User> getEntitiesByDoctor (User user) {
+        ArrayList<User> docPacients = new ArrayList<>();
+        if (user.getRole() == Role.DOCTOR){
+            ArrayList<Pacient> pacients = PacientDAO.INSTANCE.findAll();
+            for (int i = 0; i < pacients.size(); i++){
+                if (pacients.get(i).getDoctor().getId() == user.getId()){
+                    docPacients.add(pacients.get(i).getPacient());
+                }
+            }
+        }
+        return docPacients;
+    }
+    
+    public ArrayList<User> getEntitiesWithoutDoctor () {
+        ArrayList<User> users = UserDAO.INSTANCE.findAll();
+        for (int i = 0; i < users.size(); i++){
+            if (PacientDAO.INSTANCE.GetPacientByUser(users.get(i)) != null)
+        }
+        
+        return users;
+    }
+    
     @Override
     public void createEntity(User user) {
         Connection connection = null;

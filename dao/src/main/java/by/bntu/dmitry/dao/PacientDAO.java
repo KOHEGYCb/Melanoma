@@ -4,6 +4,7 @@ import by.bntu.dmitry.connectionpool.ConnectionPool;
 import by.bntu.dmitry.constants.SQLColumns;
 import by.bntu.dmitry.constants.SQLRequests;
 import by.bntu.dmitry.entities.Pacient;
+import by.bntu.dmitry.entities.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,6 +57,7 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.GET_PACIENT_BY_ID);
+            statement.setInt(0, id);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 pacient = new Pacient();
@@ -72,6 +74,33 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
         return pacient;
     }
 
+    public Pacient GetPacientByUser(User user) {
+        Pacient pacient = null;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectionPool.INSTANCE.getConnection();
+            statement = connection.prepareStatement(SQLRequests.GET_ALL_PACIENTS);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                pacient = new Pacient();
+                pacient.setId(resultSet.getInt(SQLColumns.PACIENT_ID));
+                pacient.setPacient(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.PACIENT_ID_PACIENT)));
+                pacient.setDoctor(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.PACIENT_ID_DOCTOR)));
+                pacient.setDirectionHistology(resultSet.getInt(SQLColumns.PACIENT_DIRECTION_HISTOLOGY));
+                if (pacient.getPacient().equals(user)){
+                    return pacient;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            releaseConnection(connection, statement, resultSet);
+        }
+        return pacient;
+    }
+    
     @Override
     public void createEntity(Pacient pacient) {
         Connection connection = null;
@@ -154,4 +183,5 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
             }
         }
     }
+
 }
