@@ -1,0 +1,88 @@
+/* 
+    Created on : 04.09.2018, 23:43:37
+    Author     : dmitry
+*/
+
+/*
+    BASIC COLORS:
+    #429993 - зеленый
+    #26484a - темно-зеленый
+    #417c7f - темно-зеленый (hover)
+    #b6d16a - светло-зеленый
+    #cbcbc9 - светло-серый
+    #82999f - темно-серый
+    #d16a6a - красный
+
+*/
+
+html, body{
+    /*background: #26484a url(dust-texture.png);*/
+    background: #26484a;
+    color: #cbcbc9;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.reg{
+    position: relative;
+    background: #429993;
+    padding: 15px;
+    width: 350px;
+    border-radius: 15px;
+    height: 310px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.reg span{
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    margin: 3px;
+    padding: 3px;
+}
+.error{
+    margin-top: 3px;
+}
+.error::before{
+    content: "";
+    position: absolute;
+    display: block;
+    margin-top: 3px;
+    width: 24px;
+    height: 24px;
+    background: url(icon.png);
+}
+.reg input[type="text"], .reg input[type="password"]{
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.reg input{
+    border: 1px solid transparent;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin: 0 6px 6px 0px;
+    padding: 0;
+    background: #26484a;
+    height: 35px;
+    color: inherit;
+    font-size: 20px;
+    transition: .3s;
+}
+.reg input:focus{
+    background: #cbcbc9;
+    color: #26484a;     
+}
+.reg input[type="submit"]{
+    width: 90%;
+    margin: 6px auto;
+}
+.reg input[type="submit"]:hover{
+    background: #417c7f;
+}
+.reg input[type="submit"]:active{
+    background: #cbcbc9;
+    color: #26484a;     
+}
