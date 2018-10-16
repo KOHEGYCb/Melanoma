@@ -37,7 +37,8 @@
                 <td>SEX</td>
                 <td>NumFoto</td>
             </tr>
-            <%  ArrayList<User> doctorsUsers = UserDAO.INSTANCE.getEntitiesByDoctor((User) session.getAttribute("user"));
+            <%  
+                ArrayList<User> doctorsUsers = UserDAO.INSTANCE.getEntitiesByDoctor((User) session.getAttribute("user"));
                 for (int i = 0; i < doctorsUsers.size(); i++) {
             %>
             <tr>
@@ -61,7 +62,8 @@
                 <td>SEX</td>
                 <td>NumFoto</td>
             </tr>
-            <%  ArrayList<User> freeUsers = UserDAO.INSTANCE.getEntitiesWithoutDoctor();
+            <%  
+                ArrayList<User> freeUsers = UserDAO.INSTANCE.getEntitiesWithoutDoctor();
                 for (int i = 0; i < freeUsers.size(); i++) {
             %>
             <tr>
@@ -85,7 +87,8 @@
                 <td>SEX</td>
                 <td>NumFoto</td>
             </tr>
-            <%  ArrayList<User> allPacients = UserDAO.INSTANCE.getEntitiesWithoutDoctor();
+            <%  
+                ArrayList<User> allPacients = UserDAO.INSTANCE.getEntitiesWithoutDoctor();
                 for (int i = 0; i < allPacients.size(); i++) {
             %>
             <tr>

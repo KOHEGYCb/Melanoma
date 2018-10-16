@@ -16,6 +16,12 @@ body, html{
     height: 100%;
 }
 
+/*
+==============================================================================
+===========================         Header         ===========================
+==============================================================================
+*/
+
 .header{
     height: 50px;
     border-bottom: 1px solid @light-green;
@@ -68,6 +74,12 @@ body, html{
         }
     }
 }
+
+/*
+==============================================================================
+===========================       Doctor page      ===========================
+==============================================================================
+*/
 
 .menu{
     position: relative;
@@ -167,13 +179,13 @@ body, html{
                 td:first-child{
                     border-left: 1px solid @light-green;
                 }
-                
+
                 td:last-child{
                     border-right: 1px solid @light-green;
                 }
-                
+
             }
-            
+
             tr:hover td{
                 background: @dark-green-hover;
             }
@@ -229,7 +241,11 @@ body, html{
 }
 
 
-
+/*
+==============================================================================
+===========================    Login / Register    ===========================
+==============================================================================
+*/
 
 
 
@@ -247,17 +263,59 @@ body, html{
     transform: translate(-50%, -50%);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
-.reg span{
-    display: block;
-    text-align: center;
-    font-size: 20px;
-    margin: 3px;
-    padding: 3px;
-    color: @light-gray-text;
+.reg{
+    span{
+        display: block;
+        text-align: center;
+        font-size: 20px;
+        margin: 3px;
+        padding: 3px;
+        color: @light-gray-text;
+    }
+
+    input[type="text"], .reg input[type="password"]{
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    input{
+        border: 1px solid transparent;
+        border-radius: 5px;
+        display: block;
+        width: 100%;
+        margin: 0 6px 6px 0px;
+        padding: 0;
+        background: @dark-green;
+        height: 35px;
+        color: @light-gray-text;
+        font-size: 20px;
+        transition: .3s;
+    }
+
+    input:focus{
+        background: #cbcbc9;
+        color: @dark-green;     
+    }
+
+    input[type="submit"]{
+        width: 90%;
+        margin: 6px auto;
+    }
+
+    input[type="submit"]:hover{
+        background: #417c7f;
+    }
+
+    input[type="submit"]:active{
+        background: #cbcbc9;
+        color: @dark-gray;     
+    }
+
 }
+
 .error{
     margin-top: 3px;
 }
+
 .error::before{
     content: "";
     position: absolute;
@@ -267,34 +325,67 @@ body, html{
     height: 24px;
     background: url(icon.png);
 }
-.reg input[type="text"], .reg input[type="password"]{
+
+
+/*
+==============================================================================
+===========================    Create User Form    ===========================
+==============================================================================
+*/
+
+.createUserForm{
+    position: relative;
+    background: @green;
+    padding: 15px;
+    width: 350px;
+    border-radius: 15px;
+    height: 490px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
-.reg input{
-    border: 1px solid transparent;
-    border-radius: 5px;
-    display: block;
-    width: 100%;
-    margin: 0 6px 6px 0px;
-    padding: 0;
-    background: @dark-green;
-    height: 35px;
-    color: @light-gray-text;
-    font-size: 20px;
-    transition: .3s;
-}
-.reg input:focus{
-    background: #cbcbc9;
-    color: @dark-green;     
-}
-.reg input[type="submit"]{
-    width: 90%;
-    margin: 6px auto;
-}
-.reg input[type="submit"]:hover{
-    background: #417c7f;
-}
-.reg input[type="submit"]:active{
-    background: #cbcbc9;
-    color: @dark-gray;     
+.createUserForm{
+
+    form{
+
+    }
+
+    form{
+
+        input{
+            border: 1px solid transparent;
+            border-radius: 5px;
+            display: block;
+            width: 100%;
+            margin: 0 6px 6px 0px;
+            padding: 0;
+            background: @dark-green;
+            height: 35px;
+            color: @light-gray-text;
+            font-size: 20px;
+            transition: .3s;
+        }
+
+        input[type="radio"]{
+            width: auto;
+            border: 1px solid red;
+        }
+
+        span{
+            display: block;
+            text-align: center;
+            font-size: 20px;
+            margin: 3px;
+            padding: 3px;
+            color: @light-gray-text;
+            /*border: 1px solid @red;*/
+        }
+        
+        span.sex{
+            float: left;
+            width: 25%;
+        }
+
+    }
 }
