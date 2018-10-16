@@ -3,6 +3,7 @@ package by.bntu.dmitry.web.servlets;
 import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.Role;
+import by.bntu.dmitry.services.logsServices.LogServices;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +24,7 @@ public class LoginServlet extends ManagerServlet {
         String password = req.getParameter("password");
         String a = "";
 
-//        System.out.println("\n\n" + req.getParameter("log_in"));
+        System.out.println("\n\n" + req.getParameter("log_in"));
         if (req.getParameter("log_in") != null) {
             User user = UserDAO.INSTANCE.getEntityByLogin(login);
             if (user != null) {
@@ -31,6 +32,7 @@ public class LoginServlet extends ManagerServlet {
                     a = "all right";
                     HttpSession session = req.getSession();
                     session.setAttribute("user", user);
+                    LogServices.INSTANCE.LogInLog(user);
                 } else {
                     a = "pass not valid";
                 }
@@ -43,6 +45,7 @@ public class LoginServlet extends ManagerServlet {
                 if (!password.equals("")) {
                     User newUser = new User(login, password, Role.USER, true, false);
                     UserDAO.INSTANCE.createEntity(newUser);
+                    LogServices.INSTANCE.SignInLog(newUser);
                 }
             }
         }
