@@ -1,0 +1,300 @@
+
+@green: #429993;// - зеленый
+@green-hover: @green - #111111;
+@dark-green: #26484a; // - темно-зеленый
+@dark-green-hover: @dark-green + #111111;
+@light-green: #b6d16a; // - светло-зеленый
+@light-gray: #cbcbc9; // - светло-серый
+@light-gray-text: @light-gray + #222222;
+@dark-gray: #82999f; // - темно-серый
+@red: #d16a6a; // - красный
+
+body, html{
+    background: @dark-green;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.header{
+    height: 50px;
+    border-bottom: 1px solid @light-green;
+    background: @green;
+
+    .info{
+        background: @red;
+        float: left;
+        width: 15%;
+    }
+
+    .logo{
+        float: left;
+        position: relative;
+        width: 70%;
+        margin-top: 13px;
+        text-align: center;
+    }
+
+    .logout{
+        position: relative;
+        right: 0;
+        width: 15%;
+        float: left;;
+
+        input{
+            border: 1px solid transparent;
+            border-radius: 5px;
+            display: block;
+            width: 95%;
+            margin: 7px 6px 6px 0px;
+            padding: 0;
+            background: @dark-green;
+            height: 35px;
+            color: @light-gray;
+            font-size: 20px;
+            transition: .3s;
+        }
+        input:focus{
+            background: @light-gray;
+            color: @dark-green;     
+        }
+        input[type="submit"]:hover{
+            background: @dark-green-hover;
+            cursor: pointer;
+        }
+        input[type="submit"]:active{
+            background: @light-gray;
+            color: @dark-green;     
+        }
+    }
+}
+
+.menu{
+    position: relative;
+    z-index: 2;
+    background: @green;
+    border-right: 1px solid @light-green;
+    width: 300px;
+    height: calc(100% - 51px);
+    margin: 0;
+    padding: 0;
+
+    ul{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li{
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid @light-green;
+        transition: .3s;
+    }
+
+    li:hover{
+        background: @green-hover;
+    }
+
+    a{
+        display: block;
+        font-style: normal;
+        text-align: center;
+        padding: 15px 0 0 0;
+        text-decoration: none;
+        color: @light-gray-text;
+        height: 35px;
+    }
+
+}
+
+.page{
+    z-index: 1;
+    top: 51px;
+    left: -200%;
+    /*border: 1px solid @red;*/
+    width: calc(100% - 300px);
+    height: calc(100% - 51px);
+    position: absolute;
+    transition: .3s;
+}
+#tables{
+    input{
+        display: none;
+        color: @dark-gray;
+    }
+
+    input:checked +label{
+        background: @dark-green;
+        color: @light-gray;
+        border-bottom: 1px solid @dark-green;
+    }
+    div{
+        position: absolute;
+        opacity: 0;
+        left: 0px;
+        background: @dark-green;
+        transition: .3s opacity, 0s .3s top;
+        width: 100%;
+        height: calc(100% - 34px);
+        margin-top: 1px;
+        top: -200%;
+
+        table{
+            margin: 15px auto;
+            padding: 0;
+            width: 95%;
+            border-collapse: collapse;
+        }
+
+        table{
+            tr{
+                margin: 0;
+                padding: 0;
+                height: 30px;
+                background: @dark-green;
+            }
+
+            tr{
+                td{
+                    margin: 0;
+                    padding: 0;
+                    color: @light-gray-text;
+                    border-top: 1px solid @light-green;
+                    border-bottom: 1px solid @light-green;
+                    text-align: center;
+                }
+                td:first-child{
+                    border-left: 1px solid @light-green;
+                }
+                
+                td:last-child{
+                    border-right: 1px solid @light-green;
+                }
+                
+            }
+            
+            tr:hover td{
+                background: @dark-green-hover;
+            }
+            tr:first-child{
+                background: @green;
+            }
+            tr:hover:first-child td{
+                background: @green;
+            }
+        }
+    }
+
+    label{
+        display: inline-block;
+        min-width: 100px;
+        padding: 7px;
+        margin: 0 -5px -1px 0;
+        text-align: center;
+        color: @light-gray;
+        /*border: 1px solid #C0C0C0;*/
+        background: @green;
+        cursor: pointer;
+        border-right: 1px solid @light-green;
+        border-bottom: 1px solid @light-green;
+        transition: .3s;
+    }
+    label:hover{
+        background: @green-hover;
+    }
+
+    #tab_my_pacient:checked ~ #my_pacient,
+        #tab_free_pacient:checked ~ #free_pacient,
+        #tab_all_pacient:checked ~ #all_pacient,
+        #tab_foto:checked ~ #foto{
+        opacity: 1;
+        top: 33px;
+        left: 0px;		
+        transition: .3s .3s opacity, 0s .3s top;
+    }
+
+}
+
+/*#create{
+    position: absolute;
+    background: red;
+    width: calc(100% - 301px);
+    left: -200%;
+    height: 40px;
+}*/
+#create:target, #tables:target, #profile:target{
+    left: 300px;
+    transition: .3s .3s;
+}
+
+
+
+
+
+
+
+
+.reg{
+    position: relative;
+    background: @green;
+    padding: 15px;
+    width: 350px;
+    border-radius: 15px;
+    height: 310px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.reg span{
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    margin: 3px;
+    padding: 3px;
+    color: @light-gray-text;
+}
+.error{
+    margin-top: 3px;
+}
+.error::before{
+    content: "";
+    position: absolute;
+    display: block;
+    margin-top: 3px;
+    width: 24px;
+    height: 24px;
+    background: url(icon.png);
+}
+.reg input[type="text"], .reg input[type="password"]{
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.reg input{
+    border: 1px solid transparent;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin: 0 6px 6px 0px;
+    padding: 0;
+    background: @dark-green;
+    height: 35px;
+    color: @light-gray-text;
+    font-size: 20px;
+    transition: .3s;
+}
+.reg input:focus{
+    background: #cbcbc9;
+    color: @dark-green;     
+}
+.reg input[type="submit"]{
+    width: 90%;
+    margin: 6px auto;
+}
+.reg input[type="submit"]:hover{
+    background: #417c7f;
+}
+.reg input[type="submit"]:active{
+    background: #cbcbc9;
+    color: @dark-gray;     
+}
