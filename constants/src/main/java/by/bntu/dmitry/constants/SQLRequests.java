@@ -120,7 +120,7 @@ public class SQLRequests {
     public static final String GET_ALL_LOGS = "SELECT * FROM melanoma.logs;";
     public static final String GET_LOG_BY_ID = "SELECT * FROM melanoma.logs WHERE id=?;";
     public static final String GET_LOG_BY_USER = "SELECT * FROM melanoma.logs WHERE user_id=?;";
-    public static final String CREATE_LOG = "INSERT INTO melanoma.logs (action, date, user_id) VALUES (?, ?, ?);";
+    public static final String CREATE_LOG = "INSERT INTO melanoma.logs (action, date, user_id) VALUES (?, NOW(), ?);";
     public static final String UPDATE_LOG = "UPDATE melanoma.logs SET action=?, date=?, user_id=? WHERE id=?;";
     public static final String DELETE_LOG = "";
 

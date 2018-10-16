@@ -16,7 +16,7 @@ public enum LogServices {
     
     public void SignInLog(User user){
         Logs log = new Logs();
-        log.setDate(new Date(System.currentTimeMillis()));
+//        log.setDate(new Date(System.currentTimeMillis()));     //дата задается в sql-запросе now()
         log.setUser(user);
         log.setAction(LogActions.SIGN_IN);
         LogsDAO.INSTANCE.createEntity(log);
@@ -24,7 +24,7 @@ public enum LogServices {
     
     public void LogInLog(User user){
         Logs log = new Logs();
-        log.setDate(new Date(System.currentTimeMillis()));
+//        log.setDate(new Date(System.currentTimeMillis()));     //дата задается в sql-запросе now()
         log.setUser(user);
         log.setAction(LogActions.LOG_IN);
         LogsDAO.INSTANCE.createEntity(log);

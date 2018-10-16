@@ -108,8 +108,8 @@ public enum LogsDAO implements AbstractDAO<Logs> {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.CREATE_LOG);
             statement.setString(1, log.getAction());
-            statement.setDate(2, log.getDate());
-            statement.setInt(3, log.getUser().getId());
+//            statement.setDate(2, log.getDate());      //дата задается в sql-запросе now()
+            statement.setInt(2, log.getUser().getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
