@@ -105,28 +105,32 @@ public enum UserDAO implements AbstractDAO<User> {
         return user;
     }
 
-    public ArrayList<User> getEntitiesByDoctor (User user) {
+    public ArrayList<User> getEntitiesByDoctor(User user) {
         ArrayList<User> docPacients = new ArrayList<>();
-        if (user.getRole() == Role.DOCTOR){
+        if (user.getRole() == Role.DOCTOR) {
             ArrayList<Pacient> pacients = PacientDAO.INSTANCE.findAll();
-            for (int i = 0; i < pacients.size(); i++){
-                if (pacients.get(i).getDoctor().getId() == user.getId()){
+            for (int i = 0; i < pacients.size(); i++) {
+                if (pacients.get(i).getDoctor().getId() == user.getId()) {
                     docPacients.add(pacients.get(i).getPacient());
                 }
             }
         }
         return docPacients;
     }
-    
-    public ArrayList<User> getEntitiesWithoutDoctor () {
+
+    public ArrayList<User> getEntitiesWithoutDoctor() {
         ArrayList<User> users = UserDAO.INSTANCE.findAll();
-        for (int i = 0; i < users.size(); i++){
-            if (PacientDAO.INSTANCE.GetPacientByUser(users.get(i)) != null)
+        ArrayList<User> noPacient = new ArrayList<>();
+        for (int i = 0; i < users.size(); i++) {
+            if (PacientDAO.INSTANCE.GetPacientByUser(users.get(i)) == null) {
+                if (users.get(i).getRole() == Role.USER) {
+                    noPacient.add(users.get(i));
+                }
+            }
         }
-        
-        return users;
+        return noPacient;
     }
-    
+
     @Override
     public void createEntity(User user) {
         Connection connection = null;
