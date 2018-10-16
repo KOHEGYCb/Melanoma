@@ -12,6 +12,7 @@
         <module>connectionPool</module>
         <module>constants</module>
     <module>web</module>
+        <module>services</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
