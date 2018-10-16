@@ -1,5 +1,6 @@
 package by.bntu.dmitry.web.servlets;
 
+import by.bntu.dmitry.constants.Destinations;
 import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.Role;
@@ -46,12 +47,13 @@ public class LoginServlet extends ManagerServlet {
                     User newUser = new User(login, password, Role.USER, true, false);
                     UserDAO.INSTANCE.createEntity(newUser);
                     LogServices.INSTANCE.SignInLog(newUser);
+                    forward(Destinations.CREATE_USER_FORM_PAGE, req, resp);
                 }
             }
         }
 
         req.setAttribute("a", a);
-        forward("/", req, resp);
+        forward(Destinations.MAIN_PAGE, req, resp);
     }
 
 }

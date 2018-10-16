@@ -74,7 +74,7 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
         return pacient;
     }
 
-    public Pacient GetPacientByUser(User user) {
+    public Pacient GetPacientByUser(User user) {    //возврвщает пользователей-пациентов
         Pacient pacient = null;
         Connection connection = null;
         PreparedStatement statement = null;
