@@ -10,7 +10,7 @@
 @red: #d16a6a; // - красный
 
 body, html{
-    background: @green;
+    background: @dark-green;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -226,4 +226,75 @@ body, html{
 #create:target, #tables:target, #profile:target{
     left: 300px;
     transition: .3s .3s;
+}
+
+
+
+
+
+
+
+
+.reg{
+    position: relative;
+    background: @green;
+    padding: 15px;
+    width: 350px;
+    border-radius: 15px;
+    height: 310px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.reg span{
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    margin: 3px;
+    padding: 3px;
+    color: @light-gray-text;
+}
+.error{
+    margin-top: 3px;
+}
+.error::before{
+    content: "";
+    position: absolute;
+    display: block;
+    margin-top: 3px;
+    width: 24px;
+    height: 24px;
+    background: url(icon.png);
+}
+.reg input[type="text"], .reg input[type="password"]{
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.reg input{
+    border: 1px solid transparent;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin: 0 6px 6px 0px;
+    padding: 0;
+    background: @dark-green;
+    height: 35px;
+    color: @light-gray-text;
+    font-size: 20px;
+    transition: .3s;
+}
+.reg input:focus{
+    background: #cbcbc9;
+    color: @dark-green;     
+}
+.reg input[type="submit"]{
+    width: 90%;
+    margin: 6px auto;
+}
+.reg input[type="submit"]:hover{
+    background: #417c7f;
+}
+.reg input[type="submit"]:active{
+    background: #cbcbc9;
+    color: @dark-gray;     
 }

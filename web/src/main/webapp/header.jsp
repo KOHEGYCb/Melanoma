@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!--<link type="text/css" rel="stylesheet" href="css/styles.css"/>-->
+        
         <link rel="stylesheet/less" type="text/css" href="css/styles.less" />
         <script src="less.js" type="text/javascript"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
