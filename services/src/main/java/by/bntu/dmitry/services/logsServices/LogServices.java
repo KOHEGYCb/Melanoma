@@ -3,8 +3,7 @@ package by.bntu.dmitry.services.logsServices;
 import by.bntu.dmitry.dao.LogsDAO;
 import by.bntu.dmitry.entities.Logs;
 import by.bntu.dmitry.entities.User;
-import by.bntu.dmitry.enums.LogActions;
-import java.sql.Date;
+import by.bntu.dmitry.constants.LogActions;
 
 /**
  *
@@ -15,19 +14,22 @@ public enum LogServices {
     INSTANCE;
     
     public void SignInLog(User user){
-        Logs log = new Logs();
-//        log.setDate(new Date(System.currentTimeMillis()));     //дата задается в sql-запросе now()
-        log.setUser(user);
-        log.setAction(LogActions.SIGN_IN);
-        LogsDAO.INSTANCE.createEntity(log);
+        LogsDAO.INSTANCE.createEntity(setLog(user, LogActions.SIGN_IN));
     }
     
     public void LogInLog(User user){
+        LogsDAO.INSTANCE.createEntity(setLog(user, LogActions.LOG_IN));
+    }
+
+    public void LogOut(User user) {
+        LogsDAO.INSTANCE.createEntity(setLog(user, LogActions.LOG_OUT));
+    }
+    
+    private Logs setLog (User user, String action){
         Logs log = new Logs();
-//        log.setDate(new Date(System.currentTimeMillis()));     //дата задается в sql-запросе now()
         log.setUser(user);
-        log.setAction(LogActions.LOG_IN);
-        LogsDAO.INSTANCE.createEntity(log);
+        log.setAction(action);
+        return log;
     }
     
 }

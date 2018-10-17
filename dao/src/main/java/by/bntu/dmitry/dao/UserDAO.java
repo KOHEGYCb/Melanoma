@@ -118,6 +118,17 @@ public enum UserDAO implements AbstractDAO<User> {
         return docPacients;
     }
 
+    public ArrayList<User> getAllPacients(){
+        ArrayList<User> users = UserDAO.INSTANCE.findAll();
+        ArrayList<User> pacients = new ArrayList<>();
+        for (int i = 0; i < users.size(); i++){
+            if (PacientDAO.INSTANCE.GetPacientByUser(users.get(i)) != null){
+                pacients.add(users.get(i));
+            }
+        }
+        return pacients;
+    }
+    
     public ArrayList<User> getEntitiesWithoutDoctor() {
         ArrayList<User> users = UserDAO.INSTANCE.findAll();
         ArrayList<User> noPacient = new ArrayList<>();
