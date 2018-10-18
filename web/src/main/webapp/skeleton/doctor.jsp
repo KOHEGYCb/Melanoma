@@ -83,6 +83,7 @@
             <tr>
                 <td>№</td>
                 <td>FIO</td>
+                <td>Doctor</td>
                 <td>AGE</td>
                 <td>Gender</td>
                 <td>NumFoto</td>
