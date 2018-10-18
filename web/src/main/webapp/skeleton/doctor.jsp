@@ -34,7 +34,7 @@
                 <td>№</td>
                 <td>FIO</td>
                 <td>AGE</td>
-                <td>SEX</td>
+                <td>Gender</td>
                 <td>NumFoto</td>
             </tr>
             <%  
@@ -59,7 +59,7 @@
                 <td>№</td>
                 <td>FIO</td>
                 <td>AGE</td>
-                <td>SEX</td>
+                <td>Gender</td>
                 <td>NumFoto</td>
             </tr>
             <%  
@@ -84,7 +84,7 @@
                 <td>№</td>
                 <td>FIO</td>
                 <td>AGE</td>
-                <td>SEX</td>
+                <td>Gender</td>
                 <td>NumFoto</td>
             </tr>
             <%  

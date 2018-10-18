@@ -12,7 +12,7 @@
         <span>Surname: </span>      <input type="text"/>
         <span>Patronymic: </span>   <input type="text"/>
         <span>Birthday: </span>     <input type="date"/>
-        <span>Sex: </span>
+        <span>Gender: </span>
         <div>
             <select size="1">
                 <option>Male</option>
