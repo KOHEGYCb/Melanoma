@@ -23,22 +23,34 @@ public class LoginServlet extends ManagerServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        String a = "";
+        String _a = "";
+        String _login = "";
 
         System.out.println("\n\n" + req.getParameter("log_in"));
         if (req.getParameter("log_in") != null) {
-            User user = UserDAO.INSTANCE.getEntityByLogin(login);
-            if (user != null) {
-                if (password.equals(user.getPassword())) {
-                    a = "all right";
-                    HttpSession session = req.getSession();
-                    session.setAttribute("user", user);
-                    LogServices.INSTANCE.LogInLog(user);
-                } else {
-                    a = "pass not valid";
+            if (!login.equals("")){
+                if (!password.equals("")){
+                    User user = UserDAO.INSTANCE.getEntityByLogin(login);
+                    if (user != null) {
+                        if (password.equals(user.getPassword())) {
+                            _a = "all right";
+                            HttpSession session = req.getSession();
+                            session.setAttribute("user", user);
+                            LogServices.INSTANCE.LogInLog(user);
+                        } else {
+                            _login = login;
+                            _a = "pass not valid";
+                        }
+                    } else {
+                        _login = login;
+                        _a = "User not found";
+                    }
+                }else{
+                    _login = login;
+                    _a = "Password is empty";
                 }
-            } else {
-                a = "User not found";
+            }else{
+                _a = "Login is empty";
             }
         }
         if (req.getParameter("sign_in") != null) {
@@ -53,13 +65,13 @@ public class LoginServlet extends ManagerServlet {
                         session.setAttribute("user", newUser);
                         LogServices.INSTANCE.LogInLog(newUser);
                     }else {
-                a = "Login is used";
+                _a = "Login is used";
             }
                 }
             }
         }
-
-        req.setAttribute("a", a);
+        req.setAttribute("login", _login);
+        req.setAttribute("a", _a);
         forward(Destinations.MAIN_PAGE, req, resp);
     }
 
