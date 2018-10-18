@@ -4,6 +4,8 @@
     Author     : dmitry
 --%>
 
+<%@page import="by.bntu.dmitry.dao.UserFormDAO"%>
+<%@page import="by.bntu.dmitry.services.logsServices.UserServices"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="by.bntu.dmitry.entities.User"%>
 <%@page import="by.bntu.dmitry.dao.UserDAO"%>
@@ -41,13 +43,13 @@
                 ArrayList<User> doctorsUsers = UserDAO.INSTANCE.getEntitiesByDoctor((User) session.getAttribute("user"));
                 for (int i = 0; i < doctorsUsers.size(); i++) {
             %>
-            <tr>
-                <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getId()%></td>
-                <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getLogin()%></td>
-                <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getRole()%></td>
-                <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getId()%></td>
-                <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getId()%></td>
-            </tr>
+                    <tr>
+                        <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=i%></td>
+                        <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(doctorsUsers.get(i))%></td>
+                        <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getRole()%></td>
+                        <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(doctorsUsers.get(i))%></td>
+                        <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getId()%></td>
+                    </tr>
             <%
                 }
             %>
@@ -65,15 +67,17 @@
             <%  
                 ArrayList<User> freeUsers = UserDAO.INSTANCE.getEntitiesWithoutDoctor();
                 for (int i = 0; i < freeUsers.size(); i++) {
+                    if (UserFormDAO.INSTANCE.getEntityByUser(freeUsers.get(i)) != null){
             %>
-            <tr>
-                <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getId()%></td>
-                <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getLogin()%></td>
-                <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getRole()%></td>
-                <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getId()%></td>
-                <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getId()%></td>
-            </tr>
+                        <tr>
+                            <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=i%></td>
+                            <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(freeUsers.get(i))%></td>
+                            <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getRole()%></td>
+                            <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(freeUsers.get(i))%></td>
+                            <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getId()%></td>
+                        </tr>
             <%
+                    }
                 }
             %>
         </table>
@@ -89,18 +93,20 @@
                 <td>NumFoto</td>
             </tr>
             <%  
-                ArrayList<User> allPacients = UserDAO.INSTANCE.getEntitiesWithoutDoctor();
+                ArrayList<User> allPacients = UserDAO.INSTANCE.getAllPacients();
                 for (int i = 0; i < allPacients.size(); i++) {
+                    if (UserFormDAO.INSTANCE.getEntityByUser(allPacients.get(i)) != null){
             %>
-            <tr>
-                <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>
-                <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getLogin()%></td>
-                <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getLogin()%></td>
-                <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getRole()%></td>
-                <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>
-                <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>
-            </tr>
+                        <tr>
+                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>
+                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(allPacients.get(i))%></td>
+                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getUser_sDoctorFIO(allPacients.get(i))%></td>
+                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getRole()%></td>
+                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(allPacients.get(i))%></td>
+                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>
+                        </tr>
             <%
+                    }
                 }
             %>
         </table>
