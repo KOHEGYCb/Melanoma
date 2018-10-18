@@ -4,6 +4,7 @@
     Author     : dmitry
 --%>
 
+<%@page import="by.bntu.dmitry.dao.UserFormDAO"%>
 <%@page import="by.bntu.dmitry.dao.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="by.bntu.dmitry.entities.User"%>
@@ -13,22 +14,29 @@
 <%
     User user = (User) session.getAttribute("user");
     if (user != null) {
-        switch (user.getRole()) {
-            case ADMIN:
-                %>
-                <%@include file="skeleton/admin.jsp" %>
-                <%
-                break;
-            case DOCTOR:
-                %>
-                <%@include file="skeleton/doctor.jsp" %>
-                <%
-                break;
-            case USER:
-                %>
-                <%@include file="skeleton/user.jsp" %>
-                <%
-                break;
+        System.out.println("\n\nUser: " + user.getId() + "\n\n");
+        if (UserFormDAO.INSTANCE.getEntityByUser(user) != null){
+            switch (user.getRole()) {
+                case ADMIN:
+                    %>
+                    <%@include file="skeleton/admin.jsp" %>
+                    <%
+                    break;
+                case DOCTOR:
+                    %>
+                    <%@include file="skeleton/doctor.jsp" %>
+                    <%
+                    break;
+                case USER:
+                    %>
+                    <%@include file="skeleton/user.jsp" %>
+                    <%
+                    break;
+            }
+        }else{
+            %>
+            <%@include file="skeleton/createUserForm.jsp" %>
+            <%
         }
     }else{
         %>

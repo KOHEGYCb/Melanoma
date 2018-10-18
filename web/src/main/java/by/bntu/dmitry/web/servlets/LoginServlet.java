@@ -1,5 +1,6 @@
 package by.bntu.dmitry.web.servlets;
 
+import by.bntu.dmitry.constants.Destinations;
 import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.Role;
@@ -43,15 +44,23 @@ public class LoginServlet extends ManagerServlet {
         if (req.getParameter("sign_in") != null) {
             if (!login.equals("")) {
                 if (!password.equals("")) {
-                    User newUser = new User(login, password, Role.USER, true, false);
-                    UserDAO.INSTANCE.createEntity(newUser);
-                    LogServices.INSTANCE.SignInLog(newUser);
+                    if (UserDAO.INSTANCE.getEntityByLogin(login) == null){
+                        User newUser = new User(login, password, Role.USER, true, false);
+                        UserDAO.INSTANCE.createEntity(newUser);
+                        newUser = UserDAO.INSTANCE.getEntityByLogin(login);
+                        LogServices.INSTANCE.SignInLog(newUser);
+                        HttpSession session = req.getSession();
+                        session.setAttribute("user", newUser);
+                        LogServices.INSTANCE.LogInLog(newUser);
+                    }else {
+                a = "Login is used";
+            }
                 }
             }
         }
 
         req.setAttribute("a", a);
-        forward("/", req, resp);
+        forward(Destinations.MAIN_PAGE, req, resp);
     }
 
 }
