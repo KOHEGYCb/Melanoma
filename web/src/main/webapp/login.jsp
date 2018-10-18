@@ -7,8 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="reg">
     <form id="login" action="login" method="post">
-        <span>Login: </span><input type="text" value="" name="login" /><br/>
-        <span>Password: </span><input type="text" value="" name="password" /><br/>
+        <span>Login: </span><input type="text" value="${login}" name="login" /><br/>
+        <span>Password: </span><input type="password" value="" name="password" /><br/>
         <input type="submit" value="Log In" name="log_in"/>
         <input type="submit" value="Sign In" name ="sign_in"/>
     </form>
