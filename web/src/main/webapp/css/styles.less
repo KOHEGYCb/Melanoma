@@ -339,13 +339,22 @@ body, html{
     padding: 15px;
     width: 350px;
     border-radius: 15px;
-    height: 490px;
+    height: 460px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 .createUserForm{
+
+    h3{
+        color: @light-gray-text;
+        margin: 0;
+        padding: 0;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
 
     form{
 
@@ -371,7 +380,10 @@ body, html{
             width: auto;
             border: 1px solid red;
         }
-
+        input:focus{
+            background: @light-gray;
+            color: @dark-green;
+        }
         span{
             display: block;
             text-align: center;
@@ -381,7 +393,7 @@ body, html{
             color: @light-gray-text;
             /*border: 1px solid @red;*/
         }
-        
+
         span.sex{
             float: left;
             width: 25%;
@@ -393,9 +405,9 @@ body, html{
             height: 35px;
             position: relative;
             border-radius: 5px;
-            
+
         }
-        
+
         div:before{
             content: "";
             display: block;
@@ -406,7 +418,7 @@ body, html{
             right: 35px;
             background: @dark-gray;
         }
-        
+
         div:after{
             content: "";
             display: block;
@@ -418,7 +430,7 @@ body, html{
             margin-top: -3px;
             border-color: @light-gray transparent transparent transparent;
         }
-        
+
         div{
             select{
                 background: transparent;
@@ -427,20 +439,22 @@ body, html{
                 height: 35px;
                 border: none;
                 font-size: 20px;
+                transition: .3s;
+                border-radius: 5px;
                 -webkit-appearance: none;
                 -moz-appearance: none;
                 appearance: none;
             }
-            
+
             select:hover{
+                cursor: pointer;
+            }
+
+            select:focus{
                 background: @light-gray;
                 color: @dark-green;
             }
-            
-            select:acive{
-                background: transparent;
-            }
         }
-        
+
     }
 }
