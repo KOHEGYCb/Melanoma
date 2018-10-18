@@ -12,7 +12,7 @@
     if (user_ != null){
     %>
             <div class="info">Hello <%=user_.getLogin() %></div>
-            <div class="logo">M E L A N O M A</div>
+            <div class="logo">M E L A N O M A - T E S T E D</div>
             <div class="logout">
                 <form action="logout" method="post">
                     <input type="submit" name="log_out" value="Log Out">

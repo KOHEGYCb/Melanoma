@@ -34,7 +34,7 @@
                 <td>№</td>
                 <td>FIO</td>
                 <td>AGE</td>
-                <td>SEX</td>
+                <td>Gender</td>
                 <td>NumFoto</td>
             </tr>
             <%  
@@ -59,7 +59,7 @@
                 <td>№</td>
                 <td>FIO</td>
                 <td>AGE</td>
-                <td>SEX</td>
+                <td>Gender</td>
                 <td>NumFoto</td>
             </tr>
             <%  
@@ -83,8 +83,9 @@
             <tr>
                 <td>№</td>
                 <td>FIO</td>
+                <td>Doctor</td>
                 <td>AGE</td>
-                <td>SEX</td>
+                <td>Gender</td>
                 <td>NumFoto</td>
             </tr>
             <%  
@@ -93,6 +94,7 @@
             %>
             <tr>
                 <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>
+                <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getLogin()%></td>
                 <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getLogin()%></td>
                 <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getRole()%></td>
                 <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>

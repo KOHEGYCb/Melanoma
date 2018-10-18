@@ -100,6 +100,14 @@ public class SQLRequests {
             + "presence_of_ulceration,"
             + "hospital"
             + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    public static final String CREATE_START_USER_FORM = "INSERT INTO melanoma.user_form ("
+            + "user_id,"
+            + "name,"
+            + "surname,"
+            + "patronymic,"
+            + "birthday,"
+            + "sex,"
+            + ") VALUES (?, ?, ?, ?, ?, ?);";
     public static final String UPDATE_USER_FORM = "UPDATE melanoma.user_form SET "
             + "user_id = ?,"
             + "name = ?,"

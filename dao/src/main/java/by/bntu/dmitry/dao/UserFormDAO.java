@@ -100,7 +100,7 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
         ResultSet resultSet = null;
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
-            statement = connection.prepareStatement(SQLRequests.GET_USER_FORM_BY_ID);
+            statement = connection.prepareStatement(SQLRequests.GET_USER_FORM_BY_USER);
             statement.setInt(1, user.getId());
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -147,6 +147,26 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
             statement.setInt(11, userForm.getImmunosuppressiveTherapy());
             statement.setInt(12, userForm.getPresenceUlceration());
             statement.setString(13, userForm.getHospital());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            releaseConnection(connection, statement);
+        }
+    }
+    
+        public void createStartEntity(UserForm userForm) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = ConnectionPool.INSTANCE.getConnection();
+            statement = connection.prepareStatement(SQLRequests.CREATE_START_USER_FORM);
+            statement.setInt(1, userForm.getUser().getId());
+            statement.setString(2, userForm.getName());
+            statement.setString(3, userForm.getSurname());
+            statement.setString(4, userForm.getPatronymic());
+            statement.setDate(5, userForm.getBirthday());
+            statement.setInt(6, userForm.getSex().getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);

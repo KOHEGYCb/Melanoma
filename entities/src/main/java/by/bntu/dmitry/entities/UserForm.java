@@ -8,8 +8,8 @@ import java.util.Objects;
  *
  * @author dmitry
  */
-public class UserForm extends AbstractEntity{
-    
+public class UserForm extends AbstractEntity {
+
     private User user;
     private String name;
     private String surname;
@@ -90,12 +90,21 @@ public class UserForm extends AbstractEntity{
     public void setSex(Sex sex) {
         this.sex = sex;
     }
-    
+
     public void setSex(int sex) {
-        if (sex == 1){
+        if (sex == 1) {
             this.sex = Sex.MALE;
-        }else{
-        this.sex = Sex.SHEMALE;
+        } else {
+            this.sex = Sex.FEMALE;
+        }
+    }
+
+    public void setSex(String sex) {
+        if (sex.equals("Male") || sex.equals("male")) {
+            this.sex = Sex.MALE;
+        }
+        if (sex.equals("Female") || sex.equals("female")) {
+            this.sex = Sex.FEMALE;
         }
     }
 
@@ -232,6 +241,5 @@ public class UserForm extends AbstractEntity{
     public String toString() {
         return "UserForm{" + "user=" + user + ", name=" + name + ", surname=" + surname + ", patronymic=" + patronymic + ", birthday=" + birthday + ", sex=" + sex + ", relativeMelanoma=" + relativeMelanoma + ", anamnesisMelanoma=" + anamnesisMelanoma + ", dyspasticNevusSyndrome=" + dyspasticNevusSyndrome + ", dyspasticNevusSyndromeRelatives=" + dyspasticNevusSyndromeRelatives + ", immunosuppressiveTherapy=" + immunosuppressiveTherapy + ", presenceUlceration=" + presenceUlceration + ", hospital=" + hospital + '}';
     }
-    
-    
+
 }

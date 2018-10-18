@@ -4,9 +4,16 @@
     Author     : dmitry
 --%>
 
+<%@page import="by.bntu.dmitry.entities.UserForm"%>
+<%@page import="by.bntu.dmitry.dao.UserFormDAO"%>
+<%@page import="by.bntu.dmitry.entities.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="header">
-    <div class="info">Hello user</div>
+    <%
+        UserForm uf = UserFormDAO.INSTANCE.getEntityByUser((User) session.getAttribute("user"));
+    %>
+    
+    <div class="info">Hello <%= uf.getName() %></div>
     <div class="logo">M E L A N O M A</div>
     <div class="logout">
         <form action="logout" method="post">
