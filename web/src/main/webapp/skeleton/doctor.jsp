@@ -95,6 +95,7 @@
             <tr>
                 <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>
                 <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getLogin()%></td>
+                <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getLogin()%></td>
                 <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getRole()%></td>
                 <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>
                 <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>

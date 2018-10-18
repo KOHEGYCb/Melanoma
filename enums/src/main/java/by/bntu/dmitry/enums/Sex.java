@@ -7,7 +7,7 @@ package by.bntu.dmitry.enums;
 public enum Sex {
     
     MALE(1),
-    SHEMALE(2);
+    FEMALE(2);
     
     private int id;
     
@@ -24,7 +24,7 @@ public enum Sex {
             case 1:
                 return MALE;
             case 2:
-                return SHEMALE;
+                return FEMALE;
         }
         return null;
     }

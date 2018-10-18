@@ -44,10 +44,17 @@ public class LoginServlet extends ManagerServlet {
         if (req.getParameter("sign_in") != null) {
             if (!login.equals("")) {
                 if (!password.equals("")) {
-                    User newUser = new User(login, password, Role.USER, true, false);
-                    UserDAO.INSTANCE.createEntity(newUser);
-                    LogServices.INSTANCE.SignInLog(newUser);
-                    forward(Destinations.CREATE_USER_FORM_PAGE, req, resp);
+                    if (UserDAO.INSTANCE.getEntityByLogin(login) == null){
+                        User newUser = new User(login, password, Role.USER, true, false);
+                        UserDAO.INSTANCE.createEntity(newUser);
+                        newUser = UserDAO.INSTANCE.getEntityByLogin(login);
+                        LogServices.INSTANCE.SignInLog(newUser);
+                        HttpSession session = req.getSession();
+                        session.setAttribute("user", newUser);
+                        LogServices.INSTANCE.LogInLog(newUser);
+                    }else {
+                a = "Login is used";
+            }
                 }
             }
         }
