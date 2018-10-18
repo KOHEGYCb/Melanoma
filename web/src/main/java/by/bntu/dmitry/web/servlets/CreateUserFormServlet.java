@@ -47,7 +47,6 @@ public class CreateUserFormServlet extends ManagerServlet {
         } else {
             matcher = pattern.matcher(name);
             if (matcher.matches()) {
-                if ((char) name.charAt(0) == (char)'a' )
                 System.out.println("Name is Valid");
             } else {
                 isValid = false;
