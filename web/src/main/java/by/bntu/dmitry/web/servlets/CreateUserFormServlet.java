@@ -6,6 +6,8 @@ import by.bntu.dmitry.dao.UserFormDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.entities.UserForm;
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.sql.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,6 +41,20 @@ public class CreateUserFormServlet extends ManagerServlet {
         String birthday = req.getParameter("birthday");
         String gender = req.getParameter("gender");
 
+        System.out.println(surname);
+        for (int i = 0; i < surname.length(); i++) {
+            if (((int) surname.charAt(i) >= 65) && ((int) surname.charAt(i) <= 90) || ((int) surname.charAt(i) >= 97) && ((int) surname.charAt(i) <= 122)) {
+                continue;
+            }else{
+                if (((int) surname.charAt(i) == 208) || ((int) surname.charAt(i) == 209)){
+                    
+                }
+            }
+            System.out.println((int) surname.charAt(i) + "  " + (int) surname.charAt(i + 1));
+        }
+        int a = (int) surname.length();
+        System.out.println("" + a);
+
         boolean isValid = true;
 
         if ("".equals(name)) {
@@ -47,7 +63,7 @@ public class CreateUserFormServlet extends ManagerServlet {
         } else {
             matcher = pattern.matcher(name);
             if (matcher.matches()) {
-                System.out.println("Name is Valid");
+                name = setUpperFirstLeter(name);
             } else {
                 isValid = false;
             }
@@ -59,24 +75,26 @@ public class CreateUserFormServlet extends ManagerServlet {
         } else {
             matcher = pattern.matcher(surname);
             if (matcher.matches()) {
-                System.out.println("Surname is Valid");
+                surname = setUpperFirstLeter(surname);
             } else {
                 isValid = false;
             }
         }
 
-        matcher = pattern.matcher(patronymic);
-        if (matcher.matches()) {
-            System.out.println("Patronymic is Valid");
+        if (!"".equals(patronymic)) {
+            matcher = pattern.matcher(patronymic);
+            if (matcher.matches()) {
+                patronymic = setUpperFirstLeter(patronymic);
+            } else {
+                isValid = false;
+            }
         } else {
-            isValid = false;
+            _patronymic = !_patronymic;
         }
 
         if ("".equals(birthday)) {
             _birthday = !_birthday;
             isValid = false;
-        } else {
-
         }
 
         if (isValid) {
@@ -94,7 +112,7 @@ public class CreateUserFormServlet extends ManagerServlet {
                 req.setAttribute(JspAttributes.CREATE_USER_FORM_JSP_NAME, name);
             }
             if (_surname) {
-                req.setAttribute(JspAttributes.CREATE_USER_FORM_JSP_SURNAME, surname);
+//                req.setAttribute(JspAttributes.CREATE_USER_FORM_JSP_SURNAME, surname);
             }
             if (_patronymic) {
                 req.setAttribute(JspAttributes.CREATE_USER_FORM_JSP_PATRONYMIC, patronymic);
@@ -107,6 +125,13 @@ public class CreateUserFormServlet extends ManagerServlet {
 
 //        UserFormDAO.INSTANCE.createEntity(form);
         forward(Destinations.MAIN_PAGE, req, resp);
+    }
+
+    private String setUpperFirstLeter(String str) {
+        if (Character.isLowerCase(str.charAt(0))) {
+            str = Character.toUpperCase(str.charAt(0)) + str.substring(1);
+        }
+        return str;
     }
 
 }
