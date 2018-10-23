@@ -98,7 +98,7 @@
                     if (UserFormDAO.INSTANCE.getEntityByUser(allPacients.get(i)) != null){
             %>
                         <tr>
-                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>
+                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=i%></td>
                             <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(allPacients.get(i))%></td>
                             <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getUser_sDoctorFIO(allPacients.get(i))%></td>
                             <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getRole()%></td>
