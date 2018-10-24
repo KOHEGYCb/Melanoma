@@ -42,11 +42,17 @@ public class CreateUserFormServlet extends ManagerServlet {
         String gender = req.getParameter("gender");
 
         System.out.println(surname);
+        String newSurname = "";
         for (int i = 0; i < surname.length(); i++) {
             if (((int) surname.charAt(i) >= 65) && ((int) surname.charAt(i) <= 90) || ((int) surname.charAt(i) >= 97) && ((int) surname.charAt(i) <= 122)) {
+                newSurname = newSurname + surname.charAt(i);
                 continue;
             }else{
-                if (((int) surname.charAt(i) == 208) || ((int) surname.charAt(i) == 209)){
+                if ((int) surname.charAt(i) == 208){
+                    newSurname = newSurname + surname.charAt(i+1);
+                }
+                
+                if ((int) surname.charAt(i) == 209) {
                     
                 }
             }
