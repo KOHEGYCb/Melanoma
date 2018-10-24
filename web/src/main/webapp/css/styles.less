@@ -273,7 +273,8 @@ body, html{
         color: @light-gray-text;
     }
 
-    input[type="text"], .reg input[type="password"]{
+    input[type="text"], 
+    input[type="password"]{
         box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
     }
 
@@ -376,10 +377,26 @@ body, html{
             transition: .3s;
         }
 
-        input[type="radio"]{
-            width: auto;
-            border: 1px solid red;
+        input[type="text"],
+        input[type="date"],
+        div{
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
         }
+
+        input[type="submit"]{
+            width: 90%;
+            margin: 6px auto;
+        }
+
+        input[type="submit"]:hover{
+            background: @dark-green-hover;
+        }
+
+        input[type="submit"]:active{
+            background: #cbcbc9;
+            color: @dark-gray;     
+        }
+
         input:focus{
             background: @light-gray;
             color: @dark-green;
