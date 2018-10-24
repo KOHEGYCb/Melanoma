@@ -235,7 +235,13 @@ body, html{
     left: -200%;
     height: 40px;
 }*/
-#create:target, #tables:target, #profile:target{
+//__________________________________pages
+
+#create:target, 
+#tables:target, 
+#profile:target,
+#logs:target,
+#users:target{
     left: 300px;
     transition: .3s .3s;
 }
@@ -473,5 +479,176 @@ body, html{
             }
         }
 
+    }
+}
+
+/*
+==============================================================================
+===========================    Create Foto Form    ===========================
+==============================================================================
+*/
+
+.createFotoForm{
+    position: relative;
+    background: @green;
+    padding: 15px;
+    width: 900px;
+    border-radius: 15px;
+    height: 1260px;
+    left: 50%;
+    top: 10%;
+    margin-bottom: 10%;
+    transform: translate(-50%, 0%);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.createFotoForm{
+
+    h3{
+        color: @light-gray-text;
+        margin: 0;
+        padding: 0;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    form{
+
+    }
+
+    form{
+        
+        div.block{
+            float: left;
+            width: 45%;
+            margin: 2.5%;
+            height: 70px;
+        }
+        
+        div.block{
+            
+            input{
+                border: 1px solid transparent;
+                border-radius: 5px;
+                display: block;
+                width: 100%;
+                margin: 0 6px 6px 0px;
+                padding: 0;
+                background: @dark-green;
+                height: 35px;
+                color: @light-gray-text;
+                font-size: 20px;
+                transition: .3s;
+            }
+
+            input[type="text"],
+            input[type="date"],
+            div{
+                box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+            }
+
+            input[type="submit"]{
+                width: 90%;
+                margin: 6px auto;
+            }
+
+            input[type="submit"]:hover{
+                background: @dark-green-hover;
+            }
+
+            input[type="submit"]:active{
+                background: #cbcbc9;
+                color: @dark-gray;     
+            }
+
+            input:focus{
+                background: @light-gray;
+                color: @dark-green;
+            }
+            
+            textarea{
+                border: 1px solid transparent;
+                border-radius: 5px;
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                margin: 0 6px 6px 0px;
+                padding: 0;
+                background: @dark-green;
+                height: 35px;
+                max-height: 130px;
+                color: @light-gray-text;
+                font-size: 20px;
+                transition: .3s;
+            }
+            
+            span{
+                display: block;
+                text-align: center;
+                font-size: 20px;
+                margin: 3px;
+                padding: 3px;
+                color: @light-gray-text;
+/*                width: 50%;*/
+                /*border: 1px solid @red;*/
+            }
+
+            div{
+                width: 100%;
+                background: @dark-green;
+                height: 35px;
+                position: relative;
+                border-radius: 5px;
+
+            }
+
+            div:before{
+                content: "";
+                display: block;
+                width: 1px;
+                position: absolute;
+                height: 33px;
+                top: 1px;
+                right: 35px;
+                background: @dark-gray;
+            }
+
+            div:after{
+                content: "";
+                display: block;
+                position: absolute;
+                border-width: 7px 7px 0px 7px;
+                border-style: solid;
+                right: 12px;
+                top: 50%;
+                margin-top: -3px;
+                border-color: @light-gray transparent transparent transparent;
+            }
+
+            div{
+                select{
+                    background: transparent;
+                    color: @light-gray-text;
+                    width: 100%;
+                    height: 35px;
+                    border: none;
+                    font-size: 20px;
+                    transition: .3s;
+                    border-radius: 5px;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                }
+
+                select:hover{
+                    cursor: pointer;
+                }
+
+                select:focus{
+                    background: @light-gray;
+                    color: @dark-green;
+                }
+            }
+        }
     }
 }
