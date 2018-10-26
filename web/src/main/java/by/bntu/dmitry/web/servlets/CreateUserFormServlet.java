@@ -41,27 +41,11 @@ public class CreateUserFormServlet extends ManagerServlet {
         String birthday = req.getParameter("birthday");
         String gender = req.getParameter("gender");
 
-        System.out.println(surname);
-        String newSurname = "";
-        for (int i = 0; i < surname.length(); i++) {
-            if (((int) surname.charAt(i) >= 65) && ((int) surname.charAt(i) <= 90) || ((int) surname.charAt(i) >= 97) && ((int) surname.charAt(i) <= 122)) {
-                newSurname = newSurname + surname.charAt(i);
-                continue;
-            }else{
-                if ((int) surname.charAt(i) == 208){
-                    newSurname = newSurname + surname.charAt(i+1);
-                }
-                
-                if ((int) surname.charAt(i) == 209) {
-                    
-                }
-            }
-            System.out.println((int) surname.charAt(i) + "  " + (int) surname.charAt(i + 1));
-        }
-        int a = (int) surname.length();
-        System.out.println("" + a);
-
         boolean isValid = true;
+        
+        name = setToCyrillic(name);
+        surname = setToCyrillic(surname);
+        patronymic = setToCyrillic(patronymic);
 
         if ("".equals(name)) {
             _name = !_name;
@@ -138,6 +122,26 @@ public class CreateUserFormServlet extends ManagerServlet {
             str = Character.toUpperCase(str.charAt(0)) + str.substring(1);
         }
         return str;
+    }
+
+    private String setToCyrillic (String str) {
+        String newStr = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (((int) str.charAt(i) >= 65) && ((int) str.charAt(i) <= 90) || ((int) str.charAt(i) >= 97) && ((int) str.charAt(i) <= 122)) {
+                newStr = newStr + str.charAt(i);
+                continue;
+            } else {
+                if ((int) str.charAt(i) == 208) {
+                    int ch = (int) str.charAt(i + 1) + 896;
+                    newStr = newStr + (char) ch;
+                }
+                if ((int) str.charAt(i) == 209) {
+                    int ch = (int) str.charAt(i + 1) + 960;
+                    newStr = newStr + (char) ch;
+                }
+            }
+        }
+        return newStr;
     }
 
 }
