@@ -141,7 +141,7 @@ public enum FotoDAO implements AbstractDAO<Foto> {
             statement = connection.prepareStatement(SQLRequests.GET_FOTOS_BY_USER);
             statement.setInt(1, user.getId());
             resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 Foto foto = new Foto();
                 foto.setId(resultSet.getInt(SQLColumns.FOTO_ID));
                 foto.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.FOTO_USER_ID)));
