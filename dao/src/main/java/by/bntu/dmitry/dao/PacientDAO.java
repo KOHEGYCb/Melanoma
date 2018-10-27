@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,12 +32,7 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
             statement = connection.prepareStatement(SQLRequests.GET_ALL_PACIENTS);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Pacient pacient = new Pacient();
-                pacient.setId(resultSet.getInt(SQLColumns.PACIENT_ID));
-                pacient.setPacient(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.PACIENT_ID_PACIENT)));
-                pacient.setDoctor(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.PACIENT_ID_DOCTOR)));
-                pacient.setDirectionHistology(resultSet.getInt(SQLColumns.PACIENT_DIRECTION_HISTOLOGY));
-                pacients.add(pacient);
+                pacients.add(getPacient(resultSet));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,11 +54,7 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
             statement.setInt(0, id);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                pacient = new Pacient();
-                pacient.setId(resultSet.getInt(SQLColumns.PACIENT_ID));
-                pacient.setPacient(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.PACIENT_ID_PACIENT)));
-                pacient.setDoctor(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.PACIENT_ID_DOCTOR)));
-                pacient.setDirectionHistology(resultSet.getInt(SQLColumns.PACIENT_DIRECTION_HISTOLOGY));
+                pacient = getPacient(resultSet);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -84,12 +74,8 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
             statement = connection.prepareStatement(SQLRequests.GET_ALL_PACIENTS);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                pacient = new Pacient();
-                pacient.setId(resultSet.getInt(SQLColumns.PACIENT_ID));
-                pacient.setPacient(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.PACIENT_ID_PACIENT)));
-                pacient.setDoctor(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.PACIENT_ID_DOCTOR)));
-                pacient.setDirectionHistology(resultSet.getInt(SQLColumns.PACIENT_DIRECTION_HISTOLOGY));
-                if (pacient.getPacient().equals(user)){
+                pacient = getPacient(resultSet);
+                if (pacient.getPacient().equals(user)) {
                     return pacient;
                 }
             }
@@ -100,7 +86,7 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
         }
         return pacient;
     }
-    
+
     @Override
     public void createEntity(Pacient pacient) {
         Connection connection = null;
@@ -182,6 +168,17 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    private Pacient getPacient(ResultSet resultSet) throws SQLException {
+        Pacient pacient = new Pacient();
+        
+        pacient.setId(resultSet.getInt(SQLColumns.PACIENT_ID));
+        pacient.setPacient(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.PACIENT_ID_PACIENT)));
+        pacient.setDoctor(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.PACIENT_ID_DOCTOR)));
+        pacient.setDirectionHistology(resultSet.getInt(SQLColumns.PACIENT_DIRECTION_HISTOLOGY));
+        
+        return pacient;
     }
 
 }
