@@ -6,10 +6,10 @@ package by.bntu.dmitry.enums;
  */
 public enum TumorOutline {
 
-    clear(1),
-    fuzzy(2);
+    CLEAR(1),
+    FUZZY(2);
 
-    private int id;
+    private final int id;
 
     private TumorOutline(int id) {
         this.id = id;
@@ -22,9 +22,9 @@ public enum TumorOutline {
     public  static TumorOutline setTumorOutline(int id) {
         switch (id) {
             case 1:
-                return clear;
+                return CLEAR;
             case 2:
-                return fuzzy;
+                return FUZZY;
         }
         return null;
     }
