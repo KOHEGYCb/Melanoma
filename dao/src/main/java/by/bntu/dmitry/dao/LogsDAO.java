@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +20,7 @@ import java.util.logging.Logger;
 public enum LogsDAO implements AbstractDAO<Logs> {
 
     INSTANCE;
-    
+
     @Override
     public ArrayList<Logs> findAll() {
         ArrayList<Logs> logs = new ArrayList<>();
@@ -33,12 +32,7 @@ public enum LogsDAO implements AbstractDAO<Logs> {
             statement = connection.prepareStatement(SQLRequests.GET_ALL_LOGS);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Logs log = new Logs();
-                log.setId(resultSet.getInt(SQLColumns.LOGS_ID));
-                log.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.LOGS_USER_ID)));
-                log.setDate(resultSet.getDate(SQLColumns.LOGS_DATE));
-                log.setAction(resultSet.getString(SQLColumns.LOGS_ACTION));
-                logs.add(log);
+                logs.add(getLog(resultSet));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,11 +54,7 @@ public enum LogsDAO implements AbstractDAO<Logs> {
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                log = new Logs();
-                log.setId(resultSet.getInt(SQLColumns.LOGS_ID));
-                log.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.LOGS_USER_ID)));
-                log.setDate(resultSet.getDate(SQLColumns.LOGS_DATE));
-                log.setAction(resultSet.getString(SQLColumns.LOGS_ACTION));
+                log = getLog(resultSet);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,12 +75,7 @@ public enum LogsDAO implements AbstractDAO<Logs> {
             statement.setInt(1, user.getId());
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Logs log = new Logs();
-                log.setId(resultSet.getInt(SQLColumns.LOGS_ID));
-                log.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.LOGS_USER_ID)));
-                log.setDate(resultSet.getDate(SQLColumns.LOGS_DATE));
-                log.setAction(resultSet.getString(SQLColumns.LOGS_ACTION));
-                logs.add(log);
+                logs.add(getLog(resultSet));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,7 +84,7 @@ public enum LogsDAO implements AbstractDAO<Logs> {
         }
         return logs;
     }
-    
+
     @Override
     public void createEntity(Logs log) {
         Connection connection = null;
@@ -181,5 +166,16 @@ public enum LogsDAO implements AbstractDAO<Logs> {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    private Logs getLog(ResultSet resultSet) throws SQLException {
+        Logs log = new Logs();
+        
+        log.setId(resultSet.getInt(SQLColumns.LOGS_ID));
+        log.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.LOGS_USER_ID)));
+        log.setDate(resultSet.getDate(SQLColumns.LOGS_DATE));
+        log.setAction(resultSet.getString(SQLColumns.LOGS_ACTION));
+        
+        return log;
     }
 }

@@ -33,22 +33,7 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
             statement = connection.prepareStatement(SQLRequests.GET_ALL_USER_FORMS);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                UserForm userForm = new UserForm();
-                userForm.setId(resultSet.getInt(SQLColumns.USER_FORM_ID));
-                userForm.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.USER_FORM_USER_ID)));
-                userForm.setName(resultSet.getString(SQLColumns.USER_FORM_NAME));
-                userForm.setSurname(resultSet.getString(SQLColumns.USER_FORM_SURNAME));
-                userForm.setPatronymic(resultSet.getString(SQLColumns.USER_FORM_PATRONYMIC));
-                userForm.setBirthday(resultSet.getDate(SQLColumns.USER_FORM_BIRTHDAY));
-                userForm.setSex(resultSet.getInt(SQLColumns.USER_FORM_SEX));
-                userForm.setRelativeMelanoma(resultSet.getInt(SQLColumns.USER_FORM_RELATIVE_MELANOMA));
-                userForm.setAnamnesisMelanoma(resultSet.getInt(SQLColumns.USER_FORM_ANAMNESIS_MELANOMA));
-                userForm.setDyspasticNevusSyndrome(resultSet.getInt(SQLColumns.USER_FORM_DYSPASTIC_NEVUS_SYNDROME));
-                userForm.setDyspasticNevusSyndromeRelatives(resultSet.getInt(SQLColumns.USER_FORM_DYSPASTIC_NEVUS_SYNDROME_RELATIVES));
-                userForm.setImmunosuppressiveTherapy(resultSet.getInt(SQLColumns.USER_FORM_IMMUNOSUPPRESSIVE_THERAPY));
-                userForm.setPresenceUlceration(resultSet.getInt(SQLColumns.USER_FORM_PRESENCE_ULCERATION));
-                userForm.setHospital(resultSet.getString(SQLColumns.USER_FORM_HOSPITAL));
-                userForms.add(userForm);
+                userForms.add(getUserForm(resultSet));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -70,20 +55,7 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                userForm = new UserForm();
-                userForm.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.USER_FORM_USER_ID)));
-                userForm.setName(resultSet.getString(SQLColumns.USER_FORM_NAME));
-                userForm.setSurname(resultSet.getString(SQLColumns.USER_FORM_SURNAME));
-                userForm.setPatronymic(resultSet.getString(SQLColumns.USER_FORM_PATRONYMIC));
-                userForm.setBirthday(resultSet.getDate(SQLColumns.USER_FORM_BIRTHDAY));
-                userForm.setSex(resultSet.getInt(SQLColumns.USER_FORM_SEX));
-                userForm.setRelativeMelanoma(resultSet.getInt(SQLColumns.USER_FORM_RELATIVE_MELANOMA));
-                userForm.setAnamnesisMelanoma(resultSet.getInt(SQLColumns.USER_FORM_ANAMNESIS_MELANOMA));
-                userForm.setDyspasticNevusSyndrome(resultSet.getInt(SQLColumns.USER_FORM_DYSPASTIC_NEVUS_SYNDROME));
-                userForm.setDyspasticNevusSyndromeRelatives(resultSet.getInt(SQLColumns.USER_FORM_DYSPASTIC_NEVUS_SYNDROME_RELATIVES));
-                userForm.setImmunosuppressiveTherapy(resultSet.getInt(SQLColumns.USER_FORM_IMMUNOSUPPRESSIVE_THERAPY));
-                userForm.setPresenceUlceration(resultSet.getInt(SQLColumns.USER_FORM_PRESENCE_ULCERATION));
-                userForm.setHospital(resultSet.getString(SQLColumns.USER_FORM_HOSPITAL));
+                userForm = getUserForm(resultSet);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,20 +76,7 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
             statement.setInt(1, user.getId());
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                userForm = new UserForm();
-                userForm.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.USER_FORM_USER_ID)));
-                userForm.setName(resultSet.getString(SQLColumns.USER_FORM_NAME));
-                userForm.setSurname(resultSet.getString(SQLColumns.USER_FORM_SURNAME));
-                userForm.setPatronymic(resultSet.getString(SQLColumns.USER_FORM_PATRONYMIC));
-                userForm.setBirthday(resultSet.getDate(SQLColumns.USER_FORM_BIRTHDAY));
-                userForm.setSex(resultSet.getInt(SQLColumns.USER_FORM_SEX));
-                userForm.setRelativeMelanoma(resultSet.getInt(SQLColumns.USER_FORM_RELATIVE_MELANOMA));
-                userForm.setAnamnesisMelanoma(resultSet.getInt(SQLColumns.USER_FORM_ANAMNESIS_MELANOMA));
-                userForm.setDyspasticNevusSyndrome(resultSet.getInt(SQLColumns.USER_FORM_DYSPASTIC_NEVUS_SYNDROME));
-                userForm.setDyspasticNevusSyndromeRelatives(resultSet.getInt(SQLColumns.USER_FORM_DYSPASTIC_NEVUS_SYNDROME_RELATIVES));
-                userForm.setImmunosuppressiveTherapy(resultSet.getInt(SQLColumns.USER_FORM_IMMUNOSUPPRESSIVE_THERAPY));
-                userForm.setPresenceUlceration(resultSet.getInt(SQLColumns.USER_FORM_PRESENCE_ULCERATION));
-                userForm.setHospital(resultSet.getString(SQLColumns.USER_FORM_HOSPITAL));
+                userForm = getUserForm(resultSet);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,7 +85,7 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
         }
         return userForm;
     }
-    
+
     @Override
     public void createEntity(UserForm userForm) {
         Connection connection = null;
@@ -154,8 +113,8 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
             releaseConnection(connection, statement);
         }
     }
-    
-        public void createStartEntity(UserForm userForm) {
+
+    public void createStartEntity(UserForm userForm) {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -248,6 +207,25 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    private UserForm getUserForm(ResultSet resultSet) throws SQLException {
+        UserForm userForm = new UserForm();
+        userForm.setId(resultSet.getInt(SQLColumns.USER_FORM_ID));
+        userForm.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.USER_FORM_USER_ID)));
+        userForm.setName(resultSet.getString(SQLColumns.USER_FORM_NAME));
+        userForm.setSurname(resultSet.getString(SQLColumns.USER_FORM_SURNAME));
+        userForm.setPatronymic(resultSet.getString(SQLColumns.USER_FORM_PATRONYMIC));
+        userForm.setBirthday(resultSet.getDate(SQLColumns.USER_FORM_BIRTHDAY));
+        userForm.setSex(resultSet.getInt(SQLColumns.USER_FORM_SEX));
+        userForm.setRelativeMelanoma(resultSet.getInt(SQLColumns.USER_FORM_RELATIVE_MELANOMA));
+        userForm.setAnamnesisMelanoma(resultSet.getInt(SQLColumns.USER_FORM_ANAMNESIS_MELANOMA));
+        userForm.setDyspasticNevusSyndrome(resultSet.getInt(SQLColumns.USER_FORM_DYSPASTIC_NEVUS_SYNDROME));
+        userForm.setDyspasticNevusSyndromeRelatives(resultSet.getInt(SQLColumns.USER_FORM_DYSPASTIC_NEVUS_SYNDROME_RELATIVES));
+        userForm.setImmunosuppressiveTherapy(resultSet.getInt(SQLColumns.USER_FORM_IMMUNOSUPPRESSIVE_THERAPY));
+        userForm.setPresenceUlceration(resultSet.getInt(SQLColumns.USER_FORM_PRESENCE_ULCERATION));
+        userForm.setHospital(resultSet.getString(SQLColumns.USER_FORM_HOSPITAL));
+        return userForm;
     }
 
 }

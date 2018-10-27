@@ -42,36 +42,7 @@ public enum FotoDAO implements AbstractDAO<Foto> {
             statement = connection.prepareStatement(SQLRequests.GET_ALL_FOTOS);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Foto foto = new Foto();
-                foto.setId(resultSet.getInt(SQLColumns.FOTO_ID));
-                foto.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.FOTO_USER_ID)));
-                foto.setId_tumor(resultSet.getInt(SQLColumns.FOTO_ID_TUMOR));
-                foto.setOriginIllness(OriginIllness.setOriginIllness(resultSet.getInt(SQLColumns.FOTO_ORIGIN_ILLNESS)));
-                foto.setDurationIllness(DurationIllness.setDurationIllness(resultSet.getInt(SQLColumns.FOTO_DURATION_ILLNESS)));
-                foto.setChangeForm(resultSet.getInt(SQLColumns.FOTO_CHANGE_FORM));
-                foto.setChangeSize(resultSet.getInt(SQLColumns.FOTO_CHANGE_SIZE));
-                foto.setChangeColor(resultSet.getInt(SQLColumns.FOTO_CHANGE_COLOR));
-                foto.setChangeSensivity(resultSet.getInt(SQLColumns.FOTO_CHANGE_SENSIVITY));
-                foto.setCrustsAndBleeding(resultSet.getInt(SQLColumns.FOTO_CRUSTS_AND_BLEEDING));
-                foto.setTumorPain(resultSet.getInt(SQLColumns.FOTO_TUMOR_PAIN));
-                foto.setSatellite(resultSet.getInt(SQLColumns.FOTO_SATELLITE));
-                foto.setInflammations(resultSet.getInt(SQLColumns.FOTO_INFLAMMATIONS));
-                foto.setUniformColoring(resultSet.getInt(SQLColumns.FOTO_UNIFORM_COLORING));
-                foto.setSkinType(resultSet.getInt(SQLColumns.FOTO_SKIN_TYPE));
-                foto.setTumor_diameter(resultSet.getInt(SQLColumns.FOTO_TUMOR_DIAMETER));
-                foto.setTumorForm(TumorForm.setTumorForm(resultSet.getInt(SQLColumns.FOTO_TUMOR_FORM)));
-                foto.setTumorSurface(TumorSurface.setTumorSurface(resultSet.getInt(SQLColumns.FOTO_TUMOR_SURFACE)));
-                foto.setTumorOutline(TumorOutline.setTumorOutline(resultSet.getInt(SQLColumns.FOTO_TUMOR_OUTLINE)));
-                foto.setTumorLocalization(TumorLocalization.setTumorLocalization(resultSet.getInt(SQLColumns.FOTO_TUMOR_LOCALIZATION)));
-                foto.setDevice(Device.setDevice(resultSet.getInt(SQLColumns.FOTO_DEVICE)));
-                foto.setDate(resultSet.getDate(SQLColumns.FOTO_DATE));
-                foto.setComments(resultSet.getString(SQLColumns.FOTO_COMMENTS));
-                foto.setDiagnosisPreliminary(DiagnosisPreliminary.setDiagnosisPreliminary(resultSet.getInt(SQLColumns.FOTO_DIAGNOSIS_PRELIMINARY)));
-                foto.setDiagnosisFinal(DiagnosisFinal.setDiagnosisFinal(resultSet.getInt(SQLColumns.FOTO_DIAGNOSIS_FINAL)));
-                foto.setResultComputerAnalysisProbability(resultSet.getInt(SQLColumns.FOTO_RESULT_COMPUTER_ANALYSIS_PROBABILITY));
-                foto.setResultComputerAnalysisSimilar(resultSet.getInt(SQLColumns.FOTO_RESULT_COMPUTER_ANALYSIS_SIMILAR));
-                foto.setPlacedInDatabase(resultSet.getInt(SQLColumns.FOTO_PLACED_IN_DATABASE));
-                fotos.add(foto);
+                fotos.add(getFoto(resultSet));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -93,35 +64,7 @@ public enum FotoDAO implements AbstractDAO<Foto> {
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                foto = new Foto();
-                foto.setId(resultSet.getInt(SQLColumns.FOTO_ID));
-                foto.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.FOTO_USER_ID)));
-                foto.setId_tumor(resultSet.getInt(SQLColumns.FOTO_ID_TUMOR));
-                foto.setOriginIllness(OriginIllness.setOriginIllness(resultSet.getInt(SQLColumns.FOTO_ORIGIN_ILLNESS)));
-                foto.setDurationIllness(DurationIllness.setDurationIllness(resultSet.getInt(SQLColumns.FOTO_DURATION_ILLNESS)));
-                foto.setChangeForm(resultSet.getInt(SQLColumns.FOTO_CHANGE_FORM));
-                foto.setChangeSize(resultSet.getInt(SQLColumns.FOTO_CHANGE_SIZE));
-                foto.setChangeColor(resultSet.getInt(SQLColumns.FOTO_CHANGE_COLOR));
-                foto.setChangeSensivity(resultSet.getInt(SQLColumns.FOTO_CHANGE_SENSIVITY));
-                foto.setCrustsAndBleeding(resultSet.getInt(SQLColumns.FOTO_CRUSTS_AND_BLEEDING));
-                foto.setTumorPain(resultSet.getInt(SQLColumns.FOTO_TUMOR_PAIN));
-                foto.setSatellite(resultSet.getInt(SQLColumns.FOTO_SATELLITE));
-                foto.setInflammations(resultSet.getInt(SQLColumns.FOTO_INFLAMMATIONS));
-                foto.setUniformColoring(resultSet.getInt(SQLColumns.FOTO_UNIFORM_COLORING));
-                foto.setSkinType(resultSet.getInt(SQLColumns.FOTO_SKIN_TYPE));
-                foto.setTumor_diameter(resultSet.getInt(SQLColumns.FOTO_TUMOR_DIAMETER));
-                foto.setTumorForm(TumorForm.setTumorForm(resultSet.getInt(SQLColumns.FOTO_TUMOR_FORM)));
-                foto.setTumorSurface(TumorSurface.setTumorSurface(resultSet.getInt(SQLColumns.FOTO_TUMOR_SURFACE)));
-                foto.setTumorOutline(TumorOutline.setTumorOutline(resultSet.getInt(SQLColumns.FOTO_TUMOR_OUTLINE)));
-                foto.setTumorLocalization(TumorLocalization.setTumorLocalization(resultSet.getInt(SQLColumns.FOTO_TUMOR_LOCALIZATION)));
-                foto.setDevice(Device.setDevice(resultSet.getInt(SQLColumns.FOTO_DEVICE)));
-                foto.setDate(resultSet.getDate(SQLColumns.FOTO_DATE));
-                foto.setComments(resultSet.getString(SQLColumns.FOTO_COMMENTS));
-                foto.setDiagnosisPreliminary(DiagnosisPreliminary.setDiagnosisPreliminary(resultSet.getInt(SQLColumns.FOTO_DIAGNOSIS_PRELIMINARY)));
-                foto.setDiagnosisFinal(DiagnosisFinal.setDiagnosisFinal(resultSet.getInt(SQLColumns.FOTO_DIAGNOSIS_FINAL)));
-                foto.setResultComputerAnalysisProbability(resultSet.getInt(SQLColumns.FOTO_RESULT_COMPUTER_ANALYSIS_PROBABILITY));
-                foto.setResultComputerAnalysisSimilar(resultSet.getInt(SQLColumns.FOTO_RESULT_COMPUTER_ANALYSIS_SIMILAR));
-                foto.setPlacedInDatabase(resultSet.getInt(SQLColumns.FOTO_PLACED_IN_DATABASE));
+                foto = getFoto(resultSet);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,37 +84,8 @@ public enum FotoDAO implements AbstractDAO<Foto> {
             statement = connection.prepareStatement(SQLRequests.GET_FOTOS_BY_USER);
             statement.setInt(1, user.getId());
             resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Foto foto = new Foto();
-                foto.setId(resultSet.getInt(SQLColumns.FOTO_ID));
-                foto.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.FOTO_USER_ID)));
-                foto.setId_tumor(resultSet.getInt(SQLColumns.FOTO_ID_TUMOR));
-                foto.setOriginIllness(OriginIllness.setOriginIllness(resultSet.getInt(SQLColumns.FOTO_ORIGIN_ILLNESS)));
-                foto.setDurationIllness(DurationIllness.setDurationIllness(resultSet.getInt(SQLColumns.FOTO_DURATION_ILLNESS)));
-                foto.setChangeForm(resultSet.getInt(SQLColumns.FOTO_CHANGE_FORM));
-                foto.setChangeSize(resultSet.getInt(SQLColumns.FOTO_CHANGE_SIZE));
-                foto.setChangeColor(resultSet.getInt(SQLColumns.FOTO_CHANGE_COLOR));
-                foto.setChangeSensivity(resultSet.getInt(SQLColumns.FOTO_CHANGE_SENSIVITY));
-                foto.setCrustsAndBleeding(resultSet.getInt(SQLColumns.FOTO_CRUSTS_AND_BLEEDING));
-                foto.setTumorPain(resultSet.getInt(SQLColumns.FOTO_TUMOR_PAIN));
-                foto.setSatellite(resultSet.getInt(SQLColumns.FOTO_SATELLITE));
-                foto.setInflammations(resultSet.getInt(SQLColumns.FOTO_INFLAMMATIONS));
-                foto.setUniformColoring(resultSet.getInt(SQLColumns.FOTO_UNIFORM_COLORING));
-                foto.setSkinType(resultSet.getInt(SQLColumns.FOTO_SKIN_TYPE));
-                foto.setTumor_diameter(resultSet.getInt(SQLColumns.FOTO_TUMOR_DIAMETER));
-                foto.setTumorForm(TumorForm.setTumorForm(resultSet.getInt(SQLColumns.FOTO_TUMOR_FORM)));
-                foto.setTumorSurface(TumorSurface.setTumorSurface(resultSet.getInt(SQLColumns.FOTO_TUMOR_SURFACE)));
-                foto.setTumorOutline(TumorOutline.setTumorOutline(resultSet.getInt(SQLColumns.FOTO_TUMOR_OUTLINE)));
-                foto.setTumorLocalization(TumorLocalization.setTumorLocalization(resultSet.getInt(SQLColumns.FOTO_TUMOR_LOCALIZATION)));
-                foto.setDevice(Device.setDevice(resultSet.getInt(SQLColumns.FOTO_DEVICE)));
-                foto.setDate(resultSet.getDate(SQLColumns.FOTO_DATE));
-                foto.setComments(resultSet.getString(SQLColumns.FOTO_COMMENTS));
-                foto.setDiagnosisPreliminary(DiagnosisPreliminary.setDiagnosisPreliminary(resultSet.getInt(SQLColumns.FOTO_DIAGNOSIS_PRELIMINARY)));
-                foto.setDiagnosisFinal(DiagnosisFinal.setDiagnosisFinal(resultSet.getInt(SQLColumns.FOTO_DIAGNOSIS_FINAL)));
-                foto.setResultComputerAnalysisProbability(resultSet.getInt(SQLColumns.FOTO_RESULT_COMPUTER_ANALYSIS_PROBABILITY));
-                foto.setResultComputerAnalysisSimilar(resultSet.getInt(SQLColumns.FOTO_RESULT_COMPUTER_ANALYSIS_SIMILAR));
-                foto.setPlacedInDatabase(resultSet.getInt(SQLColumns.FOTO_PLACED_IN_DATABASE));
-                fotos.add(foto);
+            if (resultSet.next()) {
+                fotos.add(getFoto(resultSet));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -310,5 +224,40 @@ public enum FotoDAO implements AbstractDAO<Foto> {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    private Foto getFoto(ResultSet resultSet) throws SQLException {
+        Foto foto = new Foto();
+        
+        foto.setId(resultSet.getInt(SQLColumns.FOTO_ID));
+        foto.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.FOTO_USER_ID)));
+        foto.setId_tumor(resultSet.getInt(SQLColumns.FOTO_ID_TUMOR));
+        foto.setOriginIllness(OriginIllness.setOriginIllness(resultSet.getInt(SQLColumns.FOTO_ORIGIN_ILLNESS)));
+        foto.setDurationIllness(DurationIllness.setDurationIllness(resultSet.getInt(SQLColumns.FOTO_DURATION_ILLNESS)));
+        foto.setChangeForm(resultSet.getInt(SQLColumns.FOTO_CHANGE_FORM));
+        foto.setChangeSize(resultSet.getInt(SQLColumns.FOTO_CHANGE_SIZE));
+        foto.setChangeColor(resultSet.getInt(SQLColumns.FOTO_CHANGE_COLOR));
+        foto.setChangeSensivity(resultSet.getInt(SQLColumns.FOTO_CHANGE_SENSIVITY));
+        foto.setCrustsAndBleeding(resultSet.getInt(SQLColumns.FOTO_CRUSTS_AND_BLEEDING));
+        foto.setTumorPain(resultSet.getInt(SQLColumns.FOTO_TUMOR_PAIN));
+        foto.setSatellite(resultSet.getInt(SQLColumns.FOTO_SATELLITE));
+        foto.setInflammations(resultSet.getInt(SQLColumns.FOTO_INFLAMMATIONS));
+        foto.setUniformColoring(resultSet.getInt(SQLColumns.FOTO_UNIFORM_COLORING));
+        foto.setSkinType(resultSet.getInt(SQLColumns.FOTO_SKIN_TYPE));
+        foto.setTumor_diameter(resultSet.getInt(SQLColumns.FOTO_TUMOR_DIAMETER));
+        foto.setTumorForm(TumorForm.setTumorForm(resultSet.getInt(SQLColumns.FOTO_TUMOR_FORM)));
+        foto.setTumorSurface(TumorSurface.setTumorSurface(resultSet.getInt(SQLColumns.FOTO_TUMOR_SURFACE)));
+        foto.setTumorOutline(TumorOutline.setTumorOutline(resultSet.getInt(SQLColumns.FOTO_TUMOR_OUTLINE)));
+        foto.setTumorLocalization(TumorLocalization.setTumorLocalization(resultSet.getInt(SQLColumns.FOTO_TUMOR_LOCALIZATION)));
+        foto.setDevice(Device.setDevice(resultSet.getInt(SQLColumns.FOTO_DEVICE)));
+        foto.setDate(resultSet.getDate(SQLColumns.FOTO_DATE));
+        foto.setComments(resultSet.getString(SQLColumns.FOTO_COMMENTS));
+        foto.setDiagnosisPreliminary(DiagnosisPreliminary.setDiagnosisPreliminary(resultSet.getInt(SQLColumns.FOTO_DIAGNOSIS_PRELIMINARY)));
+        foto.setDiagnosisFinal(DiagnosisFinal.setDiagnosisFinal(resultSet.getInt(SQLColumns.FOTO_DIAGNOSIS_FINAL)));
+        foto.setResultComputerAnalysisProbability(resultSet.getInt(SQLColumns.FOTO_RESULT_COMPUTER_ANALYSIS_PROBABILITY));
+        foto.setResultComputerAnalysisSimilar(resultSet.getInt(SQLColumns.FOTO_RESULT_COMPUTER_ANALYSIS_SIMILAR));
+        foto.setPlacedInDatabase(resultSet.getInt(SQLColumns.FOTO_PLACED_IN_DATABASE));
+        
+        return foto;
     }
 }
