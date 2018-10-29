@@ -33,14 +33,7 @@ public enum UserDAO implements AbstractDAO<User> {
             statement = connection.prepareStatement(SQLRequests.GET_ALL_USERS);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                User user = new User();
-                user.setId(resultSet.getInt(SQLColumns.USER_ID));
-                user.setLogin(resultSet.getString(SQLColumns.USER_LOGIN));
-                user.setPassword(resultSet.getString(SQLColumns.USER_PASSWORD));
-                user.setRole(resultSet.getInt(SQLColumns.USER_ROLE));
-                user.setActive(resultSet.getInt(SQLColumns.USER_ACTIVE));
-                user.setAuthorizate(resultSet.getInt(SQLColumns.USER_AUTHORIZE));
-                users.add(user);
+                users.add(getUser(resultSet));
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,13 +55,7 @@ public enum UserDAO implements AbstractDAO<User> {
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                user = new User();
-                user.setId(resultSet.getInt(SQLColumns.USER_ID));
-                user.setLogin(resultSet.getString(SQLColumns.USER_LOGIN));
-                user.setPassword(resultSet.getString(SQLColumns.USER_PASSWORD));
-                user.setRole(resultSet.getInt(SQLColumns.USER_ROLE));
-                user.setActive(resultSet.getInt(SQLColumns.USER_ACTIVE));
-                user.setAuthorizate(resultSet.getInt(SQLColumns.USER_AUTHORIZE));
+                user = getUser(resultSet);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,13 +76,7 @@ public enum UserDAO implements AbstractDAO<User> {
             statement.setString(1, login);
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                user = new User();
-                user.setId(resultSet.getInt(SQLColumns.USER_ID));
-                user.setLogin(resultSet.getString(SQLColumns.USER_LOGIN));
-                user.setPassword(resultSet.getString(SQLColumns.USER_PASSWORD));
-                user.setRole(resultSet.getInt(SQLColumns.USER_ROLE));
-                user.setActive(resultSet.getInt(SQLColumns.USER_ACTIVE));
-                user.setAuthorizate(resultSet.getInt(SQLColumns.USER_AUTHORIZE));
+                user = getUser(resultSet);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -118,17 +99,17 @@ public enum UserDAO implements AbstractDAO<User> {
         return docPacients;
     }
 
-    public ArrayList<User> getAllPacients(){
+    public ArrayList<User> getAllPacients() {
         ArrayList<User> users = UserDAO.INSTANCE.findAll();
         ArrayList<User> pacients = new ArrayList<>();
-        for (int i = 0; i < users.size(); i++){
-            if (PacientDAO.INSTANCE.GetPacientByUser(users.get(i)) != null){
+        for (int i = 0; i < users.size(); i++) {
+            if (PacientDAO.INSTANCE.GetPacientByUser(users.get(i)) != null) {
                 pacients.add(users.get(i));
             }
         }
         return pacients;
     }
-    
+
     public ArrayList<User> getEntitiesWithoutDoctor() {
         ArrayList<User> users = UserDAO.INSTANCE.findAll();
         ArrayList<User> noPacient = new ArrayList<>();
@@ -244,5 +225,18 @@ public enum UserDAO implements AbstractDAO<User> {
                 Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    private User getUser(ResultSet resultSet) throws SQLException {
+        User user = new User();
+        
+        user.setId(resultSet.getInt(SQLColumns.USER_ID));
+        user.setLogin(resultSet.getString(SQLColumns.USER_LOGIN));
+        user.setPassword(resultSet.getString(SQLColumns.USER_PASSWORD));
+        user.setRole(resultSet.getInt(SQLColumns.USER_ROLE));
+        user.setActive(resultSet.getInt(SQLColumns.USER_ACTIVE));
+        user.setAuthorizate(resultSet.getInt(SQLColumns.USER_AUTHORIZE));
+        
+        return user;
     }
 }
