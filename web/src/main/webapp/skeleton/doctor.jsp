@@ -39,17 +39,16 @@
                 <td>Gender</td>
                 <td>NumFoto</td>
             </tr>
-            <%  
-                ArrayList<User> doctorsUsers = UserDAO.INSTANCE.getEntitiesByDoctor((User) session.getAttribute("user"));
+            <%                ArrayList<User> doctorsUsers = UserDAO.INSTANCE.getEntitiesByDoctor((User) session.getAttribute("user"));
                 for (int i = 0; i < doctorsUsers.size(); i++) {
             %>
-                    <tr>
-                        <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=i%></td>
-                        <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(doctorsUsers.get(i))%></td>
-                        <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getRole()%></td>
-                        <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(doctorsUsers.get(i))%></td>
-                        <td onclick="test(<%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getId()%></td>
-                    </tr>
+            <tr>
+                <td onclick="pushMe(<%=doctorsUsers.get(i).getId()%>)"><%=(i + 1)%></td>
+                <td onclick="pushMe(<%=doctorsUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(doctorsUsers.get(i))%></td>
+                <td onclick="pushMe(<%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getRole()%></td>
+                <td onclick="pushMe(<%=doctorsUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(doctorsUsers.get(i))%></td>
+                <td onclick="pushMe(<%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getId()%></td>
+            </tr>
             <%
                 }
             %>
@@ -64,26 +63,26 @@
                 <td>Gender</td>
                 <td>NumFoto</td>
             </tr>
-            <%  
+            <%
                 ArrayList<User> freeUsers = UserDAO.INSTANCE.getEntitiesWithoutDoctor();
                 for (int i = 0; i < freeUsers.size(); i++) {
-                    if (UserFormDAO.INSTANCE.getEntityByUser(freeUsers.get(i)) != null){
+                    if (UserFormDAO.INSTANCE.getEntityByUser(freeUsers.get(i)) != null) {
             %>
-                        <tr>
-                            <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=i%></td>
-                            <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(freeUsers.get(i))%></td>
-                            <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getRole()%></td>
-                            <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(freeUsers.get(i))%></td>
-                            <td onclick="test(<%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getId()%></td>
-                        </tr>
+            <tr>
+                <td onclick="pushMe(<%=freeUsers.get(i).getId()%>)"><%=(i + 1)%></td>
+                <td onclick="pushMe(<%=freeUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(freeUsers.get(i))%></td>
+                <td onclick="pushMe(<%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getRole()%></td>
+                <td onclick="pushMe(<%=freeUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(freeUsers.get(i))%></td>
+                <td onclick="pushMe(<%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getId()%></td>
+            </tr>
             <%
                     }
                 }
             %>
         </table>
     </div>
-        <div id="all_pacient">
-            <table>
+    <div id="all_pacient">
+        <table>
             <tr>
                 <td>№</td>
                 <td>FIO</td>
@@ -92,27 +91,80 @@
                 <td>Gender</td>
                 <td>NumFoto</td>
             </tr>
-            <%  
+            <%
                 ArrayList<User> allPacients = UserDAO.INSTANCE.getAllPacients();
                 for (int i = 0; i < allPacients.size(); i++) {
-                    if (UserFormDAO.INSTANCE.getEntityByUser(allPacients.get(i)) != null){
+                    if (UserFormDAO.INSTANCE.getEntityByUser(allPacients.get(i)) != null) {
             %>
-                        <tr>
-                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=i%></td>
-                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(allPacients.get(i))%></td>
-                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getUser_sDoctorFIO(allPacients.get(i))%></td>
-                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getRole()%></td>
-                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(allPacients.get(i))%></td>
-                            <td onclick="test(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>
-                        </tr>
+            <tr>
+                <td onclick="pushMe(<%=allPacients.get(i).getId()%>)"><%=(i + 1)%></td>
+                <td onclick="pushMe(<%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(allPacients.get(i))%></td>
+                <td onclick="pushMe(<%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getUser_sDoctorFIO(allPacients.get(i))%></td>
+                <td onclick="pushMe(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getRole()%></td>
+                <td onclick="pushMe(<%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(allPacients.get(i))%></td>
+                <td onclick="pushMe(<%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getId()%></td>
+            </tr>
             <%
                     }
                 }
             %>
         </table>
-        </div>
+    </div>
     <div id="foto">table 3</div>
 </div>
 <div class="page" id="create">Create</div>
 <div class="page" id="profile">Profile</div>
+<div class="page" id="pacient">
+    Pacient
+    <div id="bl1"></div>
+    <div onclick="pushMe(-1)">Back</div>
+</div>
+<script>
+
+    function pushMe(id) {
+
+        var data = {
+            id: id
+        };
+
+
+
+        var s = window.location.href;
+//        location.replace(s.substr(0,s.indexOf("#")+1) + "pacient"); 
+//        alert(s.substr(s.indexOf("#")));
+        if (s.substr(s.indexOf("#")) === "#tables") {
+            $.ajax({
+                type: "POST",
+                url: "someservlet",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (response) {
+                    var $ul = $("<ul>").appendTo($("#bl1"));
+                    $.each(response, function (index, item) {
+                        $("<li>").text(index + ": " + item).appendTo($ul);
+                    }); 
+//                    "id"
+//                    "name"
+//                    "surname"
+//                    "patronymic"
+//                    "birthday"
+//                    "gender"
+//                    "relativeMelanoma"
+//                    "anamnesisMelanoma"
+//                    "dyspasticNevusSyndrome"
+//                    "dyspasticNevusSyndromeRelatives"
+//                    "immunosuppressiveTherapy"
+//                    "presenceUlceration"
+//                    "hospital"
+//                    $("#bl1").text(response["name"]);
+                }
+            });
+            window.location.href = "#pacient";
+        } else {
+            document.getElementById('bl1').innerHTML = "";
+            window.location.href = "#tables";
+        }
+
+    }
+</script>
 
