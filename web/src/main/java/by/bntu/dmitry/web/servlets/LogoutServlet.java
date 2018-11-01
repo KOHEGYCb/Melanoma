@@ -21,7 +21,7 @@ public class LogoutServlet extends ManagerServlet{
         HttpSession session = req.getSession();
         LogServices.INSTANCE.LogOut((User) session.getAttribute("user"));
         session.setAttribute("user", null);
-        forward("/", req, resp);
+        forward("/body.jsp", req, resp);
     }
     
 }

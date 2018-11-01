@@ -5,10 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <div class="createFotoForm">
     <h3>Please, add foto and write information about this foto</h3>
-    <form action="createFoto" method="Post">
+    <form method="Post" name="fotoForm">
         <div class="block">
             <span>Origin illness: </span>
             <div>
@@ -132,17 +131,21 @@
         <div class="block">                    
             <span>skin type: </span>
             <div>
-                <select size="1"  name="inflammations" value="${inflammations}">
-                    <option name="inflammations_none">Don't know</option>
-                    <option name="inflammations_yes">Yes</option>
-                    <option name="inflammations_no">No</option>
+                <select size="1"  name="skin_type" value="${skin_type}">
+                    <option name="skin_type_none">Don't know</option>
+                    <option name="skin_type_1">1</option>
+                    <option name="skin_type_2">2</option>
+                    <option name="skin_type_3">3</option>
+                    <option name="skin_type_4">4</option>
+                    <option name="skin_type_5">5</option>
+                    <option name="skin_type_6">6</option>
                 </select>
             </div>
         </div>
 
         <div class="block">
             <span>tumor_diameter (mm): </span>
-            <input type="number" name="tumor_diameter" value="${tumor_diameter}" />
+            <input type="number" name="tumor_diameter" value="${tumor_diameter}" min="1" required/>
         </div>
 
         <div class="block">
@@ -226,7 +229,7 @@
 
         <div class="block">
             <span>date: </span>
-            <input type="date" name="date"    value="${date}"/>
+            <input type="date" name="date" value="${date}" required/>
         </div>
 
         <div class="block">
@@ -235,6 +238,7 @@
         </div>
 
         <br>
-        <input type="submit" name="createFotoForm" value="Save info" />
+        <input type="button" name="createFotoForm" value="Add foto" onclick="createFoto()"/>
+        <h3>${err}</h3>
     </form>
 </div>

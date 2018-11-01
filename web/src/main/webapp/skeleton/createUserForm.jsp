@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="createUserForm">
     <h3>Please, write your information</h3>
-    <form action="createUserForm" method="Post">
+    <form name="createUserForm" method="Post">
         <span>Name: </span>         <input type="text" name="name"        value="${name}"/>
         <span>Surname: </span>      <input type="text" name="surname"     value="${surname}"/>
         <span>Patronymic: </span>   <input type="text" name="patronymic"  value="${patronymic}"/>
@@ -20,6 +20,6 @@
             </select>
         </div>
         <br>
-        <input type="submit" name="createUserForm" value="Save info" />
+        <input type="button" name="createUserForm" value="Save info" onclick="createUserF()"/>
     </form>
 </div>
