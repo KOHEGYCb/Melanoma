@@ -88,15 +88,15 @@ public class CreateUserFormServlet extends ManagerServlet {
         }
 
         if (isValid) {
-//            User user = (User) req.getSession().getAttribute("user");
+            User user = (User) req.getSession().getAttribute("user");
             UserForm form = new UserForm();
-//            form.setUser(user);
+            form.setUser(user);
             form.setName(name);
             form.setSurname(surname);
             form.setPatronymic(patronymic);
             form.setBirthday(Date.valueOf(birthday));
             form.setSex(gender);
-//            UserFormDAO.INSTANCE.createEntity(form);
+            UserFormDAO.INSTANCE.createEntity(form);
         } else {
             if (_name) {
                 req.setAttribute(JspAttributes.CREATE_USER_FORM_JSP_NAME, name);
