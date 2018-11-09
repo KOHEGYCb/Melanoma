@@ -21,7 +21,13 @@
     <input type="radio" name="inset" value="" id="user_new_foto">
     <label for="user_new_foto">Add new foto</label>
 
-    <div class="user_fotos_block" id="user_foto_tab"></div>
+    <div class="user_fotos_block" id="user_foto_tab">
+         
+<!--        <form id="form_1" method="post" enctype="multipart/form-data" action="fileFotoSave" >
+            <input type="file" name="file"/>
+            <input type="submit" value="press" onclick="test()"/>
+        </form>-->
+    </div>
     <div class="user_fotos_block" id="user_new_foto_tab">
         <%@include file="CreateFotoForm.jsp" %>
     </div>

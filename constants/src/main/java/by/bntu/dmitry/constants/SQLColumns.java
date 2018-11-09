@@ -41,6 +41,7 @@ public class SQLColumns {
     public static final String FOTO_RESULT_COMPUTER_ANALYSIS_PROBABILITY = "result_computer_analysis_probability";
     public static final String FOTO_RESULT_COMPUTER_ANALYSIS_SIMILAR = "result_computer_analysis_similar";
     public static final String FOTO_PLACED_IN_DATABASE = "placed_in_database";
+    public static final String FOTO_DIRECTORY = "directory";
 
     public static final String LOGS_ID = "id";
     public static final String LOGS_DATE = "date";

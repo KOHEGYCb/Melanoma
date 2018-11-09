@@ -7,13 +7,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="createFotoForm">
     <h3>Please, add foto and write information about this foto</h3>
-    <form method="Post" name="fotoForm">
+    <form id="fotoForm" method="Post" name="fotoForm" enctype="multipart/form-data" action="fileFotoSave">
         <div class="block">
             <span>Origin illness: </span>
             <div>
                 <select size="1"  name="origin_illness" value="${origin_illness}">
-                    <option name="innate">Innate</option>
-                    <option name="obtained">Obtained</option>
+                    <option name="origin_illness_none">Don't know</option>
+                    <option name="origin_illness_innate">Innate</option>
+                    <option name="origin_illness_obtained">Obtained</option>
                 </select>
             </div>
         </div>
@@ -238,7 +239,10 @@
         </div>
 
         <br>
-        <input type="button" name="createFotoForm" value="Add foto" onclick="createFoto()"/>
+        <input type="file" name="file"/>
+        <br/>
+        <input type="submit" name="createFotoForm" value="Add foto" onclick="test()"/>
         <h3>${err}</h3>
+        
     </form>
 </div>

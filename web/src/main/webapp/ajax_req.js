@@ -107,8 +107,24 @@ function pushMe(id) {
     }
 }
 
-function createFoto() {
-    data = {
+function createFoto(data) {
+    $.ajax({
+        type: "POST",
+        url: "createFoto",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function (response) {
+            var radiobtn = document.getElementById("user_new_foto");
+            radiobtn.checked = false;
+            radiobtn = document.getElementById("user_fotos");
+            radiobtn.checked = true;
+        }
+    });
+
+}
+
+function test() {
+    var data = {
         origin_illness: document.fotoForm.origin_illness.value,
         duration_illness: document.fotoForm.duration_illness.value,
         change_form: document.fotoForm.change_form.value,
@@ -130,18 +146,13 @@ function createFoto() {
         date: document.fotoForm.date.value,
         comments: document.fotoForm.comments.value
     };
-
-    $.ajax({
-        type: "POST",
-        url: "createFoto",
-        contentType: "application/json",
-        data: JSON.stringify(data),
-        success: function (response) {
-            var radiobtn = document.getElementById("user_new_foto");
-            radiobtn.checked = false;
-            radiobtn = document.getElementById("user_fotos");
-            radiobtn.checked = true;
+    $('#fotoForm').ajaxForm({
+        success: function (msg) {
+            alert("File has been uploaded successfully");
+            createFoto(data);
+        },
+        error: function (msg) {
+            alert("File has not been uploaded successfully");
         }
     });
-
 }

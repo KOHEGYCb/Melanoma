@@ -1,9 +1,13 @@
 package by.bntu.dmitry.web.servlets;
 
 import by.bntu.dmitry.constants.Destinations;
+import by.bntu.dmitry.entities.Foto;
+import by.bntu.dmitry.entities.User;
+import by.bntu.dmitry.enums.TumorLocalization;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +46,35 @@ public class CreateFotoFormServlet extends ManagerServlet {
         String date = jo.get("date").getAsString();
         String comments = jo.get("comments").getAsString();
         
+        System.out.println(origin_illness);
+        
+        Foto foto = new Foto();
+        foto.setOriginIllness(origin_illness);
+        System.out.println(foto.getOriginIllness());
+        foto.setDurationIllness(duration_illness);
+        foto.setChangeForm(change_form);
+        foto.setChangeSize(change_size);
+        foto.setChangeColor(change_color);
+        foto.setChangeSensivity(change_sensitivity);
+        foto.setCrustsAndBleeding(crusts_and_bleeding);
+        foto.setTumorPain(tumor_pain);
+        foto.setSatellite(satellite);
+        foto.setInflammations(inflammations);
+        foto.setUniformColoring(uniform_coloring);
+        foto.setSkinType(skin_type);
+        foto.setTumor_diameter(tumor_diameter);
+        foto.setTumorForm(tumor_form);
+        foto.setTumorSurface(tumor_surface);
+        foto.setTumorOutline(tumor_outline);
+        foto.setTumorLocalization(tumor_localization);
+        foto.setDevice(device);
+        foto.setDate(Date.valueOf(date));
+        foto.setComments(comments);
+//        foto.setDirectory();
+        foto.setUser((User) req.getSession().getAttribute("user"));
 
+        
+        
 //        String origin_illness = req.getParameter("origin_illness");
 //        String duration_illness = req.getParameter("duration_illness");
 //        String change_form = req.getParameter("change_form");

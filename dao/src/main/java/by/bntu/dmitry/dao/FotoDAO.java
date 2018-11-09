@@ -129,6 +129,7 @@ public enum FotoDAO implements AbstractDAO<Foto> {
             statement.setInt(25, foto.getResultComputerAnalysisProbability());
             statement.setInt(26, foto.getResultComputerAnalysisSimilar());
             statement.setInt(27, foto.getPlacedInDatabase());
+            statement.setString(28, foto.getDirectory());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(FotoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -171,7 +172,8 @@ public enum FotoDAO implements AbstractDAO<Foto> {
             statement.setInt(25, foto.getResultComputerAnalysisProbability());
             statement.setInt(26, foto.getResultComputerAnalysisSimilar());
             statement.setInt(27, foto.getPlacedInDatabase());
-            statement.setInt(28, foto.getId());
+            statement.setString(28, foto.getDirectory());
+            statement.setInt(29, foto.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(FotoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -257,6 +259,7 @@ public enum FotoDAO implements AbstractDAO<Foto> {
         foto.setResultComputerAnalysisProbability(resultSet.getInt(SQLColumns.FOTO_RESULT_COMPUTER_ANALYSIS_PROBABILITY));
         foto.setResultComputerAnalysisSimilar(resultSet.getInt(SQLColumns.FOTO_RESULT_COMPUTER_ANALYSIS_SIMILAR));
         foto.setPlacedInDatabase(resultSet.getInt(SQLColumns.FOTO_PLACED_IN_DATABASE));
+        foto.setDirectory(resultSet.getString(SQLColumns.FOTO_DIRECTORY));
         
         return foto;
     }
