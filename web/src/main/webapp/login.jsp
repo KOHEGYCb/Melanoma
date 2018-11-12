@@ -14,3 +14,34 @@
     </form>
     <span id="#err" class="error">${a}</span>
 </div>
+<script>
+
+    function logme() {
+
+        var data = {
+            log_in: document.loginForm.log_in.value,
+            sign_in: document.loginForm.sign_in.value,
+            login: document.loginForm.login.value,
+            password: document.loginForm.password.value
+        };
+        
+        alert(data.log_in);
+        alert(data.sign_in);
+        alert(data.login);
+        alert(data.password);
+        
+        var s = window.location.href;
+        
+        $.ajax({
+            type: "POST",
+            url: "login",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (response) {
+                alert(response);
+            }
+        });
+    }
+
+
+</script>
