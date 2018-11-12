@@ -22,6 +22,7 @@ public class SQLRequests {
     public static final String GET_ALL_FOTOS = "SELECT * FROM melanoma.foto;";
     public static final String GET_FOTOS_BY_USER = "SELECT * FROM melanoma.foto WHERE user_id = ?;";
     public static final String GET_FOTO_BY_ID = "SELECT * FROM melanoma.foto WHERE id=?;";
+    public static final String GET_FOTO_BY_DIR = "SELECT * FROM melanoma.foto WHERE directory=?;";
     public static final String CREATE_FOTO = "INSERT INTO melanoma.foto ("
             + "user_id,"
             + "id_tumor,"
@@ -36,7 +37,7 @@ public class SQLRequests {
             + "satellite,"
             + "inflammations,"
             + "uniform_coloring,"
-            + "skin type,"
+            + "skin_type,"
             + "tumor_diameter,"
             + "tumor_form,"
             + "tumor_surface,"
@@ -52,7 +53,12 @@ public class SQLRequests {
             + "placed_in_database,"
             + "directory"
             + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-    public static final String UPDATE_FOTO = "UPDATE melanoma.foto SET"
+    public static final String CREATE_FOTO_ = "INSERT INTO melanoma.foto ("
+            + "user_id,"
+            + "directory"
+            + ") VALUES (?, ?);";
+
+    public static final String UPDATE_FOTO = "UPDATE melanoma.foto SET "
             + "user_id = ?,"
             + "id_tumor = ?,"
             + "origin_illness = ?,"
@@ -66,7 +72,7 @@ public class SQLRequests {
             + "satellite = ?,"
             + "inflammations = ?,"
             + "uniform_coloring = ?,"
-            + "skin type = ?,"
+            + "skin_type = ?,"
             + "tumor_diameter = ?,"
             + "tumor_form = ?,"
             + "tumor_surface = ?,"
@@ -80,7 +86,38 @@ public class SQLRequests {
             + "result_computer_analysis_probability = ?,"
             + "result_computer_analysis_similar = ?,"
             + "placed_in_database = ?,"
-            + "directory = ?"
+            + "directory = ? "
+            + "WHERE id = ?;";
+    
+    public static final String UPDATE_FOTO_ = "UPDATE melanoma.foto SET "
+            + "user_id = ?,"
+//            + "id_tumor = ?,"
+            + "origin_illness = ?,"
+            + "duration_illness = ?,"
+            + "change_form = ?,"
+            + "change_size = ?,"
+            + "change_color = ?,"
+            + "change_sensitivity = ?,"
+            + "crusts_and_bleeding = ?,"
+            + "tumor_pain = ?,"
+            + "satellite = ?,"
+            + "inflammations = ?,"
+            + "uniform_coloring = ?,"
+            + "skin_type = ?,"
+            + "tumor_diameter = ?,"
+            + "tumor_form = ?,"
+            + "tumor_surface = ?,"
+            + "tumor_outline = ?,"
+            + "tumor_localization = ?,"
+            + "device = ?,"
+            + "date = ?,"
+            + "comments = ?,"
+//            + "preliminary_diagnosis = ?,"
+//            + "final diagnosis = ?,"
+//            + "result_computer_analysis_probability = ?,"
+//            + "result_computer_analysis_similar = ?,"
+//            + "placed_in_database = ?,"
+            + "directory = ? "
             + "WHERE id = ?;";
     public static final String DELETE_FOTO = "";
 

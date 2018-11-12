@@ -7,7 +7,8 @@ package by.bntu.dmitry.enums;
 public enum OriginIllness {
 
     INNATE(1),
-    OBTAINED(2);
+    OBTAINED(2),
+    DO_NOT_KNOW(3);
 
     private int id;
 

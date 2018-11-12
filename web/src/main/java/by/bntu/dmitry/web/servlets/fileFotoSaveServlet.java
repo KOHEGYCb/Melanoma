@@ -5,10 +5,16 @@
  */
 package by.bntu.dmitry.web.servlets;
 
+import by.bntu.dmitry.dao.FotoDAO;
+import by.bntu.dmitry.entities.Foto;
+import by.bntu.dmitry.entities.User;
+import com.google.gson.Gson;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +42,22 @@ public class fileFotoSaveServlet extends ManagerServlet {
         fos.write(b);
         fos.close();
         fileContent.close();
+        
+        Foto foto = new Foto();
+        foto.setDirectory("C://dir//file.png");
+        foto.setUser((User) req.getSession().getAttribute("user"));
+        FotoDAO.INSTANCE.createEntity(foto);
+        Foto n_foto = FotoDAO.INSTANCE.getEntityByDirectory(foto.getDirectory());
+        
+        Map <String, String> map = new LinkedHashMap<String, String>();
+        map.put("id", n_foto.getId() + "");
+        map.put("dir", n_foto.getDirectory());
+        
+        String json = new Gson().toJson(map);
+        
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(json);
     }
 
 }

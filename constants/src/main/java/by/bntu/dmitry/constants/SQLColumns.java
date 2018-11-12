@@ -27,7 +27,7 @@ public class SQLColumns {
     public static final String FOTO_SATELLITE = "satellite";
     public static final String FOTO_INFLAMMATIONS = "inflammations";
     public static final String FOTO_UNIFORM_COLORING = "uniform_coloring";
-    public static final String FOTO_SKIN_TYPE = "skin type";
+    public static final String FOTO_SKIN_TYPE = "skin_type";
     public static final String FOTO_TUMOR_DIAMETER = "tumor_diameter";
     public static final String FOTO_TUMOR_FORM = "tumor_form";
     public static final String FOTO_TUMOR_SURFACE = "tumor_surface";

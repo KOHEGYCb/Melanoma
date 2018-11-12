@@ -1,6 +1,7 @@
 package by.bntu.dmitry.web.servlets;
 
 import by.bntu.dmitry.constants.Destinations;
+import by.bntu.dmitry.dao.FotoDAO;
 import by.bntu.dmitry.entities.Foto;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.TumorLocalization;
@@ -45,6 +46,8 @@ public class CreateFotoFormServlet extends ManagerServlet {
         String device = jo.get("device").getAsString();
         String date = jo.get("date").getAsString();
         String comments = jo.get("comments").getAsString();
+        int id = jo.get("id").getAsInt();
+        String directory = jo.get("dir").getAsString();
         
         System.out.println(origin_illness);
         
@@ -70,8 +73,10 @@ public class CreateFotoFormServlet extends ManagerServlet {
         foto.setDevice(device);
         foto.setDate(Date.valueOf(date));
         foto.setComments(comments);
-//        foto.setDirectory();
+        foto.setDirectory(directory);
+        foto.setId(id);
         foto.setUser((User) req.getSession().getAttribute("user"));
+FotoDAO.INSTANCE.updateEntity(foto);
 
         
         
