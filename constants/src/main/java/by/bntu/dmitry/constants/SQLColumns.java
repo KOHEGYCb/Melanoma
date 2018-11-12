@@ -27,7 +27,7 @@ public class SQLColumns {
     public static final String FOTO_SATELLITE = "satellite";
     public static final String FOTO_INFLAMMATIONS = "inflammations";
     public static final String FOTO_UNIFORM_COLORING = "uniform_coloring";
-    public static final String FOTO_SKIN_TYPE = "skin type";
+    public static final String FOTO_SKIN_TYPE = "skin_type";
     public static final String FOTO_TUMOR_DIAMETER = "tumor_diameter";
     public static final String FOTO_TUMOR_FORM = "tumor_form";
     public static final String FOTO_TUMOR_SURFACE = "tumor_surface";
@@ -41,6 +41,7 @@ public class SQLColumns {
     public static final String FOTO_RESULT_COMPUTER_ANALYSIS_PROBABILITY = "result_computer_analysis_probability";
     public static final String FOTO_RESULT_COMPUTER_ANALYSIS_SIMILAR = "result_computer_analysis_similar";
     public static final String FOTO_PLACED_IN_DATABASE = "placed_in_database";
+    public static final String FOTO_DIRECTORY = "directory";
 
     public static final String LOGS_ID = "id";
     public static final String LOGS_DATE = "date";

@@ -5,6 +5,9 @@ import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.Role;
 import by.bntu.dmitry.services.logsServices.LogServices;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import java.io.File;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,8 +30,16 @@ public class LoginServlet extends ManagerServlet {
         Pattern pattern = Pattern.compile(namePattern);
         Matcher matcher;
 
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
+        JsonObject jo = new Gson().fromJson(req.getReader(), JsonObject.class);
+        boolean log_in = jo.get("log_in").getAsBoolean();
+        boolean sign_in = jo.get("sign_in").getAsBoolean();
+        String login = jo.get("login").getAsString();
+        String password = jo.get("password").getAsString();
+        
+        System.out.println(login);
+        System.out.println(password);
+//        String login = req.getParameter("login");
+//        String password = req.getParameter("password");
 
         String _a = "";
         String _login = "";
@@ -49,9 +60,8 @@ public class LoginServlet extends ManagerServlet {
             }
         }
 
-        System.out.println("\n\n" + req.getParameter("log_in"));
         if (isValid) {
-            if (req.getParameter("log_in") != null) {
+            if (log_in) {
                 if (!login.equals("")) {
                     if (!password.equals("")) {
                         User user = UserDAO.INSTANCE.getEntityByLogin(login);
@@ -77,13 +87,17 @@ public class LoginServlet extends ManagerServlet {
                     _a = "Login is empty";
                 }
             }
-            if (req.getParameter("sign_in") != null) {
+            if (sign_in) {
                 if (!login.equals("")) {
                     if (!password.equals("")) {
                         if (UserDAO.INSTANCE.getEntityByLogin(login) == null) {
                             User newUser = new User(login, password, Role.USER, true, false);
                             UserDAO.INSTANCE.createEntity(newUser);
                             newUser = UserDAO.INSTANCE.getEntityByLogin(login);
+                            
+                            File dir = new File("C:/dir/" + newUser.getId());
+                            dir.mkdirs();
+                            
                             LogServices.INSTANCE.SignInLog(newUser);
                             HttpSession session = req.getSession();
                             session.setAttribute("user", newUser);
@@ -97,7 +111,7 @@ public class LoginServlet extends ManagerServlet {
         }
         req.setAttribute("login", _login);
         req.setAttribute("a", _a);
-        forward(Destinations.MAIN_PAGE, req, resp);
+        forward("/body.jsp", req, resp);
     }
 
 }

@@ -9,17 +9,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="header">
     <%
-    //User user_ = (User) session.getAttribute("user");             // не создавать объект user, брать его только из сессии
-    if ((User) session.getAttribute("user") != null){
+        //User user_ = (User) session.getAttribute("user");             // не создавать объект user, брать его только из сессии
+        if ((User) session.getAttribute("user") != null) {
     %>
-            <div class="info">Hello <%=((User) session.getAttribute("user")).getLogin() %></div>
-            <div class="logo">M E L A N O M A - T E S T E D</div>
-            <div class="logout">
-                <form action="logout" method="post">
-                    <input type="submit" name="log_out" value="Log Out">
-                </form>
-            </div>
+    <div class="info">Hello <%=((User) session.getAttribute("user")).getLogin()%></div>
+    <div class="logo">M E L A N O M A - T E S T E D</div>
+    <div class="logout">
+        <form method="post">
+            <input type="button" name="log_out" value="Log Out" onclick="logOut()">
+        </form>
+    </div>
     <%
         }
     %>
-        </div>
+</div>

@@ -8,16 +8,27 @@
 <%@page import="by.bntu.dmitry.dao.UserFormDAO"%>
 <%@page import="by.bntu.dmitry.entities.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div class="header">
-    <%
-        UserForm uf = UserFormDAO.INSTANCE.getEntityByUser((User) session.getAttribute("user"));
-    %>
-    
-    <div class="info">Hello <%= uf.getName() %></div>
-    <div class="logo">M E L A N O M A</div>
-    <div class="logout">
-        <form action="logout" method="post">
-            <input type="submit" name="log_out" value="Log Out">
-        </form>
-    </div>  
+<%@include file="Header.jsp" %>    
+
+<div class="menu">
+    <ul>
+        <li><a href="#foto">Fotos</a></li>
+    </ul>
+</div>
+<div class="page" id="foto">
+    <input type="radio" name="inset" value="" id="user_fotos" checked>
+    <label for="user_fotos">My fotos</label>
+    <input type="radio" name="inset" value="" id="user_new_foto">
+    <label for="user_new_foto">Add new foto</label>
+
+    <div class="user_fotos_block" id="user_foto_tab">
+         
+<!--        <form id="form_1" method="post" enctype="multipart/form-data" action="fileFotoSave" >
+            <input type="file" name="file"/>
+            <input type="submit" value="press" onclick="test()"/>
+        </form>-->
+    </div>
+    <div class="user_fotos_block" id="user_new_foto_tab">
+        <%@include file="CreateFotoForm.jsp" %>
+    </div>
 </div>

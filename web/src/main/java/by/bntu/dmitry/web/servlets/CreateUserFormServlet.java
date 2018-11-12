@@ -1,13 +1,12 @@
 package by.bntu.dmitry.web.servlets;
 
-import by.bntu.dmitry.constants.Destinations;
 import by.bntu.dmitry.constants.JspAttributes;
 import by.bntu.dmitry.dao.UserFormDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.entities.UserForm;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
 import java.sql.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +14,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,11 +33,18 @@ public class CreateUserFormServlet extends ManagerServlet {
         boolean _patronymic = true;
         boolean _birthday = true;
 
-        String name = req.getParameter("name");
-        String surname = req.getParameter("surname");
-        String patronymic = req.getParameter("patronymic");
-        String birthday = req.getParameter("birthday");
-        String gender = req.getParameter("gender");
+        JsonObject jo = new Gson().fromJson(req.getReader(), JsonObject.class);
+        String name = jo.get("name").getAsString();
+        String surname = jo.get("surname").getAsString();
+        String patronymic = jo.get("patronymic").getAsString();
+        String birthday = jo.get("birthday").getAsString();
+        String gender = jo.get("gender").getAsString();
+        
+//        String name = req.getParameter("name");
+//        String surname = req.getParameter("surname");
+//        String patronymic = req.getParameter("patronymic");
+//        String birthday = req.getParameter("birthday");
+//        String gender = req.getParameter("gender");
 
         boolean isValid = true;
         
@@ -102,7 +107,7 @@ public class CreateUserFormServlet extends ManagerServlet {
                 req.setAttribute(JspAttributes.CREATE_USER_FORM_JSP_NAME, name);
             }
             if (_surname) {
-//                req.setAttribute(JspAttributes.CREATE_USER_FORM_JSP_SURNAME, surname);
+                req.setAttribute(JspAttributes.CREATE_USER_FORM_JSP_SURNAME, surname);
             }
             if (_patronymic) {
                 req.setAttribute(JspAttributes.CREATE_USER_FORM_JSP_PATRONYMIC, patronymic);
@@ -113,8 +118,7 @@ public class CreateUserFormServlet extends ManagerServlet {
             req.setAttribute(JspAttributes.CREATE_USER_FORM_JSP_GENDER, gender);
         }
 
-//        UserFormDAO.INSTANCE.createEntity(form);
-        forward(Destinations.MAIN_PAGE, req, resp);
+        forward("/body.jsp", req, resp);
     }
 
     private String setUpperFirstLeter(String str) {
@@ -129,7 +133,6 @@ public class CreateUserFormServlet extends ManagerServlet {
         for (int i = 0; i < str.length(); i++) {
             if (((int) str.charAt(i) >= 65) && ((int) str.charAt(i) <= 90) || ((int) str.charAt(i) >= 97) && ((int) str.charAt(i) <= 122)) {
                 newStr = newStr + str.charAt(i);
-                continue;
             } else {
                 if ((int) str.charAt(i) == 208) {
                     int ch = (int) str.charAt(i + 1) + 896;
