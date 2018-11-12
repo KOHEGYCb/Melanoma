@@ -48,9 +48,7 @@ public class CreateFotoFormServlet extends ManagerServlet {
         String comments = jo.get("comments").getAsString();
         int id = jo.get("id").getAsInt();
         String directory = jo.get("dir").getAsString();
-        
-        System.out.println(origin_illness);
-        
+
         Foto foto = new Foto();
         foto.setOriginIllness(origin_illness);
         System.out.println(foto.getOriginIllness());
@@ -76,45 +74,6 @@ public class CreateFotoFormServlet extends ManagerServlet {
         foto.setDirectory(directory);
         foto.setId(id);
         foto.setUser((User) req.getSession().getAttribute("user"));
-FotoDAO.INSTANCE.updateEntity(foto);
-
-        
-        
-//        String origin_illness = req.getParameter("origin_illness");
-//        String duration_illness = req.getParameter("duration_illness");
-//        String change_form = req.getParameter("change_form");
-//        String change_size = req.getParameter("change_size");
-//        String change_color = req.getParameter("change_color");
-//        String change_sensitivity = req.getParameter("change_sensitivity");
-//        String crusts_and_bleeding = req.getParameter("crusts_and_bleeding");
-//        String tumor_pain = req.getParameter("tumor_pain");
-//        String satellite = req.getParameter("satellite");
-//        String inflammations = req.getParameter("inflammations");
-//        String uniform_coloring = req.getParameter("uniform_coloring");
-//        String skin_type = req.getParameter("skin_type");
-//        int tumor_diameter = Integer.parseInt(req.getParameter("tumor_diameter"));
-//        String tumor_form = req.getParameter("tumor_form");
-//        String tumor_surface = req.getParameter("tumor_surface");
-//        String tumor_outline = req.getParameter("tumor_outline");
-//        String tumor_localization = req.getParameter("tumor_localization");
-//        String device = req.getParameter("device");
-//        String date = req.getParameter("date");
-//        String comments = req.getParameter("comments");
-//
-//        boolean isValid = true;
-//
-//        String _date = "please write date";
-//
-//        if ("".equals(date)) {
-//            isValid = false;
-//        }
-//
-//        if (isValid){
-//            
-//        }else{
-//            req.setAttribute("err", _date);
-//        }
-//        
-//        forward(Destinations.MAIN_PAGE, req, resp);
+        FotoDAO.INSTANCE.updateEntity(foto);
     }
 }

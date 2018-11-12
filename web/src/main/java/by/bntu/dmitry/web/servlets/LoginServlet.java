@@ -7,6 +7,7 @@ import by.bntu.dmitry.enums.Role;
 import by.bntu.dmitry.services.logsServices.LogServices;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import java.io.File;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -93,6 +94,10 @@ public class LoginServlet extends ManagerServlet {
                             User newUser = new User(login, password, Role.USER, true, false);
                             UserDAO.INSTANCE.createEntity(newUser);
                             newUser = UserDAO.INSTANCE.getEntityByLogin(login);
+                            
+                            File dir = new File("C:/dir/" + newUser.getId());
+                            dir.mkdirs();
+                            
                             LogServices.INSTANCE.SignInLog(newUser);
                             HttpSession session = req.getSession();
                             session.setAttribute("user", newUser);
