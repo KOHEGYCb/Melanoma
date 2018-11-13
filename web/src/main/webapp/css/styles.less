@@ -242,9 +242,103 @@ body, html{
 #profile:target,
 #logs:target,
 #users:target,
-#pacient:target{
+#pacient:target,
+#foto:target{
     left: 300px;
     transition: .3s .3s;
+}
+
+#foto{
+    input[type="radio"]{
+        display: none;
+        color: @dark-gray;
+    }
+
+    input:checked +label{
+        background: @dark-green;
+        color: @light-gray;
+        border-bottom: 1px solid @dark-green;
+    }
+    label{
+        display: inline-block;
+        min-width: 100px;
+        padding: 7px;
+        margin: 0 -5px -1px 0;
+        text-align: center;
+        color: @light-gray;
+        /*border: 1px solid #C0C0C0;*/
+        background: @green;
+        cursor: pointer;
+        border-right: 1px solid @light-green;
+        border-bottom: 1px solid @light-green;
+        transition: .3s;
+    }
+    label:hover{
+        background: @green-hover;
+    }
+    .user_fotos_block{
+        position: absolute;
+        opacity: 0;
+        left: 0px;
+        background: @dark-green;
+        transition: .3s opacity, 0s .3s top;
+        width: 100%;
+        height: calc(100% - 34px);
+        margin-top: 1px;
+        top: -200%;
+
+        table{
+            margin: 15px auto;
+            padding: 0;
+            width: 95%;
+            border-collapse: collapse;
+        }
+
+        table{
+            tr{
+                margin: 0;
+                padding: 0;
+                height: 30px;
+                background: @dark-green;
+            }
+
+            tr{
+                td{
+                    margin: 0;
+                    padding: 0;
+                    color: @light-gray-text;
+                    border-top: 1px solid @light-green;
+                    border-bottom: 1px solid @light-green;
+                    text-align: center;
+                }
+                td:first-child{
+                    border-left: 1px solid @light-green;
+                }
+
+                td:last-child{
+                    border-right: 1px solid @light-green;
+                }
+
+            }
+
+            tr:hover td{
+                background: @dark-green-hover;
+            }
+            tr:first-child{
+                background: @green;
+            }
+            tr:hover:first-child td{
+                background: @green;
+            }
+        }
+    }
+    #user_fotos:checked ~ #user_foto_tab,
+        #user_new_foto:checked ~ #user_new_foto_tab{
+        opacity: 1;
+        top: 33px;
+        left: 0px;		
+        transition: .3s .3s opacity, 0s .3s top;
+    }
 }
 
 
@@ -304,16 +398,16 @@ body, html{
         color: @dark-green;     
     }
 
-    input[type="submit"]{
+    input[type="button"]{
         width: 90%;
         margin: 6px auto;
     }
 
-    input[type="submit"]:hover{
+    input[type="button"]:hover{
         background: #417c7f;
     }
 
-    input[type="submit"]:active{
+    input[type="button"]:active{
         background: #cbcbc9;
         color: @dark-gray;     
     }
@@ -495,12 +589,13 @@ body, html{
     padding: 15px;
     width: 900px;
     border-radius: 15px;
-    height: 1260px;
+    height: calc(100% - 54px);
     left: 50%;
-    top: 10%;
-    margin-bottom: 10%;
+    top: 10px;
+    /*margin-bottom: 10%;*/
     transform: translate(-50%, 0%);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+    overflow-y: scroll;
 }
 .createFotoForm{
 
@@ -518,16 +613,37 @@ body, html{
     }
 
     form{
-        
+        input[type="submit"]{
+            border: 1px solid transparent;
+            border-radius: 5px;
+            display: block;
+            padding: 0;
+            background: @dark-green;
+            height: 35px;
+            color: @light-gray-text;
+            font-size: 20px;
+            transition: .3s;
+            width: 50%;
+            margin: 6px auto;
+        }
+
+        input[type="submit"]:hover{
+            background: @dark-green-hover;
+        }
+
+        input[type="submit"]:active{
+            background: #cbcbc9;
+            color: @dark-gray;     
+        }
         div.block{
             float: left;
             width: 45%;
             margin: 2.5%;
             height: 70px;
         }
-        
+
         div.block{
-            
+
             input{
                 border: 1px solid transparent;
                 border-radius: 5px;
@@ -548,25 +664,11 @@ body, html{
                 box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
             }
 
-            input[type="submit"]{
-                width: 90%;
-                margin: 6px auto;
-            }
-
-            input[type="submit"]:hover{
-                background: @dark-green-hover;
-            }
-
-            input[type="submit"]:active{
-                background: #cbcbc9;
-                color: @dark-gray;     
-            }
-
             input:focus{
                 background: @light-gray;
                 color: @dark-green;
             }
-            
+
             textarea{
                 border: 1px solid transparent;
                 border-radius: 5px;
@@ -582,7 +684,7 @@ body, html{
                 font-size: 20px;
                 transition: .3s;
             }
-            
+
             span{
                 display: block;
                 text-align: center;
@@ -590,7 +692,7 @@ body, html{
                 margin: 3px;
                 padding: 3px;
                 color: @light-gray-text;
-/*                width: 50%;*/
+                /*                width: 50%;*/
                 /*border: 1px solid @red;*/
             }
 
@@ -657,4 +759,14 @@ body, html{
 
 #pacient{
     color: @light-gray-text;
+}
+
+#preloader{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    background: rgba(0,0,0,.3);
+    z-index: 1000;
 }

@@ -10,7 +10,7 @@
 <%@page import="by.bntu.dmitry.entities.User"%>
 <%@page import="by.bntu.dmitry.enums.Role"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<!--<div id="preloader"></div>-->
 <%
    // User user = ((User) session.getAttribute("user"));                  // не создавать объект user, брать его только из сессии
    // User user = new User("login", "Password", Role.ADMIN, false, false);
@@ -45,12 +45,5 @@
         <%
     }
 %>
-<script>
-            
-            function test (a){
-                alert(a);
-            }
-            
-        </script>
         
         
