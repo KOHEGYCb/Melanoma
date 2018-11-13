@@ -1,4 +1,4 @@
-package by.bntu.dmitry.web.servlets;
+
 
 import by.bntu.dmitry.constants.Destinations;
 import by.bntu.dmitry.dao.UserDAO;
@@ -13,6 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,8 +22,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author dmitry
  */
-@WebServlet("/login")
-public class LoginServlet extends ManagerServlet {
+@WebServlet("/login/*")
+public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

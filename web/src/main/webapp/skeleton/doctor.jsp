@@ -33,7 +33,7 @@
     <div id="my_pacient">
         <table>
             <tr>
-                <td>№</td>
+                <td onclick="pushMe()">№</td>
                 <td>FIO</td>
                 <td>AGE</td>
                 <td>Gender</td>
