@@ -1,5 +1,6 @@
 package by.bntu.dmitry.web.servlets;
 
+import by.bntu.dmitry.constants.ConfigConstants;
 import by.bntu.dmitry.constants.Destinations;
 import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.entities.User;
@@ -95,7 +96,7 @@ public class LoginServlet extends ManagerServlet {
                             UserDAO.INSTANCE.createEntity(newUser);
                             newUser = UserDAO.INSTANCE.getEntityByLogin(login);
                             
-                            File dir = new File("C:/dir/" + newUser.getId());
+                            File dir = new File(ConfigConstants.IMAGE_FOLDER + newUser.getId());
                             dir.mkdirs();
                             
                             LogServices.INSTANCE.SignInLog(newUser);

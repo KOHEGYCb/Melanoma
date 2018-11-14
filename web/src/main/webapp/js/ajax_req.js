@@ -64,6 +64,32 @@ function createUserF() {
     });
 }
 
+function loadImageInfo(id){
+    var data = {
+        id: id
+    };
+    console.log('id: ' + id);
+    var s = window.location.href;
+    if (s.substr(s.indexOf("#")) === "#foto") {
+    $.ajax({
+            type: "POST",
+            url: "LoadFotoInfoServlet",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (response) {
+                var $ul = $("<ul>").appendTo($("#bl1"));
+                $.each(response, function (index, item) {
+                    $("<li>").text(index + ": " + item).appendTo($ul);
+                });
+            }
+        });
+        window.location.href = "#curent_foto";
+    } else {
+        document.getElementById('bl1').innerHTML = "";
+        window.location.href = "#foto";
+    }
+}
+
 function pushMe(id) {
 
     var data = {
@@ -114,10 +140,13 @@ function createFoto(data) {
         contentType: "application/json",
         data: JSON.stringify(data),
         success: function (response) {
+            document.getElementById('root').innerHTML = "";
+            document.getElementById('root').innerHTML = response;
+            window.location.href = "#foto";
             var radiobtn = document.getElementById("user_new_foto");
-            radiobtn.checked = true;
-            radiobtn = document.getElementById("user_fotos");
             radiobtn.checked = false;
+            radiobtn = document.getElementById("user_fotos");
+            radiobtn.checked = true;
         }
     });
 

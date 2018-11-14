@@ -10,11 +10,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet/less" type="text/css" href="css/styles.less" />
-        <script src="less.js" type="text/javascript"></script>
+        <script src="js/less.js" type="text/javascript"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="http://malsup.github.com/jquery.form.js"></script> 
-        <script src="preloader.js" type="text/javascript"></script>
-        <script src="ajax_req.js" type="text/javascript"></script>
+        <script src="js/preloader.js" type="text/javascript"></script>
+        <script src="js/ajax_req.js" type="text/javascript"></script>
+        <script src="js/functions.js" type="text/javascript"></script>
         <title>JSP Page</title>
     </head>
     <body id="root">

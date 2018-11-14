@@ -22,3 +22,5 @@ entities/target/test-classes/\.netbeans_automatic_build
 *.properties
 
 *.class
+
+web/src/main/webapp/images/

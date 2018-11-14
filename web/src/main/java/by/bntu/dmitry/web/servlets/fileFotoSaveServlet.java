@@ -1,5 +1,6 @@
 package by.bntu.dmitry.web.servlets;
 
+import by.bntu.dmitry.constants.ConfigConstants;
 import by.bntu.dmitry.dao.FotoDAO;
 import by.bntu.dmitry.entities.Foto;
 import by.bntu.dmitry.entities.User;
@@ -34,12 +35,12 @@ public class fileFotoSaveServlet extends ManagerServlet {
         User user = (User) req.getSession().getAttribute("user");
 
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        String dir = "C:/dir/" + user.getId() + "/";
-        File file = new File(dir);
+        String dir = user.getId() + "/";
+        File file = new File(ConfigConstants.IMAGE_FOLDER + dir);
         dir = dir + (file.listFiles().length) + ".png";
         InputStream fileContent = filePart.getInputStream();
 
-        FileOutputStream fos = new FileOutputStream(dir);
+        FileOutputStream fos = new FileOutputStream(ConfigConstants.IMAGE_FOLDER + dir);
         byte[] b = new byte[fileContent.available()];
         fileContent.read(b);
         fos.write(b);
