@@ -4,8 +4,10 @@ import by.bntu.dmitry.dao.FotoDAO;
 import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.dao.UserFormDAO;
 import by.bntu.dmitry.entities.Foto;
+import by.bntu.dmitry.entities.Result;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.entities.UserForm;
+import by.bntu.dmitry.services.logsServices.ParseResultsServices;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
@@ -34,6 +36,8 @@ public class LoadFotoInfoServlet extends HttpServlet {
         
         Foto foto = FotoDAO.INSTANCE.getEntityById(id);
         
+        Result result = ParseResultsServices.getResult(foto);
+        
         Map <String, String> map = new LinkedHashMap<String, String>();
         map.put("id", foto.getId() + "");
         map.put("origin_illness", foto.getOriginIllness() + "");
@@ -57,7 +61,12 @@ public class LoadFotoInfoServlet extends HttpServlet {
         map.put("date", foto.getDate() + "");
         map.put("comments", foto.getComments() + "");
         map.put("directory", foto.getDirectory() + "");
-        map.put("analis_comp", foto.getResultComputerAnalysisProbability() + "");
+        
+        if (result != null){
+            map.put("ABCDE", result.getAbcde().getDesc());
+            map.put("Similarity", result.getSimilarity().getDesc());
+            map.put("Probability", result.getProbability().getDesc());
+        }
         
         String json = new Gson().toJson(map);
         
