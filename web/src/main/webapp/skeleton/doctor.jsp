@@ -112,7 +112,9 @@
     </div>
     <div id="foto">table 3</div>
 </div>
-<div class="page" id="create">Create</div>
+<div class="page" id="create">
+    <%@include file="CreateFakeUserForm.jsp" %>
+</div>
 <div class="page" id="profile">Profile</div>
 <div class="page" id="pacient">
     <h1>Pacient</h1>

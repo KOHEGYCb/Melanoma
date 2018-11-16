@@ -63,6 +63,26 @@ function createUserF() {
     });
 }
 
+function createFakeUserF() {
+    var data = {
+        name: document.createUserForm.name.value,
+        surname: document.createUserForm.surname.value,
+        patronymic: document.createUserForm.patronymic.value,
+        birthday: document.createUserForm.birthday.value,
+        gender: document.createUserForm.gender.value
+    };
+    $.ajax({
+        type: "POST",
+        url: "createFakeUserForm",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function (response) {
+            document.getElementById('root').innerHTML = "";
+            document.getElementById('root').innerHTML = response;
+        }
+    });
+}
+
 function clickOnElement(action, id) {
     var data = {
         id: id
