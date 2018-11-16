@@ -103,7 +103,7 @@ public enum UserDAO implements AbstractDAO<User> {
         ArrayList<User> users = UserDAO.INSTANCE.findAll();
         ArrayList<User> pacients = new ArrayList<>();
         for (int i = 0; i < users.size(); i++) {
-            if (PacientDAO.INSTANCE.GetPacientByUser(users.get(i)) != null) {
+            if (users.get(i).getRole() == Role.USER) {
                 pacients.add(users.get(i));
             }
         }

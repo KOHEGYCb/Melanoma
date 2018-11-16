@@ -19,7 +19,7 @@ public class LogoutServlet extends ManagerServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        LogServices.INSTANCE.LogOut((User) session.getAttribute("user"));
+//        LogServices.INSTANCE.LogOut((User) session.getAttribute("user"));
         session.setAttribute("user", null);
         forward("/body.jsp", req, resp);
     }

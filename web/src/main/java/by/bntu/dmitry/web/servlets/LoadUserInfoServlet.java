@@ -9,48 +9,25 @@ import by.bntu.dmitry.entities.UserForm;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author dmitry
  */
-@WebServlet("/someservlet")
-public class SomeServlet extends HttpServlet{
+@WebServlet("/LoadUserInfoServlet")
+public class LoadUserInfoServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*
-        id
-        name
-        surname
-        patronomic
-        age
-        gender
-        relativeMelanoma
-        anamnesisMelanoma
-        dyspasticNevusSyndrome
-        dyspasticNevusSyndromeRelatives
-        immunosuppressiveTherapy
-        presenceUlceration
-        hospital
-        
-        gallery
-        
-        doctor (if need)
-        */
-        
-        System.out.println("SomeServlet");
+        System.out.println("LoadUserInfoServlet");
         JsonObject jo = new Gson().fromJson(req.getReader(), JsonObject.class);
         int id = jo.get("id").getAsInt();
         
@@ -72,7 +49,7 @@ public class SomeServlet extends HttpServlet{
         map.put("immunosuppressiveTherapy", form.getImmunosuppressiveTherapy() + "");
         map.put("presenceUlceration", form.getPresenceUlceration() + "");
         map.put("hospital", form.getHospital());
-        
+        map.put("fotos", fotos.toString());
         String json = new Gson().toJson(map);
         
         resp.setContentType("application/json");

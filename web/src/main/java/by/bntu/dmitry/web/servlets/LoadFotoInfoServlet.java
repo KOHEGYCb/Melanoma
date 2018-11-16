@@ -28,7 +28,7 @@ public class LoadFotoInfoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-         System.out.println("SomeServlet");
+         System.out.println("LoadFotoInfoServlet");
         JsonObject jo = new Gson().fromJson(req.getReader(), JsonObject.class);
         int id = jo.get("id").getAsInt();
         
@@ -57,6 +57,7 @@ public class LoadFotoInfoServlet extends HttpServlet {
         map.put("date", foto.getDate() + "");
         map.put("comments", foto.getComments() + "");
         map.put("directory", foto.getDirectory() + "");
+        map.put("analis_comp", foto.getResultComputerAnalysisProbability() + "");
         
         String json = new Gson().toJson(map);
         

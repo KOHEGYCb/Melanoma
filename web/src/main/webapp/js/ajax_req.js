@@ -39,7 +39,6 @@ function logIn(id) {
         success: function (response) {
             document.getElementById('root').innerHTML = "";
             document.getElementById('root').innerHTML = response;
-//                alert(response);
         }
     });
 }
@@ -64,72 +63,62 @@ function createUserF() {
     });
 }
 
-function loadImageInfo(id){
+function clickOnElement(action, id) {
     var data = {
         id: id
     };
-    console.log('id: ' + id);
-    var s = window.location.href;
-    if (s.substr(s.indexOf("#")) === "#foto") {
-    $.ajax({
-            type: "POST",
-            url: "LoadFotoInfoServlet",
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            success: function (response) {
-                var $ul = $("<ul>").appendTo($("#bl1"));
-                $.each(response, function (index, item) {
-                    $("<li>").text(index + ": " + item).appendTo($ul);
-                });
-            }
-        });
-        window.location.href = "#curent_foto";
-    } else {
-        document.getElementById('bl1').innerHTML = "";
-        window.location.href = "#foto";
+    switch (action) {
+        case "loadFoto":
+            var req = getElement("LoadFotoInfoServlet", data);
+
+            document.getElementById('element').innerHTML = "";
+
+            var $ul = $("<ul>").appendTo($("#element"));
+            $("<li class='foto'>").html("<img src='http://192.168.222.22:8084/web/images/dir/"+ req['directory'] +"'>").appendTo($ul);
+            $.each(req, function (index, item) {
+                $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
+            });
+            window.location.href = "#curent_foto";
+
+            break;
+        case "loadUser":
+            var req = getElement("LoadUserInfoServlet", data);
+
+            document.getElementById('element').innerHTML = "";
+
+            var $ul = $("<ul>").appendTo($("#element"));
+            $.each(req, function (index, item) {
+                $("<li>").text(index + ": " + item).appendTo($ul);
+            });
+
+            window.location.href = "#pacient";
+            break;
     }
 }
 
-function pushMe(id) {
+function getElement(servlet, data) {
+    var obj = "";
+    $.ajax({
+        type: "POST",
+        url: servlet,
+        contentType: "application/json",
+        async: false,
+        data: JSON.stringify(data),
+        success: function (response) {
+            obj = response;
+        }
+    });
+    return obj;
+}
 
-    var data = {
-        id: id
-    };
-
-    var s = window.location.href;
-//        location.replace(s.substr(0,s.indexOf("#")+1) + "pacient"); 
-//        alert(s.substr(s.indexOf("#")));
-    if (s.substr(s.indexOf("#")) === "#tables") {
-        $.ajax({
-            type: "POST",
-            url: "someservlet",
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            success: function (response) {
-                var $ul = $("<ul>").appendTo($("#bl1"));
-                $.each(response, function (index, item) {
-                    $("<li>").text(index + ": " + item).appendTo($ul);
-                });
-//                    "id"
-//                    "name"
-//                    "surname"
-//                    "patronymic"
-//                    "birthday"
-//                    "gender"
-//                    "relativeMelanoma"
-//                    "anamnesisMelanoma"
-//                    "dyspasticNevusSyndrome"
-//                    "dyspasticNevusSyndromeRelatives"
-//                    "immunosuppressiveTherapy"
-//                    "presenceUlceration"
-//                    "hospital"
-//                    $("#bl1").text(response["name"]);
-            }
-        });
-        window.location.href = "#pacient";
-    } else {
-        document.getElementById('bl1').innerHTML = "";
-        window.location.href = "#tables";
+function clickOnBackButton() {
+    switch (window.location.href.substr(window.location.href.indexOf("#"))) {
+        case "#pacient":
+            window.location.href = "#tables";
+            break;
+        case "#curent_foto":
+            window.location.href = "#foto";
+            break;
     }
 }
 
@@ -149,14 +138,12 @@ function createFoto(data) {
             radiobtn.checked = true;
         }
     });
-
 }
 
-function test() {
+function add_foto() {
     $('#fotoForm').ajaxForm({
         success: function (resp) {
             alert("File has been uploaded successfully");
-
             var data = {
                 origin_illness: document.fotoForm.origin_illness.value,
                 duration_illness: document.fotoForm.duration_illness.value,
@@ -181,7 +168,6 @@ function test() {
                 id: resp["id"],
                 dir: resp["dir"]
             };
-
             createFoto(data);
         },
         error: function (msg) {

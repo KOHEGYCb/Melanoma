@@ -31,7 +31,7 @@
                 for (int i = 0; i < fotos.size(); i++) {
             %>
             <div class="element">
-                <img src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="loadImageInfo(<%= fotos.get(i).getId()%>)">
+                <img src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
             </div>
             <%
                 }
@@ -44,6 +44,6 @@
 </div>
 <div class="page" id="curent_foto">
     <h1>Foto's parameters</h1>
-    <div id="bl1"></div>
-    <div onclick="loadImageInfo(-1)">Back</div>
+    <div id="element"></div>
+    <div class="button" onclick="clickOnBackButton()">Back</div>
 </div>

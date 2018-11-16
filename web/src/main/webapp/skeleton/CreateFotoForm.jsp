@@ -241,7 +241,7 @@
         <br>
         <input type="file" name="file"/>
         <br/>
-        <input type="submit" name="createFotoForm" value="Add foto" onclick="test()"/>
+        <input type="submit" name="createFotoForm" value="Add foto" onclick="add_foto()"/>
         <h3>${err}</h3>
         
     </form>
