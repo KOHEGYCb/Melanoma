@@ -12,6 +12,8 @@ public class SQLRequests {
     public static final String CREATE_USER = "INSERT INTO melanoma.user (login, password, role, active, authorization) VALUES (?, ?, ?, ?, ?);";
     public static final String UPDATE_USER = "UPDATE melanoma.user SET login=?, password=?, role=?, active=?, authorization=? WHERE id=?;";
     public static final String DELETE_USER = "";
+    public static final String GET_AMOUNT_FAKE_USER_BY_DOCTOR = "SELECT COUNT(*) as \"amount\" FROM melanoma.user where login=?;";
+    public static final String GET_FAKE_USER = "SELECT * FROM melanoma.user WHERE login=? and password=?;";
 
     public static final String GET_ALL_PACIENTS = "SELECT * FROM melanoma.pacient;";
     public static final String GET_PACIENT_BY_ID = "SELECT * FROM melanoma.pacient WHERE id=?;";
