@@ -103,7 +103,7 @@ public enum UserDAO implements AbstractDAO<User> {
         ArrayList<User> users = UserDAO.INSTANCE.findAll();
         ArrayList<User> pacients = new ArrayList<>();
         for (int i = 0; i < users.size(); i++) {
-            if (PacientDAO.INSTANCE.GetPacientByUser(users.get(i)) != null) {
+            if (users.get(i).getRole() == Role.USER) {
                 pacients.add(users.get(i));
             }
         }
@@ -123,6 +123,51 @@ public enum UserDAO implements AbstractDAO<User> {
         return noPacient;
     }
 
+    public int getAmountFakeUserByDoctor(User doctor) {
+        int amount = 0;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectionPool.INSTANCE.getConnection();
+            statement = connection.prepareStatement(SQLRequests.GET_AMOUNT_FAKE_USER_BY_DOCTOR);
+            statement.setString(1, "-"+doctor.getId());
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                amount = resultSet.getInt(SQLColumns.AMOUNT);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            releaseConnection(connection, statement, resultSet);
+        }
+        return amount;
+    }
+
+    public User getFakeUser(User user) {
+        User user_ = null;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectionPool.INSTANCE.getConnection();
+            statement = connection.prepareStatement(SQLRequests.GET_FAKE_USER);
+            System.out.println("Login" + user.getLogin());
+            System.out.println("Password" + user.getPassword());
+            statement.setString(1, user.getLogin());
+            statement.setString(2, user.getPassword());
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                user_ = getUser(resultSet);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            releaseConnection(connection, statement, resultSet);
+        }
+        return user_;
+    }
+    
     @Override
     public void createEntity(User user) {
         Connection connection = null;
@@ -229,14 +274,14 @@ public enum UserDAO implements AbstractDAO<User> {
 
     private User getUser(ResultSet resultSet) throws SQLException {
         User user = new User();
-        
+
         user.setId(resultSet.getInt(SQLColumns.USER_ID));
         user.setLogin(resultSet.getString(SQLColumns.USER_LOGIN));
         user.setPassword(resultSet.getString(SQLColumns.USER_PASSWORD));
         user.setRole(resultSet.getInt(SQLColumns.USER_ROLE));
         user.setActive(resultSet.getInt(SQLColumns.USER_ACTIVE));
         user.setAuthorizate(resultSet.getInt(SQLColumns.USER_AUTHORIZE));
-        
+
         return user;
     }
 }

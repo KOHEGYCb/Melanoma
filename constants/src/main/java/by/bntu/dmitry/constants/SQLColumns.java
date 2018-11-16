@@ -67,5 +67,7 @@ public class SQLColumns {
     public static final String USER_FORM_IMMUNOSUPPRESSIVE_THERAPY = "immunosuppressive_therapy";
     public static final String USER_FORM_PRESENCE_ULCERATION = "presence_of_ulceration";
     public static final String USER_FORM_HOSPITAL = "hospital";
+    
+    public static final String AMOUNT = "amount";
 
 }

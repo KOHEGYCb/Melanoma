@@ -4,6 +4,11 @@
     Author     : dmitry
 --%>
 
+<%@page import="by.bntu.dmitry.services.logsServices.ParseResultsServices"%>
+<%@page import="by.bntu.dmitry.entities.Result"%>
+<%@page import="by.bntu.dmitry.dao.FotoDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="by.bntu.dmitry.entities.Foto"%>
 <%@page import="by.bntu.dmitry.entities.UserForm"%>
 <%@page import="by.bntu.dmitry.dao.UserFormDAO"%>
 <%@page import="by.bntu.dmitry.entities.User"%>
@@ -22,13 +27,34 @@
     <label for="user_new_foto">Add new foto</label>
 
     <div class="user_fotos_block" id="user_foto_tab">
-         
-<!--        <form id="form_1" method="post" enctype="multipart/form-data" action="fileFotoSave" >
-            <input type="file" name="file"/>
-            <input type="submit" value="press" onclick="test()"/>
-        </form>-->
+        <div id="gallery">
+            <div id="place"></div>
+            <%  ArrayList<Foto> fotos = FotoDAO.INSTANCE.getEntityByUser((User) session.getAttribute("user"));
+                for (int i = 0; i < fotos.size(); i++) {
+                    Result result = ParseResultsServices.getResult(fotos.get(i));
+                    if (result == null) {
+            %>
+            <div class="element">
+                <img src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
+            </div>
+            <%
+                    } else {
+            %>
+            <div class="element">
+                <img class="done" src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
+            </div>
+            <%
+                    }
+                }
+            %>
+        </div>
     </div>
     <div class="user_fotos_block" id="user_new_foto_tab">
         <%@include file="CreateFotoForm.jsp" %>
     </div>
+</div>
+<div class="page" id="curent_foto">
+    <h1>Foto's parameters</h1>
+    <div id="element"></div>
+    <div class="button" onclick="clickOnBackButton()">Back</div>
 </div>

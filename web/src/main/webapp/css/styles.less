@@ -129,6 +129,7 @@ body, html{
     height: calc(100% - 51px);
     position: absolute;
     transition: .3s;
+    overflow-y: auto;
 }
 #tables{
     input{
@@ -243,7 +244,8 @@ body, html{
 #logs:target,
 #users:target,
 #pacient:target,
-#foto:target{
+#foto:target,
+#curent_foto:target{
     left: 300px;
     transition: .3s .3s;
 }
@@ -332,6 +334,15 @@ body, html{
             }
         }
     }
+
+    /*    .user_fotos_block:before{
+            content: "";
+            background: linear-gradient(to bottom, rgba(38, 72, 74,1), rgba(38, 72, 74,0));
+            width: 100%;
+            height: 20px;
+            position: absolute;
+            z-index: 20;
+        }*/
     #user_fotos:checked ~ #user_foto_tab,
         #user_new_foto:checked ~ #user_new_foto_tab{
         opacity: 1;
@@ -595,7 +606,7 @@ body, html{
     /*margin-bottom: 10%;*/
     transform: translate(-50%, 0%);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .createFotoForm{
 
@@ -765,8 +776,147 @@ body, html{
     position: absolute;
     left: 0;
     top: 0;
-    width: 0%;
-    height: 100%;
+    width: 100%;
+    height: 0%;
     background: rgba(0,0,0,.3);
     z-index: 1000;
+    transition: .5s;
+}
+
+#preloader_load{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0%;
+    background: rgba(0,0,0,.3);
+    z-index: 1000;
+    transition: .5s;
+}
+/*
+==============================================================================
+===========================      G a l l e r y     ===========================
+==============================================================================
+*/
+div#gallery{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+div#gallery{
+
+    div.element{
+        position: relative;
+        width: 200px;
+        height: 200px;
+        float: left;
+        margin: 15px;
+        background: @light-gray-text;
+        border-radius: 5px;
+
+        transition: .3s;
+    }
+
+    div.element:hover{
+        transform: scale(1.1);
+    }
+
+    div.element:hover img{
+        border-width: 6px;
+        width: 194px;
+        height: 194px;
+    }
+
+    div#place{
+        /*outline: 2px solid red;*/
+        width: 0px;
+        float: left;
+        height: 100%;
+    }
+
+    div.element{
+
+        img{
+            border-radius: 5px;
+            width: 197px;
+            height: 197px;
+            border: 3px solid @red;
+            transition: .3s;
+        }
+        img.done{
+            border-color: @green;
+        }
+
+    }
+
+}
+
+/*
+==============================================================================
+===========================      E L E M E N T     ===========================
+==============================================================================
+*/
+div.page#curent_foto{
+
+}
+
+div.page#curent_foto,
+div.page#pacient{
+    h1{
+        color: @light-gray-text;
+        margin: 0 0 0 15px;
+        padding: 0;
+    }
+    div.button{
+        border-radius: 5px;
+        display: block;
+        width: 200px;
+        margin: 0 6px 6px 15px;
+        padding: 5px 0 0;
+        background: @green;
+        min-height: 30px;
+        color: @light-gray-text;
+        font-size: 20px;
+        text-align: center;
+        transition: .3s;
+    }
+    div.button:hover{
+        background: @green-hover;
+    }
+
+    div.button:active{
+        background: #cbcbc9;
+        color: @dark-gray;     
+    }
+    div#element{
+
+    }
+    div#element{
+        ul{
+            list-style: none;
+            margin: 15px 0 15px 15px;
+            padding: 0;
+        }
+        ul{
+            li{
+                color: @light-gray-text;
+                min-height: 25px;
+                padding: 5px 0 5px 5px;
+                width: 300px;
+                border: 1px solid @light-green;
+                margin: 3px;
+            }
+            li.foto{
+                padding: 0;
+                background: @light-gray-text
+            }
+            li.foto{
+                img{
+                    width: 300px;
+                    height: 300px;
+                }
+            }
+        }
+    }
 }

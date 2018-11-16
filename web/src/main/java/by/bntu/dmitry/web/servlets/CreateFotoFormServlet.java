@@ -51,7 +51,6 @@ public class CreateFotoFormServlet extends ManagerServlet {
 
         Foto foto = new Foto();
         foto.setOriginIllness(origin_illness);
-        System.out.println(foto.getOriginIllness());
         foto.setDurationIllness(duration_illness);
         foto.setChangeForm(change_form);
         foto.setChangeSize(change_size);
@@ -75,5 +74,7 @@ public class CreateFotoFormServlet extends ManagerServlet {
         foto.setId(id);
         foto.setUser((User) req.getSession().getAttribute("user"));
         FotoDAO.INSTANCE.updateEntity(foto);
+        
+        forward("/body.jsp", req, resp);
     }
 }
