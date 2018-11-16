@@ -113,9 +113,24 @@ function clickOnElement(action, id) {
             document.getElementById('element').innerHTML = "";
 
             var $ul = $("<ul>").appendTo($("#element"));
+            var $gallary = $("<div id='gallery'>").appendTo($("#element"));
+            $("<div id='place'>").appendTo($("#gallery"));
             $.each(req, function (index, item) {
-                $("<li>").text(index + ": " + item).appendTo($ul);
+                if (index.indexOf("foto_") === -1) {
+                    $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
+                } else {
+                    $("<div class='element'>").html("<img src='http://192.168.222.22:8084/web/images/dir/" + item + "'>").appendTo($gallary);
+                }
             });
+            var elemSize = 236;
+            var block = document.getElementById('gallery');
+            var width = block.offsetWidth;
+            var elems_row = parseInt((width - 25) / elemSize);
+            var freePlace = width - elems_row * elemSize;
+            var elems_col = Math.ceil(document.getElementsByClassName('element').length / elems_row);
+            document.getElementById('place').style.width = freePlace / 2 + "px";
+            document.getElementById('place').style.height = elems_col * elemSize + "px";
+            block.style.height = elems_col * elemSize + "px";
 
             window.location.href = "#pacient";
             break;

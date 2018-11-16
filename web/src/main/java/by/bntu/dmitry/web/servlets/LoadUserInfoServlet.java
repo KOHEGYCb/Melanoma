@@ -49,7 +49,10 @@ public class LoadUserInfoServlet extends HttpServlet{
         map.put("immunosuppressiveTherapy", form.getImmunosuppressiveTherapy() + "");
         map.put("presenceUlceration", form.getPresenceUlceration() + "");
         map.put("hospital", form.getHospital());
-        map.put("fotos", fotos.toString());
+        for (int i = 0; i < fotos.size(); i++){
+            map.put("foto_"+i, fotos.get(i).getDirectory());
+        }
+        
         String json = new Gson().toJson(map);
         
         resp.setContentType("application/json");
