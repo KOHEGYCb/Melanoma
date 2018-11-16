@@ -121,6 +121,8 @@ public class SQLRequests {
             + "WHERE id = ?;";
     public static final String DELETE_FOTO = "";
 
+    public static final String GET_AMOUNT_FOTO_BY_USER_ID = "SELECT count(*) as \"amount\" FROM melanoma.foto where user_id=?;";
+
     public static final String GET_ALL_USER_FORMS = "SELECT * FROM melanoma.user_form;";
     public static final String GET_USER_FORM_BY_ID = "SELECT * FROM melanoma.user_form WHERE id=?;";
     public static final String GET_USER_FORM_BY_USER = "SELECT * FROM melanoma.user_form WHERE user_id=?;";

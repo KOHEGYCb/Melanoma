@@ -94,6 +94,27 @@ public enum FotoDAO implements AbstractDAO<Foto> {
         }
         return fotos;
     }
+    
+    public int getAmountByUserId(User user) {
+        int amount = 0;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectionPool.INSTANCE.getConnection();
+            statement = connection.prepareStatement(SQLRequests.GET_AMOUNT_FOTO_BY_USER_ID);
+            statement.setInt(1, user.getId());
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                amount = resultSet.getInt(SQLColumns.AMOUNT);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            releaseConnection(connection, statement, resultSet);
+        }
+        return amount;
+    }
 
 //    @Override
 //    public void createEntity(Foto foto) {
