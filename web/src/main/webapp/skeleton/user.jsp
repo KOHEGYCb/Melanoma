@@ -4,6 +4,8 @@
     Author     : dmitry
 --%>
 
+<%@page import="by.bntu.dmitry.services.logsServices.ParseResultsServices"%>
+<%@page import="by.bntu.dmitry.entities.Result"%>
 <%@page import="by.bntu.dmitry.dao.FotoDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="by.bntu.dmitry.entities.Foto"%>
@@ -29,11 +31,20 @@
             <div id="place"></div>
             <%  ArrayList<Foto> fotos = FotoDAO.INSTANCE.getEntityByUser((User) session.getAttribute("user"));
                 for (int i = 0; i < fotos.size(); i++) {
+                    Result result = ParseResultsServices.getResult(fotos.get(i));
+                    if (result == null) {
             %>
             <div class="element">
                 <img src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
             </div>
             <%
+                    } else {
+            %>
+            <div class="element">
+                <img class="done" src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
+            </div>
+            <%
+                    }
                 }
             %>
         </div>
