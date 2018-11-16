@@ -149,32 +149,36 @@ function createFoto(data) {
 function add_foto() {
     $('#fotoForm').ajaxForm({
         success: function (resp) {
-            alert("File has been uploaded successfully");
-            var data = {
-                origin_illness: document.fotoForm.origin_illness.value,
-                duration_illness: document.fotoForm.duration_illness.value,
-                change_form: document.fotoForm.change_form.value,
-                change_size: document.fotoForm.change_size.value,
-                change_color: document.fotoForm.change_color.value,
-                change_sensitivity: document.fotoForm.change_sensitivity.value,
-                crusts_and_bleeding: document.fotoForm.crusts_and_bleeding.value,
-                tumor_pain: document.fotoForm.tumor_pain.value,
-                satellite: document.fotoForm.satellite.value,
-                inflammations: document.fotoForm.inflammations.value,
-                uniform_coloring: document.fotoForm.uniform_coloring.value,
-                skin_type: document.fotoForm.skin_type.value,
-                tumor_diameter: document.fotoForm.tumor_diameter.value,
-                tumor_form: document.fotoForm.tumor_form.value,
-                tumor_surface: document.fotoForm.tumor_surface.value,
-                tumor_outline: document.fotoForm.tumor_outline.value,
-                tumor_localization: document.fotoForm.tumor_localization.value,
-                device: document.fotoForm.device.value,
-                date: document.fotoForm.date.value,
-                comments: document.fotoForm.comments.value,
-                id: resp["id"],
-                dir: resp["dir"]
-            };
-            createFoto(data);
+            if (resp["error"] === "no") {
+                alert("File has been uploaded successfully");
+                var data = {
+                    origin_illness: document.fotoForm.origin_illness.value,
+                    duration_illness: document.fotoForm.duration_illness.value,
+                    change_form: document.fotoForm.change_form.value,
+                    change_size: document.fotoForm.change_size.value,
+                    change_color: document.fotoForm.change_color.value,
+                    change_sensitivity: document.fotoForm.change_sensitivity.value,
+                    crusts_and_bleeding: document.fotoForm.crusts_and_bleeding.value,
+                    tumor_pain: document.fotoForm.tumor_pain.value,
+                    satellite: document.fotoForm.satellite.value,
+                    inflammations: document.fotoForm.inflammations.value,
+                    uniform_coloring: document.fotoForm.uniform_coloring.value,
+                    skin_type: document.fotoForm.skin_type.value,
+                    tumor_diameter: document.fotoForm.tumor_diameter.value,
+                    tumor_form: document.fotoForm.tumor_form.value,
+                    tumor_surface: document.fotoForm.tumor_surface.value,
+                    tumor_outline: document.fotoForm.tumor_outline.value,
+                    tumor_localization: document.fotoForm.tumor_localization.value,
+                    device: document.fotoForm.device.value,
+                    date: document.fotoForm.date.value,
+                    comments: document.fotoForm.comments.value,
+                    id: resp["id"],
+                    dir: resp["dir"]
+                };
+                createFoto(data);
+            } else {
+                alert("File bad type");
+            }
         },
         error: function (msg) {
             alert("File has not been uploaded successfully");
