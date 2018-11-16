@@ -115,8 +115,8 @@
 <div class="page" id="create">Create</div>
 <div class="page" id="profile">Profile</div>
 <div class="page" id="pacient">
-    Pacient
-    <div id="bl1"></div>
-    <div onclick="clickOnBackButton()">Back</div>
+    <h1>Pacient</h1>
+    <div id="element"></div>
+    <div class="button" onclick="clickOnBackButton()">Back</div>
 </div>
 

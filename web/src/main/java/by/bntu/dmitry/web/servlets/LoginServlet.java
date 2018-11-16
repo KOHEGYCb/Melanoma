@@ -92,7 +92,7 @@ public class LoginServlet extends ManagerServlet {
                 if (!login.equals("")) {
                     if (!password.equals("")) {
                         if (UserDAO.INSTANCE.getEntityByLogin(login) == null) {
-                            User newUser = new User(login, password, Role.USER, true, false);
+                            User newUser = new User(login, password, Role.USER, true, true);
                             UserDAO.INSTANCE.createEntity(newUser);
                             newUser = UserDAO.INSTANCE.getEntityByLogin(login);
                             

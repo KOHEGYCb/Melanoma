@@ -90,10 +90,10 @@ public class SQLRequests {
             + "placed_in_database = ?,"
             + "directory = ? "
             + "WHERE id = ?;";
-    
+
     public static final String UPDATE_FOTO_ = "UPDATE melanoma.foto SET "
             + "user_id = ?,"
-//            + "id_tumor = ?,"
+            //            + "id_tumor = ?,"
             + "origin_illness = ?,"
             + "duration_illness = ?,"
             + "change_form = ?,"
@@ -114,11 +114,11 @@ public class SQLRequests {
             + "device = ?,"
             + "date = ?,"
             + "comments = ?,"
-//            + "preliminary_diagnosis = ?,"
-//            + "final diagnosis = ?,"
-//            + "result_computer_analysis_probability = ?,"
-//            + "result_computer_analysis_similar = ?,"
-//            + "placed_in_database = ?,"
+            //            + "preliminary_diagnosis = ?,"
+            //            + "final diagnosis = ?,"
+            //            + "result_computer_analysis_probability = ?,"
+            //            + "result_computer_analysis_similar = ?,"
+            //            + "placed_in_database = ?,"
             + "directory = ? "
             + "WHERE id = ?;";
     public static final String DELETE_FOTO = "";
