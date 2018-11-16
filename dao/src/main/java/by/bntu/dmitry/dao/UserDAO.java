@@ -274,14 +274,14 @@ public enum UserDAO implements AbstractDAO<User> {
 
     private User getUser(ResultSet resultSet) throws SQLException {
         User user = new User();
-        
+
         user.setId(resultSet.getInt(SQLColumns.USER_ID));
         user.setLogin(resultSet.getString(SQLColumns.USER_LOGIN));
         user.setPassword(resultSet.getString(SQLColumns.USER_PASSWORD));
         user.setRole(resultSet.getInt(SQLColumns.USER_ROLE));
         user.setActive(resultSet.getInt(SQLColumns.USER_ACTIVE));
         user.setAuthorizate(resultSet.getInt(SQLColumns.USER_AUTHORIZE));
-        
+
         return user;
     }
 }
