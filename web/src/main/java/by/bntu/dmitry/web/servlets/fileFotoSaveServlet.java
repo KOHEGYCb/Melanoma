@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -31,31 +31,62 @@ public class fileFotoSaveServlet extends ManagerServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("fileFotoSaveServlet");
         Part filePart = req.getPart("file");
+        String fileType = "";
+        boolean isValid = true;
+        boolean isTypeFind = false;
+        for (int i = filePart.getSubmittedFileName().length() - 1; i >= 0; i--) {
+            if (!isTypeFind) {
+                fileType = filePart.getSubmittedFileName().charAt(i) + fileType;
+            }
+            if (filePart.getSubmittedFileName().charAt(i) == '.') {
+                break;
+            }
+        }
 
         User user = (User) req.getSession().getAttribute("user");
 
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         String dir = user.getId() + "/";
         File file = new File(ConfigConstants.IMAGE_FOLDER + dir);
-        dir = dir + (file.listFiles().length) + ".png";
-        InputStream fileContent = filePart.getInputStream();
 
-        FileOutputStream fos = new FileOutputStream(ConfigConstants.IMAGE_FOLDER + dir);
-        byte[] b = new byte[fileContent.available()];
-        fileContent.read(b);
-        fos.write(b);
-        fos.close();
-        fileContent.close();
+        if (fileType.toLowerCase().equals(".jpg")) {
+            dir = dir + (FotoDAO.INSTANCE.getAmountByUserId(user)) + ".jpg";
+        } else {
+            if (fileType.toLowerCase().equals(".png")) {
+                dir = dir + (FotoDAO.INSTANCE.getAmountByUserId(user)) + ".png";
+            } else {
+                if (fileType.toLowerCase().equals(".bmp")) {
+                    dir = dir + (FotoDAO.INSTANCE.getAmountByUserId(user)) + ".bmp";
+                } else {
+                    isValid = false;
+                }
+            }
+        }
 
-        Foto foto = new Foto();
-        foto.setDirectory(dir);
-        foto.setUser((User) req.getSession().getAttribute("user"));
-        FotoDAO.INSTANCE.createEntity(foto);
-        Foto n_foto = FotoDAO.INSTANCE.getEntityByDirectory(foto.getDirectory());
+        Map<String, String> map = null;
+        if (isValid) {
+            InputStream fileContent = filePart.getInputStream();
 
-        Map<String, String> map = new LinkedHashMap<String, String>();
-        map.put("id", n_foto.getId() + "");
-        map.put("dir", n_foto.getDirectory());
+            FileOutputStream fos = new FileOutputStream(ConfigConstants.IMAGE_FOLDER + dir);
+            byte[] b = new byte[fileContent.available()];
+            fileContent.read(b);
+            fos.write(b);
+            fos.close();
+            fileContent.close();
+
+            Foto foto = new Foto();
+            foto.setDirectory(dir);
+            foto.setUser((User) req.getSession().getAttribute("user"));
+            FotoDAO.INSTANCE.createEntity(foto);
+            Foto n_foto = FotoDAO.INSTANCE.getEntityByDirectory(foto.getDirectory());
+            map = new HashMap<>();
+            map.put("id", n_foto.getId() + "");
+            map.put("dir", n_foto.getDirectory());
+            map.put("error", "no");
+        } else {
+            map = new HashMap<>();
+            map.put("error", "yes");
+        }
 
         String json = new Gson().toJson(map);
 
