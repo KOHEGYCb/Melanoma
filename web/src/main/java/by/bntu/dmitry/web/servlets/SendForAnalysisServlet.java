@@ -19,10 +19,10 @@ public class SendForAnalysisServlet extends ManagerServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        JsonObject jo = new Gson().fromJson(req.getReader(), JsonObject.class);
-        int id = jo.get("id").getAsInt();
-
-        Foto foto = FotoDAO.INSTANCE.getEntityById(id);
+//        JsonObject jo = new Gson().fromJson(req.getReader(), JsonObject.class);
+//        int id = jo.get("id").getAsInt();
+//
+//        Foto foto = FotoDAO.INSTANCE.getEntityById(id);
     }
 
 }

@@ -29,19 +29,19 @@
     <div class="user_fotos_block" id="user_foto_tab">
         <div id="gallery">
             <div id="place"></div>
-            <%  ArrayList<Foto> fotos = FotoDAO.INSTANCE.getEntityByUser((User) session.getAttribute("user"));
+            <%  ArrayList<Foto> fotos = FotoDAO.INSTANCE.getEntitiesByUser((User) session.getAttribute("user"));
                 for (int i = 0; i < fotos.size(); i++) {
                     Result result = ParseResultsServices.getResult(fotos.get(i));
                     if (result == null) {
             %>
             <div class="element">
-                <img src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
+                <img id="image_<%= fotos.get(i).getId() %>" src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
             </div>
             <%
                     } else {
             %>
             <div class="element">
-                <img class="done" src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
+                <img id="image_<%= fotos.get(i).getId() %>" class="done" src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
             </div>
             <%
                     }

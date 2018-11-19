@@ -74,7 +74,7 @@ public enum FotoDAO implements AbstractDAO<Foto> {
         return foto;
     }
 
-    public ArrayList<Foto> getEntityByUser(User user) {
+    public ArrayList<Foto> getEntitiesByUser(User user) {
         ArrayList<Foto> fotos = new ArrayList<>();
         Connection connection = null;
         PreparedStatement statement = null;

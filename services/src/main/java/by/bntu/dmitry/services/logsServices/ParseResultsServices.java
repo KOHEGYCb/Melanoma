@@ -1,8 +1,10 @@
 package by.bntu.dmitry.services.logsServices;
 
 import by.bntu.dmitry.constants.ConfigConstants;
+import by.bntu.dmitry.dao.FotoDAO;
 import by.bntu.dmitry.entities.Foto;
 import by.bntu.dmitry.entities.Result;
+import by.bntu.dmitry.entities.User;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,6 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -20,7 +24,7 @@ import java.util.logging.Logger;
 public class ParseResultsServices {
 
     public static Result getResult(Foto foto) throws IOException {
-        System.out.println("\n\nStart Parse File");
+//        System.out.println("\n\nStart Parse File");
         Result result = null;
 
         String fileName = "";
@@ -39,7 +43,7 @@ public class ParseResultsServices {
         File file = new File(path);
         if (file.isFile()) {
             FileInputStream fis = null;
-            System.out.println("file is found");
+//            System.out.println("file is found");
             result = new Result();
             try {
                 fis = new FileInputStream(file);
@@ -64,7 +68,7 @@ public class ParseResultsServices {
                             param = "";
                             break;
                         default:
-                            System.out.println(ch + " : " + (char) ch);
+//                            System.out.println(ch + " : " + (char) ch);
                             param = param + (char) ch;
                             break;
                     }
@@ -88,10 +92,10 @@ public class ParseResultsServices {
                 }
             }
         } else {
-            System.out.println("file is not found");
+//            System.out.println("file is not found");
         }
 
-        System.out.println("end.\n\n");
+//        System.out.println("end.\n\n");
         return result;
     }
 

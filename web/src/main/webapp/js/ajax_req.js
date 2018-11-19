@@ -117,7 +117,12 @@ function clickOnElement(action, id) {
             $("<div id='place'>").appendTo($("#gallery"));
             $.each(req, function (index, item) {
                 if (index.indexOf("foto_") === -1) {
-                    $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
+                    if (index.indexOf("doctor") === -1) {
+                        $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
+                    } else {
+                        var $button = $("<div class='button' onclick='sendForAnalysis(" + req['id'] + ")'>").appendTo($("#element"));
+                        $button.text("Send for analysis");
+                    }
                 } else {
                     $("<div class='element'>").html("<img src='http://192.168.222.22:8084/web/images/dir/" + item + "'>").appendTo($gallary);
                 }
@@ -226,16 +231,40 @@ function sendForAnalysis(id) {
     var data = {
         id: id
     };
-    var obj = "";
+//    var obj = "";
     $.ajax({
         type: "POST",
         url: "sendForAnalysisServlet",
         contentType: "application/json",
         async: true,
-        data: JSON.stringify(data),
-        success: function (response) {
-            obj = response;
-        }
+        data: JSON.stringify(data)
+//        success: function (response) {
+////            obj = response;
+//        }
     });
-    return obj;
+//    return obj;
+}
+
+function checkResults() {
+    setInterval(function () {
+        $.ajax({
+            type: "POST",
+            url: "checkResultServlet",
+            contentType: "application/json",
+            async: true,
+            data: JSON.stringify(),
+            success: function (response) {
+                if (!response === null) {
+                    $.each(response, function (index, item) {
+                        var n = [];
+                        var element = document.getElementById('image_' + item);
+                        if (!element.classList.contains('done')) {
+                            element.classList.add('done');
+                            alert("photo was processed");
+                        }
+                    });
+                }
+            }
+        });
+    }, 1000);
 }

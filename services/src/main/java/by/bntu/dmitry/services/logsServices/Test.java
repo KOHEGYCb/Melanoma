@@ -1,19 +1,16 @@
 package by.bntu.dmitry.services.logsServices;
 
+import by.bntu.dmitry.dao.UserDAO;
+import java.io.IOException;
+
 /**
  *
  * @author user
  */
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
-        String qwerty = "abcdefghijklmnopqrstuvwxyz";
-        String QWERTY = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String rusQwerty = "абвгдеёжзийклмнопрстуфхцчшщьыъэюя";
-        String rusQWERTY = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ";
+//        ParseResultsServices.getResults(UserDAO.INSTANCE.getEntityById(12));
         
-        for (int i = 0; i < rusQwerty.length(); i++){
-            System.out.println((int)rusQwerty.charAt(i) + " | " + (int)rusQWERTY.charAt(i));
-        }
     }
 }
