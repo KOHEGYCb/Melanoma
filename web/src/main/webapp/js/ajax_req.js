@@ -120,8 +120,17 @@ function clickOnElement(action, id) {
                     if (index.indexOf("doctor") === -1) {
                         $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
                     } else {
-                        var $button = $("<div class='button' onclick='sendForAnalysis(" + req['id'] + ")'>").appendTo($("#element"));
-                        $button.text("Send for analysis");
+                        switch (item) {
+                            case "accept":
+                                var $button = $("<div class='button' onclick='workWithPatients(\"returnPatientServlet\"," + req['id'] + ")'>").appendTo($("#element"));
+                                $button.text("Return patient");
+                                break;
+                            case "free":
+                                var $button = $("<div class='button' onclick='workWithPatients(\"takePatientServlet\"," + req['id'] + ")'>").appendTo($("#element"));
+                                $button.text("Take patient");
+                                break;
+                        }
+
                     }
                 } else {
                     $("<div class='element'>").html("<img src='http://192.168.222.22:8084/web/images/dir/" + item + "'>").appendTo($gallary);

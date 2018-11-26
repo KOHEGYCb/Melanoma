@@ -56,6 +56,8 @@ public class LoadUserInfoServlet extends HttpServlet{
         }
         if (PacientDAO.INSTANCE.GetPacientByUser(user) == null){
             map.put("doctor", "free");
+        }else{
+            map.put("doctor", "accept");
         }
         
         
