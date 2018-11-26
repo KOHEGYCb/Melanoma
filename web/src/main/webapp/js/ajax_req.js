@@ -166,6 +166,33 @@ function getElement(servlet, data) {
     return obj;
 }
 
+function workWithPatients(servlet, id) {
+    var data = {
+        id: id
+    };
+    $.ajax({
+        type: "POST",
+        url: servlet,
+        contentType: "application/json",
+        async: false,
+        data: JSON.stringify(data),
+        success: function (response) {
+            document.getElementById('root').innerHTML = "";
+            document.getElementById('root').innerHTML = response;
+            window.location.href = "#tables";
+            var radiobtn = document.getElementById("tab_free_pacient");
+            radiobtn.checked = false;
+            radiobtn = document.getElementById("tab_all_pacient");
+            radiobtn.checked = false;
+            radiobtn = document.getElementById("tab_foto");
+            radiobtn.checked = false;
+            radiobtn = document.getElementById("tab_my_pacient");
+            radiobtn.checked = true;
+        }
+    });
+//    alert(servlet);
+}
+
 function clickOnBackButton() {
     switch (window.location.href.substr(window.location.href.indexOf("#"))) {
         case "#pacient":
