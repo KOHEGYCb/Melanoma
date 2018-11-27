@@ -19,7 +19,8 @@ public class SQLRequests {
     public static final String GET_PACIENT_BY_ID = "SELECT * FROM melanoma.pacient WHERE id=?;";
     public static final String CREATE_PACIENT = "INSERT INTO melanoma.pacient (user_id_pacient, user_id_doctor, direction_of_histology) VALUES (?, ?, ?);";
     public static final String UPDATE_PACIENT = "UPDATE melanoma.pacient SET user_id_pacient = ?, user_id_doctor = ?, direction_of_histology = ? WHERE id = ?;";
-    public static final String DELETE_PACIENT = "";
+    public static final String DELETE_PACIENT = "DELETE FROM melanoma.pacient WHERE pacient.id = ?;";
+    public static final String GET_PACIENT_BY_DOCTOR_AND_PATIENT = "SELECT * FROM melanoma.pacient WHERE user_id_doctor=? AND user_id_pacient=?;";
 
     public static final String GET_ALL_FOTOS = "SELECT * FROM melanoma.foto;";
     public static final String GET_FOTOS_BY_USER = "SELECT * FROM melanoma.foto WHERE user_id = ?;";

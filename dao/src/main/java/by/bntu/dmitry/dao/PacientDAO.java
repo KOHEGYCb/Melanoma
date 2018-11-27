@@ -51,7 +51,7 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.GET_PACIENT_BY_ID);
-            statement.setInt(0, id);
+            statement.setInt(1, id);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 pacient = getPacient(resultSet);
@@ -61,6 +61,30 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
         } finally {
             releaseConnection(connection, statement, resultSet);
         }
+        return pacient;
+    }
+    
+    public Pacient getEntityByPatientAndDoctor(User doctor, User patient){
+        Pacient pacient = null;
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = ConnectionPool.INSTANCE.getConnection();
+            statement = connection.prepareStatement(SQLRequests.GET_PACIENT_BY_DOCTOR_AND_PATIENT);
+            statement.setInt(1, doctor.getId());
+            statement.setInt(2, patient.getId());
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                pacient = getPacient(resultSet);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            releaseConnection(connection, statement, resultSet);
+        }
+        
         return pacient;
     }
 
@@ -75,7 +99,7 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 pacient = getPacient(resultSet);
-                if (pacient.getPacient().equals(user)) {
+                if (pacient.getPacient().getId() == user.getId()) {
                     return pacient;
                 }
             }
@@ -84,7 +108,7 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
         } finally {
             releaseConnection(connection, statement, resultSet);
         }
-        return pacient;
+        return null;
     }
 
     @Override
@@ -125,8 +149,19 @@ public enum PacientDAO implements AbstractDAO<Pacient> {
     }
 
     @Override
-    public void deleteEntity(Pacient t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteEntity(Pacient pacient) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = ConnectionPool.INSTANCE.getConnection();
+            statement = connection.prepareStatement(SQLRequests.DELETE_PACIENT);
+            statement.setInt(1, pacient.getId());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            releaseConnection(connection, statement);
+        }
     }
 
     private void releaseConnection(Connection connection, PreparedStatement statement) {

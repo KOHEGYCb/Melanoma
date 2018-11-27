@@ -3,6 +3,8 @@ $(window).on('resize', function () {
 });
 $(window).on('load', function () {
     resizeGallery();
+    checkPage();
+    checkResults();
 });
 
 function resizeGallery() {
@@ -23,5 +25,16 @@ function resizeGallery() {
         document.getElementById('place').style.width = freePlace / 2 + "px";
         document.getElementById('place').style.height = elems_col*elemSize + "px";
     }, 500);
+}
+
+function checkPage(){
+    switch (window.location.href.substr(window.location.href.indexOf("#"))) {
+        case "#pacient":
+            window.location.href = "#tables";
+            break;
+        case "#curent_foto":
+            window.location.href = "#foto";
+            break;
+    }
 }
 

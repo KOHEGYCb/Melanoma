@@ -30,15 +30,15 @@ public class LoadFotoInfoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-         System.out.println("LoadFotoInfoServlet");
+        System.out.println("LoadFotoInfoServlet");
         JsonObject jo = new Gson().fromJson(req.getReader(), JsonObject.class);
         int id = jo.get("id").getAsInt();
-        
+
         Foto foto = FotoDAO.INSTANCE.getEntityById(id);
-        
+
         Result result = ParseResultsServices.getResult(foto);
-        
-        Map <String, String> map = new LinkedHashMap<String, String>();
+
+        Map<String, String> map = new LinkedHashMap<String, String>();
         map.put("id", foto.getId() + "");
         map.put("origin_illness", foto.getOriginIllness() + "");
         map.put("duration_illness", foto.getDurationIllness() + "");
@@ -61,19 +61,18 @@ public class LoadFotoInfoServlet extends HttpServlet {
         map.put("date", foto.getDate() + "");
         map.put("comments", foto.getComments() + "");
         map.put("directory", foto.getDirectory() + "");
-        
-        if (result != null){
+
+        if (result != null) {
             map.put("ABCDE", result.getAbcde().getDesc());
             map.put("Similarity", result.getSimilarity().getDesc());
             map.put("Probability", result.getProbability().getDesc());
         }
-        
+
         String json = new Gson().toJson(map);
-        
+
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(json);}
-
-    
+        resp.getWriter().write(json);
+    }
 
 }

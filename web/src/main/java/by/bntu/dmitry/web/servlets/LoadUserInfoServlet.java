@@ -1,6 +1,7 @@
 package by.bntu.dmitry.web.servlets;
 
 import by.bntu.dmitry.dao.FotoDAO;
+import by.bntu.dmitry.dao.PacientDAO;
 import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.dao.UserFormDAO;
 import by.bntu.dmitry.entities.Foto;
@@ -10,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -33,9 +35,9 @@ public class LoadUserInfoServlet extends HttpServlet{
         
         User user = UserDAO.INSTANCE.getEntityById(id);
         UserForm form = UserFormDAO.INSTANCE.getEntityByUser(user);
-        ArrayList<Foto> fotos = FotoDAO.INSTANCE.getEntityByUser(user);
+        ArrayList<Foto> fotos = FotoDAO.INSTANCE.getEntitiesByUser(user);
         
-        Map <String, String> map = new LinkedHashMap<String, String>();
+        Map <String, String> map = new HashMap<String, String>();
         map.put("id", user.getId() + "");
         map.put("name", form.getName());
         map.put("surname", form.getSurname());
@@ -51,7 +53,14 @@ public class LoadUserInfoServlet extends HttpServlet{
         map.put("hospital", form.getHospital());
         for (int i = 0; i < fotos.size(); i++){
             map.put("foto_"+i, fotos.get(i).getDirectory());
+            map.put("fotoId_"+i, fotos.get(i).getId()+"");
         }
+        if (PacientDAO.INSTANCE.GetPacientByUser(user) == null){
+            map.put("doctor", "free");
+        }else{
+            map.put("doctor", "accept");
+        }
+        
         
         String json = new Gson().toJson(map);
         
