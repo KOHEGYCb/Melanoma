@@ -53,9 +53,12 @@ public class LoadUserInfoServlet extends HttpServlet{
         map.put("hospital", form.getHospital());
         for (int i = 0; i < fotos.size(); i++){
             map.put("foto_"+i, fotos.get(i).getDirectory());
+            map.put("fotoId_"+i, fotos.get(i).getId()+"");
         }
         if (PacientDAO.INSTANCE.GetPacientByUser(user) == null){
             map.put("doctor", "free");
+        }else{
+            map.put("doctor", "accept");
         }
         
         

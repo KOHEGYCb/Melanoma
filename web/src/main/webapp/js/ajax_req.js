@@ -87,6 +87,7 @@ function clickOnElement(action, id) {
     var data = {
         id: id
     };
+//    alert(data.id);
     switch (action) {
         case "loadFoto":
             var req = getElement("LoadFotoInfoServlet", data);
@@ -116,15 +117,31 @@ function clickOnElement(action, id) {
             var $gallary = $("<div id='gallery'>").appendTo($("#element"));
             $("<div id='place'>").appendTo($("#gallery"));
             $.each(req, function (index, item) {
+//                console.log(index + " : " + item);
                 if (index.indexOf("foto_") === -1) {
                     if (index.indexOf("doctor") === -1) {
-                        $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
+                        if (index.indexOf("fotoId_") === -1) {
+                            $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
+                        } else {
+                        }
                     } else {
-                        var $button = $("<div class='button' onclick='getPatient(" + req['id'] + ")'>").appendTo($("#element"));
-                        $button.text("Get User");
+                        switch (item) {
+                            case "accept":
+                                var $button = $("<div class='button' onclick='workWithPatients(\"returnPatientServlet\"," + req['id'] + ")'>").appendTo($("#element"));
+                                $button.text("Return patient");
+                                break;
+                            case "free":
+                                var $button = $("<div class='button' onclick='workWithPatients(\"takePatientServlet\"," + req['id'] + ")'>").appendTo($("#element"));
+                                $button.text("Take patient");
+                                break;
+                        }
+
                     }
                 } else {
                     $("<div class='element'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + item + "'>").appendTo($gallary);
+//                    console.log("ITEM: " + index.substr(5));
+//                    console.log(req['fotoId_'+index.substr(5)]);
+                    $("<div class='element'>").html("<img src='http://192.168.222.22:8084/web/images/dir/" + item + "' onclick='clickOnElement(\"loadFoto\","+ req['fotoId_'+index.substr(5)] +")'>").appendTo($gallary);
                 }
             });
             var elemSize = 236;
@@ -157,6 +174,33 @@ function getElement(servlet, data) {
     return obj;
 }
 
+function workWithPatients(servlet, id) {
+    var data = {
+        id: id
+    };
+    $.ajax({
+        type: "POST",
+        url: servlet,
+        contentType: "application/json",
+        async: false,
+        data: JSON.stringify(data),
+        success: function (response) {
+            document.getElementById('root').innerHTML = "";
+            document.getElementById('root').innerHTML = response;
+            window.location.href = "#tables";
+            var radiobtn = document.getElementById("tab_free_pacient");
+            radiobtn.checked = false;
+            radiobtn = document.getElementById("tab_all_pacient");
+            radiobtn.checked = false;
+            radiobtn = document.getElementById("tab_foto");
+            radiobtn.checked = false;
+            radiobtn = document.getElementById("tab_my_pacient");
+            radiobtn.checked = true;
+        }
+    });
+//    alert(servlet);
+}
+
 function clickOnBackButton() {
     switch (window.location.href.substr(window.location.href.indexOf("#"))) {
         case "#pacient":
@@ -164,6 +208,9 @@ function clickOnBackButton() {
             break;
         case "#curent_foto":
             window.location.href = "#foto";
+            break;
+        case "#curent_patient_foto":
+            window.location.href = "#pacient";
             break;
     }
 }

@@ -121,4 +121,8 @@
     <div id="element"></div>
     <div class="button" onclick="clickOnBackButton()">Back</div>
 </div>
-
+<div class="page" id="curent_foto">
+    <h1>Foto's parameters</h1>
+    <div id="element"></div>
+    <div class="button" onclick="clickOnBackButton()">Back</div>
+</div>
