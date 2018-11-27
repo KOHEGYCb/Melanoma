@@ -87,6 +87,7 @@ function clickOnElement(action, id) {
     var data = {
         id: id
     };
+//    alert(data.id);
     switch (action) {
         case "loadFoto":
             var req = getElement("LoadFotoInfoServlet", data);
@@ -116,9 +117,13 @@ function clickOnElement(action, id) {
             var $gallary = $("<div id='gallery'>").appendTo($("#element"));
             $("<div id='place'>").appendTo($("#gallery"));
             $.each(req, function (index, item) {
+//                console.log(index + " : " + item);
                 if (index.indexOf("foto_") === -1) {
                     if (index.indexOf("doctor") === -1) {
-                        $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
+                        if (index.indexOf("fotoId_") === -1) {
+                            $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
+                        } else {
+                        }
                     } else {
                         switch (item) {
                             case "accept":
@@ -133,7 +138,9 @@ function clickOnElement(action, id) {
 
                     }
                 } else {
-                    $("<div class='element'>").html("<img src='http://192.168.222.22:8084/web/images/dir/" + item + "'>").appendTo($gallary);
+//                    console.log("ITEM: " + index.substr(5));
+//                    console.log(req['fotoId_'+index.substr(5)]);
+                    $("<div class='element'>").html("<img src='http://192.168.222.22:8084/web/images/dir/" + item + "' onclick='clickOnElement(\"loadFoto\","+ req['fotoId_'+index.substr(5)] +")'>").appendTo($gallary);
                 }
             });
             var elemSize = 236;
@@ -200,6 +207,9 @@ function clickOnBackButton() {
             break;
         case "#curent_foto":
             window.location.href = "#foto";
+            break;
+        case "#curent_patient_foto":
+            window.location.href = "#pacient";
             break;
     }
 }
@@ -302,5 +312,5 @@ function checkResults() {
                 }
             }
         });
-    }, 1000);
+    }, 5000);
 }
