@@ -16,18 +16,18 @@ function resizeGallery() {
         var width = block.offsetWidth;
         var elems_row = parseInt((width - 25) / elemSize);
         var freePlace = width - elems_row * elemSize;
-        var elems_col = Math.ceil(document.getElementsByClassName('element').length/elems_row);
-        
+        var elems_col = Math.ceil(document.getElementsByClassName('element').length / elems_row);
+
         console.log('width: ' + width);
         console.log('elements: ' + elems_row);
         console.log('free place: ' + freePlace);
 
         document.getElementById('place').style.width = freePlace / 2 + "px";
-        document.getElementById('place').style.height = elems_col*elemSize + "px";
+        document.getElementById('place').style.height = elems_col * elemSize + "px";
     }, 500);
 }
 
-function checkPage(){
+function checkPage() {
     switch (window.location.href.substr(window.location.href.indexOf("#"))) {
         case "#pacient":
             window.location.href = "#tables";

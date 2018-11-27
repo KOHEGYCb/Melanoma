@@ -4,7 +4,6 @@ import by.bntu.dmitry.connectionpool.ConnectionPool;
 import by.bntu.dmitry.constants.SQLColumns;
 import by.bntu.dmitry.constants.SQLRequests;
 import by.bntu.dmitry.entities.Foto;
-import by.bntu.dmitry.entities.Pacient;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.Device;
 import by.bntu.dmitry.enums.DiagnosisFinal;
@@ -238,7 +237,6 @@ public enum FotoDAO implements AbstractDAO<Foto> {
 //            statement.setInt(27, foto.getPlacedInDatabase());
             statement.setString(22, foto.getDirectory());
             statement.setInt(23, foto.getId());
-            System.out.println(SQLRequests.UPDATE_FOTO_);
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(FotoDAO.class.getName()).log(Level.SEVERE, null, ex);

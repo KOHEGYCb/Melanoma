@@ -12,7 +12,6 @@ import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +36,7 @@ public class LoadUserInfoServlet extends HttpServlet{
         UserForm form = UserFormDAO.INSTANCE.getEntityByUser(user);
         ArrayList<Foto> fotos = FotoDAO.INSTANCE.getEntitiesByUser(user);
         
-        Map <String, String> map = new HashMap<String, String>();
+        Map <String, String> map = new HashMap<>();
         map.put("id", user.getId() + "");
         map.put("name", form.getName());
         map.put("surname", form.getSurname());

@@ -1,13 +1,10 @@
 package by.bntu.dmitry.secure;
 
 import by.bntu.dmitry.constants.ConfigConstants;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -16,7 +13,6 @@ import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
@@ -54,9 +50,7 @@ public class Aes256Class implements Serializable{
 //        }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Aes256Class.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Aes256Class.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(Aes256Class.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -66,19 +60,7 @@ public class Aes256Class implements Serializable{
             cipher.init(cipherMode, this.secretKey);
             byte [] output = cipher.doFinal(rawMessage);
             return output;
-        } catch (InvalidKeyException ex) {
-            Logger.getLogger(Aes256Class.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        } catch (IllegalBlockSizeException ex) {
-            Logger.getLogger(Aes256Class.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        } catch (BadPaddingException ex) {
-            Logger.getLogger(Aes256Class.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Aes256Class.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        } catch (NoSuchPaddingException ex) {
+        } catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | NoSuchAlgorithmException | NoSuchPaddingException ex) {
             Logger.getLogger(Aes256Class.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }

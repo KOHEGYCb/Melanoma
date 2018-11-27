@@ -1,9 +1,5 @@
 package by.bntu.dmitry.web.servlets;
 
-import by.bntu.dmitry.dao.FotoDAO;
-import by.bntu.dmitry.entities.Foto;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

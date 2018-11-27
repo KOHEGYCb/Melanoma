@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 public class ParseResultsServices {
 
     public static Result getResult(Foto foto) throws IOException {
-//        System.out.println("\n\nStart Parse File");
+        System.out.println("\n\nStart Parse File");
         Result result = null;
 
         String fileName = "";
@@ -43,7 +43,6 @@ public class ParseResultsServices {
         File file = new File(path);
         if (file.isFile()) {
             FileInputStream fis = null;
-//            System.out.println("file is found");
             result = new Result();
             try {
                 fis = new FileInputStream(file);
@@ -68,7 +67,6 @@ public class ParseResultsServices {
                             param = "";
                             break;
                         default:
-//                            System.out.println(ch + " : " + (char) ch);
                             param = param + (char) ch;
                             break;
                     }
@@ -92,10 +90,8 @@ public class ParseResultsServices {
                 }
             }
         } else {
-//            System.out.println("file is not found");
         }
 
-//        System.out.println("end.\n\n");
         return result;
     }
 

@@ -1,18 +1,12 @@
 package by.bntu.dmitry.web.servlets;
 
 import by.bntu.dmitry.dao.FotoDAO;
-import by.bntu.dmitry.dao.UserDAO;
-import by.bntu.dmitry.dao.UserFormDAO;
 import by.bntu.dmitry.entities.Foto;
 import by.bntu.dmitry.entities.Result;
-import by.bntu.dmitry.entities.User;
-import by.bntu.dmitry.entities.UserForm;
 import by.bntu.dmitry.services.logsServices.ParseResultsServices;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -38,7 +32,7 @@ public class LoadFotoInfoServlet extends HttpServlet {
 
         Result result = ParseResultsServices.getResult(foto);
 
-        Map<String, String> map = new LinkedHashMap<String, String>();
+        Map<String, String> map = new LinkedHashMap<>();
         map.put("id", foto.getId() + "");
         map.put("origin_illness", foto.getOriginIllness() + "");
         map.put("duration_illness", foto.getDurationIllness() + "");

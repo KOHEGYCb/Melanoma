@@ -1,7 +1,6 @@
 package by.bntu.dmitry.web.servlets;
 
 import by.bntu.dmitry.constants.ConfigConstants;
-import by.bntu.dmitry.constants.Destinations;
 import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.Role;
@@ -36,11 +35,6 @@ public class LoginServlet extends ManagerServlet {
         boolean sign_in = jo.get("sign_in").getAsBoolean();
         String login = jo.get("login").getAsString();
         String password = jo.get("password").getAsString();
-        
-        System.out.println(login);
-        System.out.println(password);
-//        String login = req.getParameter("login");
-//        String password = req.getParameter("password");
 
         String _a = "";
         String _login = "";

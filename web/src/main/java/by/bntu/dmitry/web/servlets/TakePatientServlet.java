@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package by.bntu.dmitry.web.servlets;
 
 import by.bntu.dmitry.dao.PacientDAO;
@@ -34,7 +29,6 @@ public class TakePatientServlet extends ManagerServlet {
         User doctor = (User) req.getSession().getAttribute("user");
         User patient = UserDAO.INSTANCE.getEntityById(id);
         Pacient pacient = new Pacient();
-        System.out.println(doctor);
         pacient.setDoctor(doctor);
         pacient.setPacient(patient);
         pacient.setDirectionHistology(0);

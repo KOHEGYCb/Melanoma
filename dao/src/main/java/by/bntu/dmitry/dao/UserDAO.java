@@ -155,8 +155,6 @@ public enum UserDAO implements AbstractDAO<User> {
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.GET_FAKE_USER);
-            System.out.println("Login" + user.getLogin());
-            System.out.println("Password" + user.getPassword());
             statement.setString(1, user.getLogin());
             statement.setString(2, user.getPassword());
             resultSet = statement.executeQuery();
@@ -170,7 +168,7 @@ public enum UserDAO implements AbstractDAO<User> {
         }
         return user_;
     }
-    
+
     @Override
     public void createEntity(User user) {
         Connection connection = null;
