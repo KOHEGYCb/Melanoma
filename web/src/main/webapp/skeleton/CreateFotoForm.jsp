@@ -230,7 +230,7 @@
 
         <div class="block">
             <span>date: </span>
-            <input type="date" name="date" value="${date}" required/>
+            <input onclick="setMaxDate()" id="foto_date" type="date" name="date" min='1899-01-01' max='2000-01-01' placeholder="YYYY-MM-DD" data-date-split-input="true" value="${date}" required />
         </div>
 
         <div class="block">

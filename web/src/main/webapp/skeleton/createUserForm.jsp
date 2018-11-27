@@ -11,7 +11,7 @@
         <span>Name: </span>         <input type="text" name="name"        value="${name}"/>
         <span>Surname: </span>      <input type="text" name="surname"     value="${surname}"/>
         <span>Patronymic: </span>   <input type="text" name="patronymic"  value="${patronymic}"/>
-        <span>Birthday: </span>     <input type="date" name="birthday"    value="${birthday}"/>
+        <span>Birthday: </span>     <input type="date" name="birthday"    value="${birthday}" onclick="setMaxDate()" id="foto_date"  min='1899-01-01' max='2000-01-01' placeholder="YYYY-MM-DD" data-date-split-input="true" required />
         <span>Gender: </span>
         <div>
             <select size="1"  name="gender" value="${gender}">
