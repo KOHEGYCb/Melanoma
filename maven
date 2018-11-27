@@ -1,0 +1,4 @@
+#!/bin/bash
+mvn clean install
+scp -r web/target/web-1.0-SNAPSHOT/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma
+
