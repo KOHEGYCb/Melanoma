@@ -138,10 +138,10 @@ function clickOnElement(action, id) {
 
                     }
                 } else {
-                    $("<div class='element'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + item + "'>").appendTo($gallary);
+//                    $("<div class='element'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + item + "'>").appendTo($gallary);
 //                    console.log("ITEM: " + index.substr(5));
 //                    console.log(req['fotoId_'+index.substr(5)]);
-                    $("<div class='element'>").html("<img src='http://192.168.222.22:8084/web/images/dir/" + item + "' onclick='clickOnElement(\"loadFoto\","+ req['fotoId_'+index.substr(5)] +")'>").appendTo($gallary);
+                    $("<div class='element'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + item + "' onclick='clickOnElement(\"loadFoto\","+ req['fotoId_'+index.substr(5)] +")'>").appendTo($gallary);
                 }
             });
             var elemSize = 236;
