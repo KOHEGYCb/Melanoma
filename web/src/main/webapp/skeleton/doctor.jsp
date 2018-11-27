@@ -4,6 +4,9 @@
     Author     : dmitry
 --%>
 
+<%@page import="by.bntu.dmitry.services.logsServices.ParseResultsServices"%>
+<%@page import="by.bntu.dmitry.entities.Result"%>
+<%@page import="by.bntu.dmitry.entities.Foto"%>
 <%@page import="by.bntu.dmitry.dao.FotoDAO"%>
 <%@page import="by.bntu.dmitry.dao.UserFormDAO"%>
 <%@page import="by.bntu.dmitry.services.logsServices.UserServices"%>
