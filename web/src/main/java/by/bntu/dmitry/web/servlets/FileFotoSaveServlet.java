@@ -25,7 +25,7 @@ import javax.servlet.http.Part;
  */
 @WebServlet("/fileFotoSave")
 @MultipartConfig
-public class fileFotoSaveServlet extends ManagerServlet {
+public class FileFotoSaveServlet extends ManagerServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,13 +42,13 @@ public class fileFotoSaveServlet extends ManagerServlet {
                 break;
             }
         }
-
+        System.out.println("FilePart: " + filePart.getSubmittedFileName());
         User user = (User) req.getSession().getAttribute("user");
 
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         String dir = user.getId() + "/";
         File file = new File(ConfigConstants.IMAGE_FOLDER + dir);
-
+        System.out.println("File: " + file.getAbsolutePath());
         if (fileType.toLowerCase().equals(".jpg")) {
             dir = dir + (FotoDAO.INSTANCE.getAmountByUserId(user)) + ".jpg";
         } else {
@@ -62,18 +62,18 @@ public class fileFotoSaveServlet extends ManagerServlet {
                 }
             }
         }
-
+        System.out.println("File is valid");
         Map<String, String> map = null;
         if (isValid) {
             InputStream fileContent = filePart.getInputStream();
-
+            System.out.println("68");
             FileOutputStream fos = new FileOutputStream(ConfigConstants.IMAGE_FOLDER + dir);
             byte[] b = new byte[fileContent.available()];
             fileContent.read(b);
             fos.write(b);
             fos.close();
             fileContent.close();
-
+            System.out.println("82");
             Foto foto = new Foto();
             foto.setDirectory(dir);
             foto.setUser((User) req.getSession().getAttribute("user"));

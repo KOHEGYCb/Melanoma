@@ -35,13 +35,13 @@
                     if (result == null) {
             %>
             <div class="element">
-                <img id="image_<%= fotos.get(i).getId() %>" src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
+                <img id="image_<%= fotos.get(i).getId() %>" src="http://80.94.168.91:8080/melanoma/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
             </div>
             <%
                     } else {
             %>
             <div class="element">
-                <img id="image_<%= fotos.get(i).getId() %>" class="done" src="http://192.168.222.22:8084/web/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
+                <img id="image_<%= fotos.get(i).getId() %>" class="done" src="http://80.94.168.91:8080/melanoma/images/dir/<%= fotos.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= fotos.get(i).getId()%>)">
             </div>
             <%
                     }

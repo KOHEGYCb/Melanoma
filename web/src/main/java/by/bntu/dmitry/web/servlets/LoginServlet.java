@@ -71,7 +71,7 @@ public class LoginServlet extends ManagerServlet {
                                 _a = "all right";
                                 HttpSession session = req.getSession();
                                 session.setAttribute("user", user);
-                                LogServices.INSTANCE.LogInLog(user);
+//                                LogServices.INSTANCE.LogInLog(user);
                             } else {
                                 _login = login;
                                 _a = "Pass is not valid";

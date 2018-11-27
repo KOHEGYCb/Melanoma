@@ -95,7 +95,7 @@ function clickOnElement(action, id) {
             document.getElementById('element').innerHTML = "";
 
             var $ul = $("<ul>").appendTo($("#element"));
-            $("<li class='foto'>").html("<img src='http://192.168.222.22:8084/web/images/dir/" + req['directory'] + "'>").appendTo($ul);
+            $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + req['directory'] + "'>").appendTo($ul);
             $.each(req, function (index, item) {
                 $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
             });
@@ -138,9 +138,10 @@ function clickOnElement(action, id) {
 
                     }
                 } else {
+//                    $("<div class='element'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + item + "'>").appendTo($gallary);
 //                    console.log("ITEM: " + index.substr(5));
 //                    console.log(req['fotoId_'+index.substr(5)]);
-                    $("<div class='element'>").html("<img src='http://192.168.222.22:8084/web/images/dir/" + item + "' onclick='clickOnElement(\"loadFoto\","+ req['fotoId_'+index.substr(5)] +")'>").appendTo($gallary);
+                    $("<div class='element'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + item + "' onclick='clickOnElement(\"loadFoto\","+ req['fotoId_'+index.substr(5)] +")'>").appendTo($gallary);
                 }
             });
             var elemSize = 236;
@@ -291,8 +292,28 @@ function sendForAnalysis(id) {
 //    return obj;
 }
 
+//function getPatient(id) {
+////    alert(id);
+//    var data = {
+//        id: id
+//    };
+////    var obj = "";
+//    $.ajax({
+//        type: "POST",
+//        url: "getPatientServlet",
+//        contentType: "application/json",
+//        async: true,
+//        data: JSON.stringify(data)
+////        success: function (response) {
+//////            obj = response;
+////        }
+//    });
+////    return obj;
+//}
+
 function checkResults() {
     setInterval(function () {
+        console.log("check");
         $.ajax({
             type: "POST",
             url: "checkResultServlet",
@@ -312,5 +333,5 @@ function checkResults() {
                 }
             }
         });
-    }, 5000);
+    }, 10000);
 }

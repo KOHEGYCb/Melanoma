@@ -24,7 +24,7 @@ public class CreateUserFormServlet extends ManagerServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String namePattern = "^([A-Za-z]{1})([a-z]{1,})"; //regular expression for name/surname/patronymic
+        String namePattern = "^([A-Za-zа-яА-Я]{1})([a-zа-я]{1,})"; //regular expression for name/surname/patronymic
         Pattern pattern = Pattern.compile(namePattern);
         Matcher matcher;
 
