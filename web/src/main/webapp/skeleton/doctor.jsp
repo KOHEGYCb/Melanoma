@@ -35,10 +35,10 @@
         <table>
             <tr>
                 <td>№</td>
-                <td>FIO</td>
-                <td>AGE</td>
+                <td>Full name</td>
+                <td>Age</td>
                 <td>Gender</td>
-                <td>NumFoto</td>
+                <td>Number of photos</td>
             </tr>
             <%                ArrayList<User> doctorsUsers = UserDAO.INSTANCE.getEntitiesByDoctor((User) session.getAttribute("user"));
                 for (int i = 0; i < doctorsUsers.size(); i++) {
@@ -46,7 +46,7 @@
             <tr>
                 <td onclick="clickOnElement('loadUser', <%=doctorsUsers.get(i).getId()%>)"><%=(i + 1)%></td>
                 <td onclick="clickOnElement('loadUser', <%=doctorsUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(doctorsUsers.get(i))%></td>
-                <td onclick="clickOnElement('loadUser', <%=doctorsUsers.get(i).getId()%>)"><%=doctorsUsers.get(i).getRole()%></td>
+                <td onclick="clickOnElement('loadUser', <%=doctorsUsers.get(i).getId()%>)"><%=UserFormDAO.INSTANCE.getEntityByUser(doctorsUsers.get(i)).getBirthday()%></td>
                 <td onclick="clickOnElement('loadUser', <%=doctorsUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(doctorsUsers.get(i))%></td>
                 <td onclick="clickOnElement('loadUser', <%=doctorsUsers.get(i).getId()%>)"><%=FotoDAO.INSTANCE.getAmountByUserId(doctorsUsers.get(i))%></td>
             </tr>
@@ -59,10 +59,10 @@
         <table>
             <tr>
                 <td>№</td>
-                <td>FIO</td>
-                <td>AGE</td>
+                <td>Full name</td>
+                <td>Age</td>
                 <td>Gender</td>
-                <td>NumFoto</td>
+                <td>Number of photos</td>
             </tr>
             <%
                 ArrayList<User> freeUsers = UserDAO.INSTANCE.getEntitiesWithoutDoctor();
@@ -72,7 +72,7 @@
             <tr>
                 <td onclick="clickOnElement('loadUser', <%=freeUsers.get(i).getId()%>)"><%=(i + 1)%></td>
                 <td onclick="clickOnElement('loadUser', <%=freeUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(freeUsers.get(i))%></td>
-                <td onclick="clickOnElement('loadUser', <%=freeUsers.get(i).getId()%>)"><%=freeUsers.get(i).getRole()%></td>
+                <td onclick="clickOnElement('loadUser', <%=freeUsers.get(i).getId()%>)"><%=UserFormDAO.INSTANCE.getEntityByUser(freeUsers.get(i)).getBirthday()%></td>
                 <td onclick="clickOnElement('loadUser', <%=freeUsers.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(freeUsers.get(i))%></td>
                 <td onclick="clickOnElement('loadUser', <%=freeUsers.get(i).getId()%>)"><%=FotoDAO.INSTANCE.getAmountByUserId(freeUsers.get(i))%></td>
             </tr>
@@ -86,11 +86,11 @@
         <table>
             <tr>
                 <td>№</td>
-                <td>FIO</td>
+                <td>Full name</td>
                 <td>Doctor</td>
-                <td>AGE</td>
+                <td>Age</td>
                 <td>Gender</td>
-                <td>NumFoto</td>
+                <td>Number of photos</td>
             </tr>
             <%
                 ArrayList<User> allPacients = UserDAO.INSTANCE.getAllPacients();
@@ -101,7 +101,7 @@
                 <td onclick="clickOnElement('loadUser', <%=allPacients.get(i).getId()%>)"><%=(i + 1)%></td>
                 <td onclick="clickOnElement('loadUser', <%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getStringFIO(allPacients.get(i))%></td>
                 <td onclick="clickOnElement('loadUser', <%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getUser_sDoctorFIO(allPacients.get(i))%></td>
-                <td onclick="clickOnElement('loadUser', <%=allPacients.get(i).getId()%>)"><%=allPacients.get(i).getRole()%></td>
+                <td onclick="clickOnElement('loadUser', <%=allPacients.get(i).getId()%>)"><%=UserFormDAO.INSTANCE.getEntityByUser(allPacients.get(i)).getBirthday()%></td>
                 <td onclick="clickOnElement('loadUser', <%=allPacients.get(i).getId()%>)"><%=UserServices.INSTANCE.getUserGender(allPacients.get(i))%></td>
                 <td onclick="clickOnElement('loadUser', <%=allPacients.get(i).getId()%>)"><%=FotoDAO.INSTANCE.getAmountByUserId(allPacients.get(i))%></td>
             </tr>
