@@ -6,6 +6,7 @@ import by.bntu.dmitry.constants.SQLRequests;
 import by.bntu.dmitry.entities.Pacient;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.Role;
+import by.bntu.dmitry.secure.Aes256Class;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
 
 /**
  *
@@ -70,10 +72,11 @@ public enum UserDAO implements AbstractDAO<User> {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
+        Aes256Class ac = new Aes256Class();
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.GET_USER_BY_LOGIN);
-            statement.setString(1, login);
+            statement.setString(1, new String(ac.makeAes(login.getBytes(), Cipher.ENCRYPT_MODE)));
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 user = getUser(resultSet);
@@ -131,7 +134,7 @@ public enum UserDAO implements AbstractDAO<User> {
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.GET_AMOUNT_FAKE_USER_BY_DOCTOR);
-            statement.setString(1, "-"+doctor.getId());
+            statement.setString(1, "-" + doctor.getId());
             resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 amount = resultSet.getInt(SQLColumns.AMOUNT);
@@ -172,11 +175,12 @@ public enum UserDAO implements AbstractDAO<User> {
     public void createEntity(User user) {
         Connection connection = null;
         PreparedStatement statement = null;
+        Aes256Class ac = new Aes256Class();
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.CREATE_USER);
-            statement.setString(1, user.getLogin());
-            statement.setString(2, user.getPassword());
+            statement.setString(1, new String(ac.makeAes(user.getLogin().getBytes(), Cipher.ENCRYPT_MODE)));
+            statement.setString(2, new String(ac.makeAes(user.getPassword().getBytes(), Cipher.ENCRYPT_MODE)));
             statement.setInt(3, user.getRole().getId());
             statement.setInt(4, user.getActive());
             statement.setInt(5, user.getAuthorizate());
@@ -192,11 +196,12 @@ public enum UserDAO implements AbstractDAO<User> {
     public void updateEntity(User user) {
         Connection connection = null;
         PreparedStatement statement = null;
+        Aes256Class ac = new Aes256Class();
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.UPDATE_USER);
-            statement.setString(1, user.getLogin());
-            statement.setString(2, user.getPassword());
+            statement.setString(1, new String(ac.makeAes(user.getLogin().getBytes(), Cipher.ENCRYPT_MODE)));
+            statement.setString(2, new String(ac.makeAes(user.getPassword().getBytes(), Cipher.ENCRYPT_MODE)));
             statement.setInt(3, user.getRole().getId());
             statement.setInt(4, user.getActive());
             statement.setInt(5, user.getAuthorizate());
@@ -214,11 +219,12 @@ public enum UserDAO implements AbstractDAO<User> {
         user.setActive(false);
         Connection connection = null;
         PreparedStatement statement = null;
+        Aes256Class ac = new Aes256Class();
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.UPDATE_USER);
-            statement.setString(1, user.getLogin());
-            statement.setString(2, user.getPassword());
+            statement.setString(1, new String(ac.makeAes(user.getLogin().getBytes(), Cipher.ENCRYPT_MODE)));
+            statement.setString(2, new String(ac.makeAes(user.getPassword().getBytes(), Cipher.ENCRYPT_MODE)));
             statement.setInt(3, user.getRole().getId());
             statement.setInt(4, user.getActive());
             statement.setInt(5, user.getAuthorizate());
@@ -274,10 +280,10 @@ public enum UserDAO implements AbstractDAO<User> {
 
     private User getUser(ResultSet resultSet) throws SQLException {
         User user = new User();
-
+        Aes256Class ac = new Aes256Class();
         user.setId(resultSet.getInt(SQLColumns.USER_ID));
-        user.setLogin(resultSet.getString(SQLColumns.USER_LOGIN));
-        user.setPassword(resultSet.getString(SQLColumns.USER_PASSWORD));
+        user.setLogin(new String(ac.makeAes(resultSet.getString(SQLColumns.USER_LOGIN).getBytes(), Cipher.DECRYPT_MODE)));
+        user.setPassword(new String(ac.makeAes(resultSet.getString(SQLColumns.USER_PASSWORD).getBytes(), Cipher.DECRYPT_MODE)));
         user.setRole(resultSet.getInt(SQLColumns.USER_ROLE));
         user.setActive(resultSet.getInt(SQLColumns.USER_ACTIVE));
         user.setAuthorizate(resultSet.getInt(SQLColumns.USER_AUTHORIZE));
