@@ -1,3 +1,4 @@
+package by.bntu.dmitry.web.servlets;
 
 
 import by.bntu.dmitry.constants.ConfigConstants;
@@ -6,6 +7,7 @@ import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.Role;
 import by.bntu.dmitry.services.logsServices.LogServices;
+import by.bntu.dmitry.web.servlets.ManagerServlet;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.File;
@@ -24,7 +26,7 @@ import javax.servlet.http.HttpSession;
  * @author dmitry
  */
 @WebServlet("/login/*")
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends ManagerServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
