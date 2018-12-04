@@ -102,10 +102,10 @@ public class LoginServlet extends ManagerServlet {
                             File dir = new File(ConfigConstants.IMAGE_FOLDER + newUser.getId());
                             dir.mkdirs();
                             
-                            LogServices.INSTANCE.SignInLog(newUser);
+//                            LogServices.INSTANCE.SignInLog(newUser);
                             HttpSession session = req.getSession();
                             session.setAttribute("user", newUser);
-                            LogServices.INSTANCE.LogInLog(newUser);
+//                            LogServices.INSTANCE.LogInLog(newUser);
                         } else {
                             _a = "Login is used";
                         }

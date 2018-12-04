@@ -2,6 +2,7 @@ package by.bntu.dmitry.web.servlets;
 
 import by.bntu.dmitry.dao.FotoDAO;
 import by.bntu.dmitry.entities.Foto;
+import by.bntu.dmitry.entities.User;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
@@ -19,10 +20,31 @@ public class SendForAnalysisServlet extends ManagerServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        JsonObject jo = new Gson().fromJson(req.getReader(), JsonObject.class);
-//        int id = jo.get("id").getAsInt();
-//
-//        Foto foto = FotoDAO.INSTANCE.getEntityById(id);
+        System.out.println("Send For Analysis Servlet");
+        JsonObject jo = new Gson().fromJson(req.getReader(), JsonObject.class);
+        int id = jo.get("id").getAsInt();
+
+        Foto foto = FotoDAO.INSTANCE.getEntityById(id);
+        User user = (User) req.getSession().getAttribute("user");
+        
+        String imageName = "";
+        for (int i = foto.getDirectory().length()-1; i >= 0; i--){
+            if (foto.getDirectory().charAt(i) == '/'){
+                break;
+            }else{
+                imageName = foto.getDirectory().charAt(i) + imageName;
+            }
+        }
+        System.out.println("Image Name: " + imageName);
+        
+        
+        //  /usr/local/bin/melaserach <id user> <image name> <evolution> <pca>
+        String cmd = "/usr/local/bin/melaserach"    + " "
+                + user.getId()                      + " " 
+                + imageName                         + " "
+                + foto.getChangeSize()              + " "
+                +"-0.02";
+        Runtime.getRuntime().exec(cmd);
     }
 
 }

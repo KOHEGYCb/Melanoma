@@ -191,11 +191,11 @@ public class Foto extends AbstractEntity {
 
     public void setChangeSize(String changeSize) {
         if (changeSize.equals(OptionNames.CHANGE_SIZE_NONE))
-            this.changeSize = 2;
-        if (changeSize.equals(OptionNames.CHANGE_SIZE_YES))
             this.changeSize = 0;
-        if (changeSize.equals(OptionNames.CHANGE_SIZE_NO))
+        if (changeSize.equals(OptionNames.CHANGE_SIZE_YES))
             this.changeSize = 1;
+        if (changeSize.equals(OptionNames.CHANGE_SIZE_NO))
+            this.changeSize = 2;
     }
     
     public int getChangeColor() {
