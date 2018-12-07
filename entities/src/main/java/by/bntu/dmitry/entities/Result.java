@@ -17,6 +17,7 @@ public class Result {
     private ArrayList<String> sim = new ArrayList<>();
     private int arg;
     private int menz;
+    private String directory;
 
     public Result() {
         this.abcde = ABCDE.NONE;
@@ -84,7 +85,23 @@ public class Result {
 
     @Override
     public String toString() {
-        return "Result{" + "probability=" + probability + ", abcde=" + abcde + ", similarity=" + similarity + ", sim=" + sim + ", arg=" + arg + ", menz=" + menz + '}';
+        return "Result{" + "probability=" + probability + ", abcde=" + abcde + ", similarity=" + similarity + ", sim=" + sim + ", arg=" + arg + ", menz=" + menz + ", directory=" + directory + '}';
+    }
+
+    
+
+    /**
+     * @return the directory
+     */
+    public String getDirectory() {
+        return directory;
+    }
+
+    /**
+     * @param directory the directory to set
+     */
+    public void setDirectory(String directory) {
+        this.directory = directory;
     }
     
 }

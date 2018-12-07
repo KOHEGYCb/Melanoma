@@ -114,8 +114,31 @@
             %>
         </table>
     </div>
-    <div id="foto">table 3</div>
-</div>
+    <div id="foto">
+    
+            <div id="gallery">
+            <div id="place"></div>
+            <%  ArrayList<Foto> all_foto = FotoDAO.INSTANCE.findAll();
+                for (int i = 0; i < all_foto.size(); i++) {
+                    Result result = ParseResultsServices.getResult(all_foto.get(i));
+                    if (result == null) {
+            %>
+            <div class="element">
+                <img id="image_<%= all_foto.get(i).getId() %>" src="http://80.94.168.91:8080/melanoma/images/dir/<%= all_foto.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= all_foto.get(i).getId()%>)">
+            </div>
+            <%
+                    } else {
+            %>
+            <div class="element">
+                <img id="image_<%= all_foto.get(i).getId() %>" class="done" src="http://80.94.168.91:8080/melanoma/images/dir/<%= all_foto.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= all_foto.get(i).getId()%>)">
+            </div>
+            <%
+                    }
+                }
+            %>
+        </div>
+    </div>
+    </div>
 <div class="page" id="create">
     <%@include file="CreateFakeUserForm.jsp" %>
 </div>

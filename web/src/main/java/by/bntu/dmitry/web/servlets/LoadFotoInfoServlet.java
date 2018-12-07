@@ -70,6 +70,7 @@ public class LoadFotoInfoServlet extends HttpServlet {
             map.put("ABCDE", result.getAbcde().getDesc());
             map.put("Similarity", result.getSimilarity().getDesc());
             map.put("Probability", result.getProbability().getDesc());
+            map.put("a_foto", result.getDirectory());
         }
 
         String json = new Gson().toJson(map);

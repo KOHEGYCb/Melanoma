@@ -37,7 +37,7 @@ public class ResultsServices {
     }
     
     public static Similarity getSimilarity(int similarity){
-        if (similarity == 1){
+        if (similarity <= 1){
             return Similarity._0_1;
         }
         if (similarity == 2){

@@ -53,11 +53,12 @@ public class ParseResultsServices {
                 String key = "";
                 while (!eof) {
                     int ch = fis.read();
+//                    System.out.println(ch + " : "+ (char)ch);
                     switch (ch) {
-                        case 13:
+                        case 10:
                             map.replace(key, param);
                             param = "";
-                            fis.read();
+//                            fis.read();
                             break;
                         case -1:
                             eof = true;
@@ -73,9 +74,10 @@ public class ParseResultsServices {
                             break;
                     }
                 }
+//                System.out.println(map);
                 result.setAbcde(ResultsServices.getABCDE(Double.valueOf(map.get("abcde"))));
-                result.setArg(Integer.valueOf(map.get("arg")));
-                result.setMenz(Integer.valueOf(map.get("menz")));
+//                result.setArg(Integer.valueOf(map.get("arg")));
+//                result.setMenz(Integer.valueOf(map.get("menz")));
                 result.setProbability(ResultsServices.getProbability(Integer.valueOf(map.get("Probability"))));
                 result.setSimilarity(ResultsServices.getSimilarity(Integer.valueOf(map.get("Similarity"))));
                 ArrayList<String> sim = new ArrayList<>();
@@ -84,6 +86,16 @@ public class ParseResultsServices {
                 sim.add(map.get("Sim3"));
                 sim.add(map.get("Sim4"));
                 result.setSim(sim);
+                
+                String directory = "";
+                for (int i = 0; i < foto.getDirectory().length(); i++) {
+                    directory = directory + foto.getDirectory().charAt(i);
+                    if (foto.getDirectory().charAt(i) == '/'){
+                        directory = directory + '_';
+                    }
+                }
+                result.setDirectory(directory);
+                
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(ParseResultsServices.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
