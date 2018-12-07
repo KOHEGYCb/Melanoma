@@ -8,7 +8,7 @@ public enum OriginIllness {
 
     INNATE(1, "врожденное"),
     OBTAINED(2, "приобретенное"),
-    DO_NOT_KNOW(3, "нет данных");
+    DO_NOT_KNOW(0, "нет данных");
 
     private int id;
     private String name;
@@ -32,7 +32,7 @@ public enum OriginIllness {
                 return INNATE;
             case 2:
                 return OBTAINED;
-            case 3:
+            case 0:
                 return DO_NOT_KNOW;
             default:
                 return null;

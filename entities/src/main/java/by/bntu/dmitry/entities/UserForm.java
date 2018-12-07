@@ -92,9 +92,10 @@ public class UserForm extends AbstractEntity {
     }
 
     public void setSex(int sex) {
-        if (sex == 1) {
+        if (sex == 0) {
             this.sex = Sex.MALE;
-        } else {
+        }
+        if (sex == 1) {
             this.sex = Sex.FEMALE;
         }
     }

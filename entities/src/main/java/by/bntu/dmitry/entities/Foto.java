@@ -170,11 +170,11 @@ public class Foto extends AbstractEntity {
     
     public String getChangeFormName() {
         switch (changeForm){
-            case 0:
-                return "Да";
             case 1:
-                return "Нет";
+                return "Да";
             case 2:
+                return "Нет";
+            case 0:
                 return "Нет данных";
             default :
                 return "null";
@@ -187,13 +187,13 @@ public class Foto extends AbstractEntity {
 
     public void setChangeForm(String changeForm) {
         if (changeForm.equals(OptionNames.CHANGE_FORM_NONE)) {
-            this.changeForm = 2;
-        }
-        if (changeForm.equals(OptionNames.CHANGE_FORM_YES)) {
             this.changeForm = 0;
         }
-        if (changeForm.equals(OptionNames.CHANGE_FORM_NO)) {
+        if (changeForm.equals(OptionNames.CHANGE_FORM_YES)) {
             this.changeForm = 1;
+        }
+        if (changeForm.equals(OptionNames.CHANGE_FORM_NO)) {
+            this.changeForm = 2;
         }
     }
 
@@ -203,11 +203,11 @@ public class Foto extends AbstractEntity {
     
     public String getChangeSizeName() {
         switch (changeSize){
-            case 0:
-                return "Да";
             case 1:
-                return "Нет";
+                return "Да";
             case 2:
+                return "Нет";
+            case 0:
                 return "Нет данных";
             default :
                 return "null";
@@ -236,11 +236,11 @@ public class Foto extends AbstractEntity {
     
     public String getChangeColorName() {
         switch (changeColor){
-            case 0:
-                return "Да";
             case 1:
-                return "Нет";
+                return "Да";
             case 2:
+                return "Нет";
+            case 0:
                 return "Нет данных";
             default :
                 return "null";
@@ -253,13 +253,13 @@ public class Foto extends AbstractEntity {
 
     public void setChangeColor(String changeColor) {
         if (changeColor.equals(OptionNames.CHANGE_COLOR_NONE)) {
-            this.changeColor = 2;
-        }
-        if (changeColor.equals(OptionNames.CHANGE_COLOR_YES)) {
             this.changeColor = 0;
         }
-        if (changeColor.equals(OptionNames.CHANGE_COLOR_NO)) {
+        if (changeColor.equals(OptionNames.CHANGE_COLOR_YES)) {
             this.changeColor = 1;
+        }
+        if (changeColor.equals(OptionNames.CHANGE_COLOR_NO)) {
+            this.changeColor = 2;
         }
     }
 
@@ -269,11 +269,11 @@ public class Foto extends AbstractEntity {
 
     public String getChangeSensivityName() {
         switch (changeSensivity){
-            case 0:
-                return "Да";
             case 1:
-                return "Нет";
+                return "Да";
             case 2:
+                return "Нет";
+            case 0:
                 return "Нет данных";
             default :
                 return "null";
@@ -286,13 +286,13 @@ public class Foto extends AbstractEntity {
 
     public void setChangeSensivity(String changeSensivity) {
         if (changeSensivity.equals(OptionNames.CHANGE_SENSITIVITY_NONE)) {
-            this.changeSensivity = 2;
-        }
-        if (changeSensivity.equals(OptionNames.CHANGE_SENSITIVITY_YES)) {
             this.changeSensivity = 0;
         }
-        if (changeSensivity.equals(OptionNames.CHANGE_SENSITIVITY_NO)) {
+        if (changeSensivity.equals(OptionNames.CHANGE_SENSITIVITY_YES)) {
             this.changeSensivity = 1;
+        }
+        if (changeSensivity.equals(OptionNames.CHANGE_SENSITIVITY_NO)) {
+            this.changeSensivity = 2;
         }
     }
 
@@ -302,11 +302,11 @@ public class Foto extends AbstractEntity {
 
     public String getCrustsAndBleedingName() {
         switch (crustsAndBleeding){
-            case 0:
-                return "Да";
             case 1:
-                return "Нет";
+                return "Да";
             case 2:
+                return "Нет";
+            case 0:
                 return "Нет данных";
             default :
                 return "null";
@@ -319,13 +319,13 @@ public class Foto extends AbstractEntity {
 
     public void setCrustsAndBleeding(String crustsAndBleeding) {
         if (crustsAndBleeding.equals(OptionNames.CRUSTS_AND_BLEEDING_NONE)) {
-            this.crustsAndBleeding = 2;
-        }
-        if (crustsAndBleeding.equals(OptionNames.CRUSTS_AND_BLEEDING_YES)) {
             this.crustsAndBleeding = 0;
         }
-        if (crustsAndBleeding.equals(OptionNames.CRUSTS_AND_BLEEDING_NO)) {
+        if (crustsAndBleeding.equals(OptionNames.CRUSTS_AND_BLEEDING_YES)) {
             this.crustsAndBleeding = 1;
+        }
+        if (crustsAndBleeding.equals(OptionNames.CRUSTS_AND_BLEEDING_NO)) {
+            this.crustsAndBleeding = 2;
         }
     }
 
@@ -335,11 +335,11 @@ public class Foto extends AbstractEntity {
     
     public String getTumorPainName() {
         switch (tumorPain){
-            case 0:
-                return "Да";
             case 1:
-                return "Нет";
+                return "Да";
             case 2:
+                return "Нет";
+            case 0:
                 return "Нет данных";
             default :
                 return "null";
@@ -352,13 +352,13 @@ public class Foto extends AbstractEntity {
 
     public void setTumorPain(String tumorPain) {
         if (tumorPain.equals(OptionNames.TUMOR_PAIN_NONE)) {
-            this.tumorPain = 2;
-        }
-        if (tumorPain.equals(OptionNames.TUMOR_PAIN_YES)) {
             this.tumorPain = 0;
         }
-        if (tumorPain.equals(OptionNames.TUMOR_PAIN_NO)) {
+        if (tumorPain.equals(OptionNames.TUMOR_PAIN_YES)) {
             this.tumorPain = 1;
+        }
+        if (tumorPain.equals(OptionNames.TUMOR_PAIN_NO)) {
+            this.tumorPain = 2;
         }
     }
 
@@ -368,11 +368,11 @@ public class Foto extends AbstractEntity {
 
     public String getSatelliteName() {
         switch (satellite){
-            case 0:
-                return "Да";
             case 1:
-                return "Нет";
+                return "Да";
             case 2:
+                return "Нет";
+            case 0:
                 return "Нет данных";
             default :
                 return "null";
@@ -385,13 +385,13 @@ public class Foto extends AbstractEntity {
 
     public void setSatellite(String satellite) {
         if (satellite.equals(OptionNames.SATELLITE_NONE)) {
-            this.satellite = 2;
-        }
-        if (satellite.equals(OptionNames.SATELLITE_YES)) {
             this.satellite = 0;
         }
-        if (satellite.equals(OptionNames.SATELLITE_NO)) {
+        if (satellite.equals(OptionNames.SATELLITE_YES)) {
             this.satellite = 1;
+        }
+        if (satellite.equals(OptionNames.SATELLITE_NO)) {
+            this.satellite = 2;
         }
     }
 
@@ -401,11 +401,11 @@ public class Foto extends AbstractEntity {
     
     public String getInflammationsName() {
         switch (inflammations){
-            case 0:
-                return "Да";
             case 1:
-                return "Нет";
+                return "Да";
             case 2:
+                return "Нет";
+            case 0:
                 return "Нет данных";
             default :
                 return "null";
@@ -418,13 +418,13 @@ public class Foto extends AbstractEntity {
 
     public void setInflammations(String inflammations) {
         if (inflammations.equals(OptionNames.INFLAMMATIONS_NONE)) {
-            this.inflammations = 2;
-        }
-        if (inflammations.equals(OptionNames.INFLAMMATIONS_YES)) {
             this.inflammations = 0;
         }
-        if (inflammations.equals(OptionNames.INFLAMMATIONS_NO)) {
+        if (inflammations.equals(OptionNames.INFLAMMATIONS_YES)) {
             this.inflammations = 1;
+        }
+        if (inflammations.equals(OptionNames.INFLAMMATIONS_NO)) {
+            this.inflammations = 2;
         }
     }
 
@@ -434,11 +434,11 @@ public class Foto extends AbstractEntity {
     
     public String getUniformColoringName() {
         switch (uniformColoring){
-            case 0:
-                return "Да";
             case 1:
-                return "Нет";
+                return "Да";
             case 2:
+                return "Нет";
+            case 0:
                 return "Нет данных";
             default :
                 return "null";
@@ -451,13 +451,13 @@ public class Foto extends AbstractEntity {
 
     public void setUniformColoring(String uniformColoring) {
         if (uniformColoring.equals(OptionNames.UNIFORM_COLORING_NONE)) {
-            this.uniformColoring = 2;
-        }
-        if (uniformColoring.equals(OptionNames.UNIFORM_COLORING_YES)) {
             this.uniformColoring = 0;
         }
-        if (uniformColoring.equals(OptionNames.UNIFORM_COLORING_NO)) {
+        if (uniformColoring.equals(OptionNames.UNIFORM_COLORING_YES)) {
             this.uniformColoring = 1;
+        }
+        if (uniformColoring.equals(OptionNames.UNIFORM_COLORING_NO)) {
+            this.uniformColoring = 2;
         }
     }
 

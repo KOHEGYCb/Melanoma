@@ -6,11 +6,11 @@ package by.bntu.dmitry.enums;
  */
 public enum TumorSurface {
 
-    SMOOTH(1, "Гладкая"),
-    TUBEROSITY(2, "Бугристая"),
-    FINE_GRAINED(3, "Мелкозернистая"),
-    WITH_KERATOSIS(4, "С кератозом"),
-    MOIST(5, "Мокнущая");
+    SMOOTH(0, "Гладкая"),
+    TUBEROSITY(1, "Бугристая"),
+    FINE_GRAINED(2, "Мелкозернистая"),
+    WITH_KERATOSIS(3, "С кератозом"),
+    MOIST(4, "Мокнущая");
 
     private int id;
     private String name;
@@ -30,15 +30,15 @@ public enum TumorSurface {
 
     public static TumorSurface setTumorSurface(int id) {
         switch (id) {
-            case 1:
+            case 0:
                 return SMOOTH;
-            case 2:
+            case 1:
                 return TUBEROSITY;
-            case 3:
+            case 2:
                 return FINE_GRAINED;
-            case 4:
+            case 3:
                 return WITH_KERATOSIS;
-            case 5:
+            case 4:
                 return MOIST;
         }
         return null;

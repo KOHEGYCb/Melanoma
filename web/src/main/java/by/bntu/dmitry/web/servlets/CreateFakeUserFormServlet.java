@@ -42,7 +42,7 @@ public class CreateFakeUserFormServlet extends ManagerServlet {
         String surname = jo.get("surname").getAsString();
         String patronymic = jo.get("patronymic").getAsString();
         String birthday = jo.get("birthday").getAsString();
-        String gender = jo.get("gender").getAsString();
+        int gender = jo.get("gender").getAsInt();
         
 //        String name = req.getParameter("name");
 //        String surname = req.getParameter("surname");

@@ -5,8 +5,8 @@ package by.bntu.dmitry.enums;
  * @author dmitry
  */
 public enum Device {
-    DERMATOSCOP(1, "Дерматоскоп"),
-    CAMERA(2, "Фотокамера");
+    DERMATOSCOP(0, "Дерматоскоп"),
+    CAMERA(1, "Фотокамера");
 
     private int id;
     private String name;
@@ -26,9 +26,9 @@ public enum Device {
 
     public static Device setDevice(int id) {
         switch (id) {
-            case 1:
+            case 0:
                 return DERMATOSCOP;
-            case 2:
+            case 1:
                 return CAMERA;
         }
         return null;
