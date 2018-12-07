@@ -40,24 +40,28 @@ public class LoadFotoInfoServlet extends HttpServlet {
 
         Map<String, String> map = new LinkedHashMap<String, String>();
         map.put("id", foto.getId() + "");
-        map.put("origin_illness", foto.getOriginIllness() + "");
-        map.put("duration_illness", foto.getDurationIllness() + "");
-        map.put("change_form", foto.getChangeForm() + "");
-        map.put("change_size", foto.getChangeSize() + "");
-        map.put("change_color", foto.getChangeColor() + "");
-        map.put("change_sensitivity", foto.getChangeSensivity() + "");
-        map.put("crusts_and_bleeding", foto.getCrustsAndBleeding() + "");
-        map.put("tumor_pain", foto.getTumorPain() + "");
-        map.put("satellite", foto.getSatellite() + "");
-        map.put("inflammations", foto.getInflammations() + "");
-        map.put("uniform_coloring", foto.getUniformColoring() + "");
-        map.put("skin_type", foto.getSkinType() + "");
+        map.put("origin_illness", foto.getOriginIllness().getName());
+        map.put("duration_illness", foto.getDurationIllness().getName());
+        map.put("change_form", foto.getChangeFormName());
+        map.put("change_size", foto.getChangeSizeName());
+        map.put("change_color", foto.getChangeColorName());
+        map.put("change_sensitivity", foto.getChangeSensivityName());
+        map.put("crusts_and_bleeding", foto.getCrustsAndBleedingName());
+        map.put("tumor_pain", foto.getTumorPainName());
+        map.put("satellite", foto.getSatelliteName());
+        map.put("inflammations", foto.getInflammationsName());
+        map.put("uniform_coloring", foto.getUniformColoringName());
+        if (foto.getSkinType() == 0) {
+            map.put("skin_type", "Нет данных");
+        } else {
+            map.put("skin_type", foto.getSkinType() + "");
+        }
         map.put("tumor_diameter", foto.getTumor_diameter() + "");
-        map.put("tumor_form", foto.getTumorForm() + "");
-        map.put("tumor_surface", foto.getTumorSurface() + "");
-        map.put("tumor_outline", foto.getTumorOutline() + "");
-        map.put("tumor_localization", foto.getTumorLocalization() + "");
-        map.put("device", foto.getDevice() + "");
+        map.put("tumor_form", foto.getTumorForm().getName());
+        map.put("tumor_surface", foto.getTumorSurface().getName());
+        map.put("tumor_outline", foto.getTumorOutline().getName());
+        map.put("tumor_localization", foto.getTumorLocalization().getName());
+        map.put("device", foto.getDevice().getName());
         map.put("date", foto.getDate() + "");
         map.put("comments", foto.getComments() + "");
         map.put("directory", foto.getDirectory() + "");

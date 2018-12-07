@@ -6,20 +6,26 @@ package by.bntu.dmitry.enums;
  */
 public enum TumorForm {
 
-    FLAT(1),
-    TUBEROUS(2),
-    NODULAR(3),
-    HEMISPHERICAL(4),
-    MUSHROOM_SHAPED(5);
+    FLAT(1, "Плоская"),
+    TUBEROUS(2, "Бугристая"),
+    NODULAR(3, "Узловая"),
+    HEMISPHERICAL(4, "Полусферическая"),
+    MUSHROOM_SHAPED(5, "Грибовидная");
 
     private int id;
+    private String name;
 
-    private TumorForm(int id) {
+    private TumorForm(int id, String name) {
         this.id = id;
+        this.name = name;
     }
 
     public int getId() {
         return id;
+    }
+    
+    public String getName(){
+        return name;
     }
 
     public static TumorForm setTumorForm(int id){

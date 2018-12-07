@@ -6,17 +6,23 @@ package by.bntu.dmitry.enums;
  */
 public enum Sex {
     
-    MALE(1),
-    FEMALE(2);
+    MALE(1, "Мужской"),
+    FEMALE(2, "Женский");
     
     private int id;
+    private String name;
     
-    private Sex (int id){
+    private Sex (int id, String name){
         this.id = id;
+        this.name = name;
     }
     
     public int getId(){
         return id;
+    }
+    
+    public String getName(){
+        return name;
     }
     
     public static Sex setSex(int id){

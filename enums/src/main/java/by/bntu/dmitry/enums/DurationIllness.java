@@ -6,18 +6,24 @@ package by.bntu.dmitry.enums;
  */
 public enum DurationIllness {
 
-    NO_INFO_ABOUT_CHANGES(1),
-    CHANGES_IN_CLINICAL_PICTURE(2),
-    NO_CHANGES_DURING_3_MONTH(3);
+    NO_INFO_ABOUT_CHANGES(1, "Нет сведений об изменениях"),
+    CHANGES_IN_CLINICAL_PICTURE(2, "Изменение клинического очага картины"),
+    NO_CHANGES_DURING_3_MONTH(3, "Отсутствие изменений в течение 3-ех месяцев");
 
     private int id;
+    private String name;
 
-    private DurationIllness(int id) {
+    private DurationIllness(int id, String name) {
         this.id = id;
+        this.name = name;
     }
 
     public int getId() {
         return id;
+    }
+    
+    public String getName(){
+        return name;
     }
     
     public static DurationIllness setDurationIllness(int id){

@@ -96,13 +96,43 @@ function clickOnElement(action, id) {
 
             var $ul = $("<ul>").appendTo($("#element"));
             $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + req['directory'] + "'>").appendTo($ul);
-            $.each(req, function (index, item) {
-                $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
-            });
+            if (!(req['a_foto'] === undefined)){
+                $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + req['a_foto'] + "'>").appendTo($ul);
+            }
+            $("<li>").html("<b>" + "ID" + "</b>: " + req['id']).appendTo($ul);
+            $("<li>").html("<b>" + "Происхождение болезни" + "</b>: " + req['origin_illness']).appendTo($ul);
+            $("<li>").html("<b>" + "Длительность болезни" + "</b>: " + req['duration_illness']).appendTo($ul);
+            $("<li>").html("<b>" + "Изменение формы" + "</b>: " + req['change_form']).appendTo($ul);
+            $("<li>").html("<b>" + "Изменение размера" + "</b>: " + req['change_size']).appendTo($ul);
+            $("<li>").html("<b>" + "Изменение цвета" + "</b>: " + req['change_color']).appendTo($ul);
+            $("<li>").html("<b>" + "Изменение чувствительности" + "</b>: " + req['change_sensitivity']).appendTo($ul);
+            $("<li>").html("<b>" + "Наличие корок и кровоточивости" + "</b>: " + req['crusts_and_bleeding']).appendTo($ul);
+            $("<li>").html("<b>" + "Болезненность опухоли" + "</b>: " + req['tumor_pain']).appendTo($ul);
+            $("<li>").html("<b>" + "Сателлиты" + "</b>: " + req['satellite']).appendTo($ul);
+            $("<li>").html("<b>" + "Наличие воспаления" + "</b>: " + req['inflammations']).appendTo($ul);
+            $("<li>").html("<b>" + "Равномерная окраска" + "</b>: " + req['uniform_coloring']).appendTo($ul);
+            $("<li>").html("<b>" + "Тип кожи" + "</b>: " + req['skin_type']).appendTo($ul);
+            $("<li>").html("<b>" + "Диаметр опухоли" + "</b>: " + req['tumor_diameter'] + " мм").appendTo($ul);
+            $("<li>").html("<b>" + "Форма опухоли" + "</b>: " + req['tumor_form']).appendTo($ul);
+            $("<li>").html("<b>" + "Поверхность опухоли" + "</b>: " + req['tumor_surface']).appendTo($ul);
+            $("<li>").html("<b>" + "Очертания опухоли" + "</b>: " + req['tumor_outline']).appendTo($ul);
+            $("<li>").html("<b>" + "Локализация опухоли" + "</b>: " + req['tumor_localization']).appendTo($ul);
+            $("<li>").html("<b>" + "Устройство" + "</b>: " + req['device']).appendTo($ul);
+            $("<li>").html("<b>" + "Дата создания" + "</b>: " + req['date']).appendTo($ul);
+            $("<li>").html("<b>" + "Комментарий" + "</b>: " + req['comments']).appendTo($ul);
+
+            
+//            $.each(req, function (index, item) {
+//                $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
+//            });
             console.log('ABCDE: ' + req['ABCDE']);
             if (req['ABCDE'] === undefined) {
                 var $button = $("<div class='button' onclick='sendForAnalysis(" + req['id'] + ")'>").appendTo($("#element"));
                 $button.text("Send for analysis");
+            }else{
+                $("<li>").html("<b>" + "ABCDE" + "</b>: " + req['ABCDE']).appendTo($ul);
+            $("<li>").html("<b>" + "Similarity" + "</b>: " + req['Similarity']).appendTo($ul);
+            $("<li>").html("<b>" + "Probability" + "</b>: " + req['Probability']).appendTo($ul);
             }
 
             window.location.href = "#curent_foto";
@@ -274,7 +304,7 @@ function add_foto() {
 }
 
 function sendForAnalysis(id) {
-    alert(id);
+//    alert(id);
     var data = {
         id: id
     };

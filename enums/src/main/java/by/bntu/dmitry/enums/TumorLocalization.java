@@ -5,43 +5,49 @@ package by.bntu.dmitry.enums;
  * @author dmitry
  */
 public enum TumorLocalization {
-
-    SCALP(1),
-    FACE(2),
-    ORGAN_OF_VISION(3),
-    ORAL_MUCOSA(4),
-    NASAL_MUCOSA(5),
-    MUCOSA_OF_THE_PARANASAL_SINUSES(6),
-    NECK(7),
-    SHOULDER_GIRDLE(8),
-    AXILLARY_REGION(9),
-    UPPER_EXTREMITY(10),
-    PALM(11),
-    FINGER_NALL_PLATE_OF_THE_UPPER_LIMB(12),
-    ANTERIOR_THORAX(13),
-    BACK(14),
-    ANTERIOR_SURFACE_OF_THE_ABDOMINAL_WALL(15),
-    LUMBAR_REGION(16),
-    GROIN(17),
-    VULVA(18),
-    GLUTEAL_REGION(19),
-    PERINEUM(20),
-    LOWER_LIMB(21),
-    THIGH_AREA(22),
-    SHIN(23),
-    PLANTAR_SURFACE_OF_THE_FOOT(24),
-    FINGER_NAIL_PLATE_OF_THE_LOWER_LIMB(25);
+   
+    SCALP(1, "Волосистая часть головы"),
+    FACE(2, "Лицо"),
+    ORGAN_OF_VISION(3, "Орган зрения "),
+    ORAL_MUCOSA(4, "Слизистая оболочка полости рта"),
+    NASAL_MUCOSA(5, "Слизистая оболочка полости носа"),
+    MUCOSA_OF_THE_PARANASAL_SINUSES(6, "Слизистая оболочка околоносовых пазух"),
+    NECK(7, "Neck"),
+    SHOULDER_GIRDLE(8, "Плечевой пояс"),
+    AXILLARY_REGION(9, "Подмышечная область"),
+    UPPER_EXTREMITY(10, "Верхняя конечность"),
+    PALM(11, "Ладони"),
+    FINGER_NALL_PLATE_OF_THE_UPPER_LIMB(12, "Ногтевые пластинки пальцев верхней конечности"),
+    ANTERIOR_THORAX(13, "Передняя поверхность грудной клетки"),
+    BACK(14, "Спина"),
+    ANTERIOR_SURFACE_OF_THE_ABDOMINAL_WALL(15, "Передняя поверхность брюшной стенки"),
+    LUMBAR_REGION(16, "Поясничная область"),
+    GROIN(17, "Паховая область"),
+    VULVA(18, "Наружные половые органы"),
+    GLUTEAL_REGION(19, "Ягодичная область"),
+    PERINEUM(20, "Промежность"),
+    LOWER_LIMB(21, "Нижняя конечность"),
+    THIGH_AREA(22, "Область бедра"),
+    SHIN(23, "Голень"),
+    PLANTAR_SURFACE_OF_THE_FOOT(24, "Подошвенная поверхность стопы"),
+    FINGER_NAIL_PLATE_OF_THE_LOWER_LIMB(25, "Ногтевые пластинки нижней конечности");
 
     private int id;
+    private String name;
 
-    private TumorLocalization(int id) {
+    private TumorLocalization(int id, String name) {
         this.id = id;
+        this.name = name;
     }
 
     public int getId() {
         return id;
     }
 
+    public String getName(){
+        return name;
+    }
+    
     public static TumorLocalization setTumorLocalization(int id) {
         switch (id) {
             case 1:

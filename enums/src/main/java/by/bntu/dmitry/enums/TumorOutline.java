@@ -6,17 +6,23 @@ package by.bntu.dmitry.enums;
  */
 public enum TumorOutline {
 
-    CLEAR(1),
-    FUZZY(2);
+    CLEAR(1, "четкие"),
+    FUZZY(2, "нечеткие");
 
     private final int id;
+    private String name;
 
-    private TumorOutline(int id) {
+    private TumorOutline(int id, String name) {
         this.id = id;
+        this.name = name;
     }
 
     public int getId() {
         return id;
+    }
+    
+    public String getName(){
+        return name;
     }
 
     public  static TumorOutline setTumorOutline(int id) {
