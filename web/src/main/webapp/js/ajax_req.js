@@ -97,7 +97,7 @@ function clickOnElement(action, id) {
             var $ul = $("<ul>").appendTo($("#element"));
             $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + req['directory'] + "'>").appendTo($ul);
             if (!(req['a_foto'] === undefined)){
-                $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + req['a_foto'] + "'>").appendTo($ul);
+                $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images_out/dir/" + req['a_foto'] + "'>").appendTo($ul);
             }
             $("<li>").html("<b>" + "ID" + "</b>: " + req['id']).appendTo($ul);
             $("<li>").html("<b>" + "Происхождение болезни" + "</b>: " + req['origin_illness']).appendTo($ul);
