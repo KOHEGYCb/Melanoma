@@ -11,4 +11,5 @@ public class ConfigConstants {
     public static final String DATABASE_URL = "jdbc:mysql://localhost:3306/melanoma?useSSL=false";
     
     public static final String IMAGE_FOLDER = "/opt/tomcat/apache-tomcat/webapps/melanoma/images/dir/";
+    public static final String IMAGE_OUTPUT_FOLDER = "/opt/tomcat/apache-tomcat/webapps/melanoma/images_out/dir/";
 }

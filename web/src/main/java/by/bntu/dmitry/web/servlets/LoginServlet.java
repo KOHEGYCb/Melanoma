@@ -101,6 +101,8 @@ public class LoginServlet extends ManagerServlet {
                             
                             File dir = new File(ConfigConstants.IMAGE_FOLDER + newUser.getId());
                             dir.mkdirs();
+                            File dir_out = new File(ConfigConstants.IMAGE_OUTPUT_FOLDER + newUser.getId());
+                            dir_out.mkdirs();
                             
 //                            LogServices.INSTANCE.SignInLog(newUser);
                             HttpSession session = req.getSession();

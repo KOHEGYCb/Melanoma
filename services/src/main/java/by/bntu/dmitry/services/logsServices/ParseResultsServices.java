@@ -38,7 +38,7 @@ public class ParseResultsServices {
                 }
             }
         }
-        String path = ConfigConstants.IMAGE_FOLDER + fileName + ".txt";
+        String path = ConfigConstants.IMAGE_OUTPUT_FOLDER + fileName + ".txt";
 
         File file = new File(path);
         if (file.isFile()) {
