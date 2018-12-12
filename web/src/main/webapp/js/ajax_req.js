@@ -128,7 +128,7 @@ function clickOnElement(action, id) {
             console.log('ABCDE: ' + req['ABCDE']);
             if (req['ABCDE'] === undefined) {
                 var $button = $("<div class='button' onclick='sendForAnalysis(" + req['id'] + ")'>").appendTo($("#element"));
-                $button.text("Send for analysis");
+                $button.text("Отправить на анализ");
             }else{
                 $("<li>").html("<b>" + "ABCDE" + "</b>: " + req['ABCDE']).appendTo($ul);
             $("<li>").html("<b>" + "Similarity" + "</b>: " + req['Similarity']).appendTo($ul);

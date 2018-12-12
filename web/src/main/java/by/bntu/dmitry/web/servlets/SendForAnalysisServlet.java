@@ -41,7 +41,7 @@ public class SendForAnalysisServlet extends ManagerServlet {
         }
         System.out.println("Image Name: " + imageName);
 
-        String cmd = "/usr/local/bin/melaserach"    + " "
+        String cmd = "bash -с /usr/local/bin/melaserach"    + " "
                 + user.getId()                      + " " 
                 + imageName                         + " "
                 + foto.getChangeSize()              + " "
@@ -69,10 +69,11 @@ class RunThread extends Thread {
         super(name);
         System.out.println("Start");
         this.cmd = cmd;
+        start();
     }
 
     @Override
-    public void run() {
+    public void start() {
         try {
             Runtime.getRuntime().exec(cmd);
 //            System.out.println("*******");

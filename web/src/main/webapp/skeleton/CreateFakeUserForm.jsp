@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="createUserForm">
-    <h3>Please, write your information</h3>
+    <h3>Пожалуйста, заполните следующие поля</h3>
     <form name="createUserForm" method="Post">
         <span>Имя: </span>         <input type="text" name="name"        value="${name}"/>
         <span>Фамилия: </span>      <input type="text" name="surname"     value="${surname}"/>

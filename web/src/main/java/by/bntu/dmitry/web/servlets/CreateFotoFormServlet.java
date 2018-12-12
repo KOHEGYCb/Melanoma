@@ -53,7 +53,7 @@ public class CreateFotoFormServlet extends ManagerServlet {
         int tumor_localization = jo.get("tumor_localization").getAsInt();
         int device = jo.get("device").getAsInt();
         String date = jo.get("date").getAsString();
-        String comments = jo.get("comments").getAsString();
+        String comments = setToCyrillic(jo.get("comments").getAsString());
         int id = jo.get("id").getAsInt();
         String directory = jo.get("dir").getAsString();
 
@@ -103,5 +103,24 @@ public class CreateFotoFormServlet extends ManagerServlet {
         fos.close();
 
         forward("/body.jsp", req, resp);
+    }
+    
+    private String setToCyrillic (String str) {
+        String newStr = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (((int) str.charAt(i) >= 65) && ((int) str.charAt(i) <= 90) || ((int) str.charAt(i) >= 97) && ((int) str.charAt(i) <= 122) || ((int) str.charAt(i) >= 49) && ((int) str.charAt(i) <= 58) || (str.charAt(i) == ' ')) {
+                newStr = newStr + str.charAt(i);
+            } else {
+                if ((int) str.charAt(i) == 208) {
+                    int ch = (int) str.charAt(i + 1) + 896;
+                    newStr = newStr + (char) ch;
+                }
+                if ((int) str.charAt(i) == 209) {
+                    int ch = (int) str.charAt(i + 1) + 960;
+                    newStr = newStr + (char) ch;
+                }
+            }
+        }
+        return newStr;
     }
 }

@@ -56,5 +56,5 @@
 <div class="page" id="curent_foto">
     <h1>Параметры фотографии</h1>
     <div id="element"></div>
-    <div class="button" onclick="clickOnBackButton()">Back</div>
+    <div class="button" onclick="clickOnBackButton()">Назад</div>
 </div>

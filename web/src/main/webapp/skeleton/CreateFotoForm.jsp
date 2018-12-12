@@ -186,7 +186,7 @@
         </div>
 
         <div class="block">
-            <span>Tumor localization: </span>
+            <span>Локализация опухоли: </span>
             <div>
                 <select size="1"  name="tumor_localization" value="${tumor_localization}">
                     <option name="scalp">Волосистая часть головы</option>
