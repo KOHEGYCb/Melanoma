@@ -41,14 +41,14 @@ public class SendForAnalysisServlet extends ManagerServlet {
         }
         System.out.println("Image Name: " + imageName);
 
-        String cmd = "/usr/local/bin/melaserach"    + " "
+        String cmd = "bash -с /usr/local/bin/melaserach"    + " "
                 + user.getId()                      + " " 
                 + imageName                         + " "
                 + foto.getChangeSize()              + " "
                 +"-0.02";
-//        Runtime.getRuntime().exec(cmd);
+        Runtime.getRuntime().exec(cmd);
 //        String cmd = "bash /usr/local/MATLAB/R2018a/bin/matlab";
-        new MyThred("my thread", cmd);
+//        new MyThred("my thread", cmd);
 
         //  /usr/local/bin/melaserach <id user> <image name> <evolution> <pca>
 //        
@@ -69,10 +69,11 @@ class RunThread extends Thread {
         super(name);
         System.out.println("Start");
         this.cmd = cmd;
+        start();
     }
 
     @Override
-    public void run() {
+    public void start() {
         try {
             Runtime.getRuntime().exec(cmd);
 //            System.out.println("*******");

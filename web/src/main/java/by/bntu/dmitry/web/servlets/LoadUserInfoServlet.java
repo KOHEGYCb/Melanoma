@@ -38,19 +38,19 @@ public class LoadUserInfoServlet extends HttpServlet{
         ArrayList<Foto> fotos = FotoDAO.INSTANCE.getEntitiesByUser(user);
         
         Map <String, String> map = new HashMap<String, String>();
-        map.put("id", user.getId() + "");
-        map.put("name", form.getName());
-        map.put("surname", form.getSurname());
-        map.put("patronymic", form.getPatronymic());
-        map.put("birthday", form.getBirthday() + "");
-        map.put("gender", form.getSex().name());
-        map.put("relativeMelanoma", form.getRelativeMelanoma() + "");
-        map.put("anamnesisMelanoma", form.getAnamnesisMelanoma() + "");
-        map.put("dyspasticNevusSyndrome", form.getDyspasticNevusSyndrome() + "");
-        map.put("dyspasticNevusSyndromeRelatives", form.getDyspasticNevusSyndromeRelatives() + "");
-        map.put("immunosuppressiveTherapy", form.getImmunosuppressiveTherapy() + "");
-        map.put("presenceUlceration", form.getPresenceUlceration() + "");
-        map.put("hospital", form.getHospital());
+//        map.put("", user.getId() + "");
+        map.put("Имя", form.getName());
+        map.put("Фамилия", form.getSurname());
+        map.put("Отчество", form.getPatronymic());
+        map.put("Дата рождения", form.getBirthday() + "");
+        map.put("Пол", form.getSex().name());
+//        map.put("relativeMelanoma", form.getRelativeMelanoma() + "");
+//        map.put("anamnesisMelanoma", form.getAnamnesisMelanoma() + "");
+//        map.put("dyspasticNevusSyndrome", form.getDyspasticNevusSyndrome() + "");
+//        map.put("dyspasticNevusSyndromeRelatives", form.getDyspasticNevusSyndromeRelatives() + "");
+//        map.put("immunosuppressiveTherapy", form.getImmunosuppressiveTherapy() + "");
+//        map.put("presenceUlceration", form.getPresenceUlceration() + "");
+//        map.put("hospital", form.getHospital());
         for (int i = 0; i < fotos.size(); i++){
             map.put("foto_"+i, fotos.get(i).getDirectory());
             map.put("fotoId_"+i, fotos.get(i).getId()+"");
