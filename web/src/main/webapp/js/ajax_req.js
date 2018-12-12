@@ -366,5 +366,5 @@ function checkResults() {
                 }
             }
         });
-    }, 10000);
+    }, 1000);
 }

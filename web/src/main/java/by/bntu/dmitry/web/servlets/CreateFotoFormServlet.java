@@ -1,5 +1,6 @@
 package by.bntu.dmitry.web.servlets;
 
+import by.bntu.dmitry.constants.ConfigConstants;
 import by.bntu.dmitry.constants.Destinations;
 import by.bntu.dmitry.dao.FotoDAO;
 import by.bntu.dmitry.entities.Foto;
@@ -13,6 +14,7 @@ import by.bntu.dmitry.enums.TumorOutline;
 import by.bntu.dmitry.enums.TumorSurface;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import javax.servlet.ServletException;
@@ -57,8 +59,6 @@ public class CreateFotoFormServlet extends ManagerServlet {
 
         Foto foto = new Foto();
         foto.setOriginIllness(OriginIllness.setOriginIllness(origin_illness));
-        System.out.println("\n\n******************: " + foto.getOriginIllness());
-        System.out.println("\n\n******************: " + foto.getOriginIllness().getId());
         foto.setDurationIllness(DurationIllness.setDurationIllness(duration_illness));
         foto.setChangeForm(change_form);
         foto.setChangeSize(change_size);
@@ -82,7 +82,26 @@ public class CreateFotoFormServlet extends ManagerServlet {
         foto.setId(id);
         foto.setUser((User) req.getSession().getAttribute("user"));
         FotoDAO.INSTANCE.updateEntity(foto);
-        
+
+        String fileName = "";
+        boolean isDotFind = false;
+        for (int i = foto.getDirectory().length() - 1; i >= 0; i--) {
+            if (isDotFind) {
+                fileName = foto.getDirectory().charAt(i) + fileName;
+            } else {
+                if (foto.getDirectory().charAt(i) == '.') {
+                    isDotFind = true;
+                }
+            }
+        }
+        String path = ConfigConstants.IMAGE_FOLDER + fileName + ".txt";
+        FileOutputStream fos = new FileOutputStream(path);
+//                      + " "        +"-0.02";
+        String params = foto.getChangeSize() + "\n" + "-0.02";
+        byte[] b = params.getBytes();
+        fos.write(b);
+        fos.close();
+
         forward("/body.jsp", req, resp);
     }
     
