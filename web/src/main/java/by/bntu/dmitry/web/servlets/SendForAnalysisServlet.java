@@ -46,9 +46,9 @@ public class SendForAnalysisServlet extends ManagerServlet {
                 + imageName                         + " "
                 + foto.getChangeSize()              + " "
                 +"-0.02";
-//        Runtime.getRuntime().exec(cmd);
+        Runtime.getRuntime().exec(cmd);
 //        String cmd = "bash /usr/local/MATLAB/R2018a/bin/matlab";
-        new MyThred("my thread", cmd);
+//        new MyThred("my thread", cmd);
 
         //  /usr/local/bin/melaserach <id user> <image name> <evolution> <pca>
 //        

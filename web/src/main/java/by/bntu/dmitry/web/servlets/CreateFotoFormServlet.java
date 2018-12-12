@@ -57,8 +57,6 @@ public class CreateFotoFormServlet extends ManagerServlet {
 
         Foto foto = new Foto();
         foto.setOriginIllness(OriginIllness.setOriginIllness(origin_illness));
-        System.out.println("\n\n******************: " + foto.getOriginIllness());
-        System.out.println("\n\n******************: " + foto.getOriginIllness().getId());
         foto.setDurationIllness(DurationIllness.setDurationIllness(duration_illness));
         foto.setChangeForm(change_form);
         foto.setChangeSize(change_size);
