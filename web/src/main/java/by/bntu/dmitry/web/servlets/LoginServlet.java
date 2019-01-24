@@ -1,6 +1,7 @@
 package by.bntu.dmitry.web.servlets;
 
 import by.bntu.dmitry.constants.ConfigConstants;
+import by.bntu.dmitry.constants.NamePatterns;
 import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.Role;
@@ -26,9 +27,6 @@ public class LoginServlet extends ManagerServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String namePattern = "^([A-Za-z0-9_]{6,})$"; //regular expression for login/password
-        Pattern pattern = Pattern.compile(namePattern);
-        Matcher matcher;
 
         JsonObject jo = new Gson().fromJson(req.getReader(), JsonObject.class);
         boolean log_in = jo.get("log_in").getAsBoolean();
@@ -41,12 +39,16 @@ public class LoginServlet extends ManagerServlet {
 
         boolean isValid = true;
 
+        Pattern pattern = Pattern.compile(NamePatterns.LOGIN);
+        Matcher matcher;
+
         matcher = pattern.matcher(login);
         if (!matcher.matches()) {
             _login = login;
             _a = "Login is not valid";
             isValid = false;
         } else {
+            pattern = Pattern.compile(NamePatterns.PASSWORD);
             matcher = pattern.matcher(password);
             if (!matcher.matches()) {
                 _login = login;
@@ -89,10 +91,10 @@ public class LoginServlet extends ManagerServlet {
                             User newUser = new User(login, password, Role.USER, true, true);
                             UserDAO.INSTANCE.createEntity(newUser);
                             newUser = UserDAO.INSTANCE.getEntityByLogin(login);
-                            
+
                             File dir = new File(ConfigConstants.IMAGE_FOLDER + newUser.getId());
                             dir.mkdirs();
-                            
+
                             LogServices.INSTANCE.SignInLog(newUser);
                             HttpSession session = req.getSession();
                             session.setAttribute("user", newUser);

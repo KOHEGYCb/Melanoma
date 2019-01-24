@@ -1,9 +1,12 @@
 package by.bntu.dmitry.web.servlets;
 
 import by.bntu.dmitry.constants.JspAttributes;
+import by.bntu.dmitry.constants.NamePatterns;
 import by.bntu.dmitry.dao.UserFormDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.entities.UserForm;
+import charsets.CyrillicMethods;
+import charsets.WorkWithStrings;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
@@ -24,8 +27,7 @@ public class CreateUserFormServlet extends ManagerServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String namePattern = "^([A-Za-zа-яА-Я]{1})([a-zа-я]{1,})"; //regular expression for name/surname/patronymic
-        Pattern pattern = Pattern.compile(namePattern);
+        Pattern pattern = Pattern.compile(NamePatterns.NAMES);
         Matcher matcher;
 
         boolean _name = true;
@@ -39,18 +41,17 @@ public class CreateUserFormServlet extends ManagerServlet {
         String patronymic = jo.get("patronymic").getAsString();
         String birthday = jo.get("birthday").getAsString();
         String gender = jo.get("gender").getAsString();
-        
+
 //        String name = req.getParameter("name");
 //        String surname = req.getParameter("surname");
 //        String patronymic = req.getParameter("patronymic");
 //        String birthday = req.getParameter("birthday");
 //        String gender = req.getParameter("gender");
-
         boolean isValid = true;
-        
-        name = setToCyrillic(name);
-        surname = setToCyrillic(surname);
-        patronymic = setToCyrillic(patronymic);
+
+        name = CyrillicMethods.setToCyrillic(name);
+        surname = CyrillicMethods.setToCyrillic(surname);
+        patronymic = CyrillicMethods.setToCyrillic(patronymic);
 
         if ("".equals(name)) {
             _name = !_name;
@@ -58,7 +59,7 @@ public class CreateUserFormServlet extends ManagerServlet {
         } else {
             matcher = pattern.matcher(name);
             if (matcher.matches()) {
-                name = setUpperFirstLeter(name);
+                name = WorkWithStrings.setUpperFirstLeter(name);
             } else {
                 isValid = false;
             }
@@ -70,7 +71,7 @@ public class CreateUserFormServlet extends ManagerServlet {
         } else {
             matcher = pattern.matcher(surname);
             if (matcher.matches()) {
-                surname = setUpperFirstLeter(surname);
+                surname = WorkWithStrings.setUpperFirstLeter(surname);
             } else {
                 isValid = false;
             }
@@ -79,7 +80,7 @@ public class CreateUserFormServlet extends ManagerServlet {
         if (!"".equals(patronymic)) {
             matcher = pattern.matcher(patronymic);
             if (matcher.matches()) {
-                patronymic = setUpperFirstLeter(patronymic);
+                patronymic = WorkWithStrings.setUpperFirstLeter(patronymic);
             } else {
                 isValid = false;
             }
@@ -119,32 +120,6 @@ public class CreateUserFormServlet extends ManagerServlet {
         }
 
         forward("/body.jsp", req, resp);
-    }
-
-    private String setUpperFirstLeter(String str) {
-        if (Character.isLowerCase(str.charAt(0))) {
-            str = Character.toUpperCase(str.charAt(0)) + str.substring(1);
-        }
-        return str;
-    }
-
-    private String setToCyrillic (String str) {
-        String newStr = "";
-        for (int i = 0; i < str.length(); i++) {
-            if (((int) str.charAt(i) >= 65) && ((int) str.charAt(i) <= 90) || ((int) str.charAt(i) >= 97) && ((int) str.charAt(i) <= 122)) {
-                newStr = newStr + str.charAt(i);
-            } else {
-                if ((int) str.charAt(i) == 208) {
-                    int ch = (int) str.charAt(i + 1) + 896;
-                    newStr = newStr + (char) ch;
-                }
-                if ((int) str.charAt(i) == 209) {
-                    int ch = (int) str.charAt(i + 1) + 960;
-                    newStr = newStr + (char) ch;
-                }
-            }
-        }
-        return newStr;
     }
 
 }
