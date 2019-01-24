@@ -6,9 +6,13 @@ package by.bntu.dmitry.enums;
  */
 public enum Similarity {
     
-    _0_1("the probability of melanoma is small"),
-    _2("there is a risk of melanoma"),
-    _3_4("high risk of melanoma"),
+//    _0_1("the probability of melanoma is small"),
+//    _2("there is a risk of melanoma"),
+//    _3_4("high risk of melanoma"),
+//    NONE("undefined");
+    _0_1("вероятность меланомы небольшая"),
+    _2("есть риск меланомы"),
+    _3_4("высокий риск меланомы"),
     NONE("undefined");
     
     String desc;

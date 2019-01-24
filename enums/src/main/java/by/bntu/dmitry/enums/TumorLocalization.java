@@ -5,94 +5,100 @@ package by.bntu.dmitry.enums;
  * @author dmitry
  */
 public enum TumorLocalization {
-
-    SCALP(1),
-    FACE(2),
-    ORGAN_OF_VISION(3),
-    ORAL_MUCOSA(4),
-    NASAL_MUCOSA(5),
-    MUCOSA_OF_THE_PARANASAL_SINUSES(6),
-    NECK(7),
-    SHOULDER_GIRDLE(8),
-    AXILLARY_REGION(9),
-    UPPER_EXTREMITY(10),
-    PALM(11),
-    FINGER_NALL_PLATE_OF_THE_UPPER_LIMB(12),
-    ANTERIOR_THORAX(13),
-    BACK(14),
-    ANTERIOR_SURFACE_OF_THE_ABDOMINAL_WALL(15),
-    LUMBAR_REGION(16),
-    GROIN(17),
-    VULVA(18),
-    GLUTEAL_REGION(19),
-    PERINEUM(20),
-    LOWER_LIMB(21),
-    THIGH_AREA(22),
-    SHIN(23),
-    PLANTAR_SURFACE_OF_THE_FOOT(24),
-    FINGER_NAIL_PLATE_OF_THE_LOWER_LIMB(25);
+   
+    SCALP(0, "Волосистая часть головы"),
+    FACE(1, "Лицо"),
+    ORGAN_OF_VISION(2, "Орган зрения "),
+    ORAL_MUCOSA(3, "Слизистая оболочка полости рта"),
+    NASAL_MUCOSA(4, "Слизистая оболочка полости носа"),
+    MUCOSA_OF_THE_PARANASAL_SINUSES(5, "Слизистая оболочка околоносовых пазух"),
+    NECK(6, "Neck"),
+    SHOULDER_GIRDLE(7, "Плечевой пояс"),
+    AXILLARY_REGION(8, "Подмышечная область"),
+    UPPER_EXTREMITY(9, "Верхняя конечность"),
+    PALM(10, "Ладони"),
+    FINGER_NALL_PLATE_OF_THE_UPPER_LIMB(11, "Ногтевые пластинки пальцев верхней конечности"),
+    ANTERIOR_THORAX(12, "Передняя поверхность грудной клетки"),
+    BACK(13, "Спина"),
+    ANTERIOR_SURFACE_OF_THE_ABDOMINAL_WALL(14, "Передняя поверхность брюшной стенки"),
+    LUMBAR_REGION(15, "Поясничная область"),
+    GROIN(16, "Паховая область"),
+    VULVA(17, "Наружные половые органы"),
+    GLUTEAL_REGION(18, "Ягодичная область"),
+    PERINEUM(19, "Промежность"),
+    LOWER_LIMB(20, "Нижняя конечность"),
+    THIGH_AREA(21, "Область бедра"),
+    SHIN(22, "Голень"),
+    PLANTAR_SURFACE_OF_THE_FOOT(23, "Подошвенная поверхность стопы"),
+    FINGER_NAIL_PLATE_OF_THE_LOWER_LIMB(24, "Ногтевые пластинки нижней конечности");
 
     private int id;
+    private String name;
 
-    private TumorLocalization(int id) {
+    private TumorLocalization(int id, String name) {
         this.id = id;
+        this.name = name;
     }
 
     public int getId() {
         return id;
     }
 
+    public String getName(){
+        return name;
+    }
+    
     public static TumorLocalization setTumorLocalization(int id) {
         switch (id) {
-            case 1:
+            case 0:
                 return SCALP;
-            case 2:
+            case 1:
                 return FACE;
-            case 3:
+            case 2:
                 return ORGAN_OF_VISION;
-            case 4:
+            case 3:
                 return ORAL_MUCOSA;
-            case 5:
+            case 4:
                 return NASAL_MUCOSA;
-            case 6:
+            case 5:
                 return MUCOSA_OF_THE_PARANASAL_SINUSES;
-            case 7:
+            case 6:
                 return NECK;
-            case 8:
+            case 7:
                 return SHOULDER_GIRDLE;
-            case 9:
+            case 8:
                 return AXILLARY_REGION;
-            case 10:
+            case 9:
                 return UPPER_EXTREMITY;
-            case 11:
+            case 10:
                 return PALM;
-            case 12:
+            case 11:
                 return FINGER_NALL_PLATE_OF_THE_UPPER_LIMB;
-            case 13:
+            case 12:
                 return ANTERIOR_THORAX;
-            case 14:
+            case 13:
                 return BACK;
-            case 15:
+            case 14:
                 return ANTERIOR_SURFACE_OF_THE_ABDOMINAL_WALL;
-            case 16:
+            case 15:
                 return LUMBAR_REGION;
-            case 17:
+            case 16:
                 return GROIN;
-            case 18:
+            case 17:
                 return VULVA;
-            case 19:
+            case 18:
                 return GLUTEAL_REGION;
-            case 20:
+            case 19:
                 return PERINEUM;
-            case 21:
+            case 20:
                 return LOWER_LIMB;
-            case 22:
+            case 21:
                 return THIGH_AREA;
-            case 23:
+            case 22:
                 return SHIN;
-            case 24:
+            case 23:
                 return PLANTAR_SURFACE_OF_THE_FOOT;
-            case 25:
+            case 24:
                 return FINGER_NAIL_PLATE_OF_THE_LOWER_LIMB;
         }
         return null;

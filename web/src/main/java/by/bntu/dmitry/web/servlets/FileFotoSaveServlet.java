@@ -42,6 +42,7 @@ public class FileFotoSaveServlet extends ManagerServlet {
                 break;
             }
         }
+//        System.out.println("FilePart: " + filePart.getSubmittedFileName());
         User user = (User) req.getSession().getAttribute("user");
 
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
@@ -50,23 +51,27 @@ public class FileFotoSaveServlet extends ManagerServlet {
         if (fileType.toLowerCase().equals(".jpg")) {
             dir = dir + (FotoDAO.INSTANCE.getAmountByUserId(user)) + ".jpg";
         } else {
-            if (fileType.toLowerCase().equals(".png")) {
-                dir = dir + (FotoDAO.INSTANCE.getAmountByUserId(user)) + ".png";
-            } else {
-                if (fileType.toLowerCase().equals(".bmp")) {
-                    dir = dir + (FotoDAO.INSTANCE.getAmountByUserId(user)) + ".bmp";
-                } else {
+//            if (fileType.toLowerCase().equals(".png")) {
+//                dir = dir + (FotoDAO.INSTANCE.getAmountByUserId(user)) + ".png";
+//            } else {
+//                if (fileType.toLowerCase().equals(".bmp")) {
+//                    dir = dir + (FotoDAO.INSTANCE.getAmountByUserId(user)) + ".bmp";
+//                } else {
                     isValid = false;
-                }
-            }
+//                }
+//            }
         }
         Map<String, String> map;
         if (isValid) {
-            try (InputStream fileContent = filePart.getInputStream(); FileOutputStream fos = new FileOutputStream(ConfigConstants.IMAGE_FOLDER + dir)) {
-                byte[] b = new byte[fileContent.available()];
-                fileContent.read(b);
-                fos.write(b);
-            }
+            InputStream fileContent = filePart.getInputStream();
+//            System.out.println("68");
+            FileOutputStream fos = new FileOutputStream(ConfigConstants.IMAGE_FOLDER + dir);
+            byte[] b = new byte[fileContent.available()];
+            fileContent.read(b);
+            fos.write(b);
+            fos.close();
+            fileContent.close();
+//            System.out.println("82");
             Foto foto = new Foto();
             foto.setDirectory(dir);
             foto.setUser((User) req.getSession().getAttribute("user"));

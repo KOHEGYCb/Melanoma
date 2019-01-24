@@ -37,7 +37,7 @@ public enum UserServices {
     public static String getUserGender(User user) {
         UserForm userForm = UserFormDAO.INSTANCE.getEntityByUser(user);
         if (userForm != null) {
-            return userForm.getSex().toString();
+            return userForm.getSex().getName();
         }
         return "";
     }

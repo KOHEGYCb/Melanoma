@@ -21,11 +21,11 @@
                 str = uf.getSurname() + " " + uf.getName().charAt(0) + ".";
             }
     %>
-    <div class="info">Hello <%=str%></div>
-    <div class="logo">M E L A N O M A - T E S T E D</div>
+    <div class="info">Здравствуй, <%=str%></div>
+    <div class="logo">M E L A B A S E</div>
     <div class="logout">
         <form method="post">
-            <input type="button" name="log_out" value="Log Out" onclick="logOut()">
+            <input type="button" name="log_out" value="Выйти" onclick="logOut()">
         </form>
     </div>
     <%

@@ -16,7 +16,7 @@
         <script src="js/preloader.js" type="text/javascript"></script>
         <script src="js/ajax_req.js" type="text/javascript"></script>
         <script src="js/functions.js" type="text/javascript"></script>
-        <title>JSP Page</title>
+        <title>Melabase</title>
     </head>
     <body id="root">
         

@@ -49,7 +49,7 @@ function createUserF() {
         surname: document.createUserForm.surname.value,
         patronymic: document.createUserForm.patronymic.value,
         birthday: document.createUserForm.birthday.value,
-        gender: document.createUserForm.gender.value
+        gender: document.createUserForm.gender.options.selectedIndex
     };
     $.ajax({
         type: "POST",
@@ -69,7 +69,7 @@ function createFakeUserF() {
         surname: document.createUserForm.surname.value,
         patronymic: document.createUserForm.patronymic.value,
         birthday: document.createUserForm.birthday.value,
-        gender: document.createUserForm.gender.value
+        gender: document.createUserForm.gender.options.selectedIndex
     };
     $.ajax({
         type: "POST",
@@ -96,13 +96,43 @@ function clickOnElement(action, id) {
 
             var $ul = $("<ul>").appendTo($("#element"));
             $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + req['directory'] + "'>").appendTo($ul);
-            $.each(req, function (index, item) {
-                $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
-            });
+            if (!(req['a_foto'] === undefined)){
+                $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images_out/dir/" + req['a_foto'] + "'>").appendTo($ul);
+            }
+            $("<li>").html("<b>" + "ID" + "</b>: " + req['id']).appendTo($ul);
+            $("<li>").html("<b>" + "Происхождение болезни" + "</b>: " + req['origin_illness']).appendTo($ul);
+            $("<li>").html("<b>" + "Длительность болезни" + "</b>: " + req['duration_illness']).appendTo($ul);
+            $("<li>").html("<b>" + "Изменение формы" + "</b>: " + req['change_form']).appendTo($ul);
+            $("<li>").html("<b>" + "Изменение размера" + "</b>: " + req['change_size']).appendTo($ul);
+            $("<li>").html("<b>" + "Изменение цвета" + "</b>: " + req['change_color']).appendTo($ul);
+            $("<li>").html("<b>" + "Изменение чувствительности" + "</b>: " + req['change_sensitivity']).appendTo($ul);
+            $("<li>").html("<b>" + "Наличие корок и кровоточивости" + "</b>: " + req['crusts_and_bleeding']).appendTo($ul);
+            $("<li>").html("<b>" + "Болезненность опухоли" + "</b>: " + req['tumor_pain']).appendTo($ul);
+            $("<li>").html("<b>" + "Сателлиты" + "</b>: " + req['satellite']).appendTo($ul);
+            $("<li>").html("<b>" + "Наличие воспаления" + "</b>: " + req['inflammations']).appendTo($ul);
+            $("<li>").html("<b>" + "Равномерная окраска" + "</b>: " + req['uniform_coloring']).appendTo($ul);
+            $("<li>").html("<b>" + "Тип кожи" + "</b>: " + req['skin_type']).appendTo($ul);
+            $("<li>").html("<b>" + "Диаметр опухоли" + "</b>: " + req['tumor_diameter'] + " мм").appendTo($ul);
+            $("<li>").html("<b>" + "Форма опухоли" + "</b>: " + req['tumor_form']).appendTo($ul);
+            $("<li>").html("<b>" + "Поверхность опухоли" + "</b>: " + req['tumor_surface']).appendTo($ul);
+            $("<li>").html("<b>" + "Очертания опухоли" + "</b>: " + req['tumor_outline']).appendTo($ul);
+            $("<li>").html("<b>" + "Локализация опухоли" + "</b>: " + req['tumor_localization']).appendTo($ul);
+            $("<li>").html("<b>" + "Устройство" + "</b>: " + req['device']).appendTo($ul);
+            $("<li>").html("<b>" + "Дата создания" + "</b>: " + req['date']).appendTo($ul);
+            $("<li>").html("<b>" + "Комментарий" + "</b>: " + req['comments']).appendTo($ul);
+
+            
+//            $.each(req, function (index, item) {
+//                $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
+//            });
             console.log('ABCDE: ' + req['ABCDE']);
             if (req['ABCDE'] === undefined) {
                 var $button = $("<div class='button' onclick='sendForAnalysis(" + req['id'] + ")'>").appendTo($("#element"));
-                $button.text("Send for analysis");
+                $button.text("Отправить на анализ");
+            }else{
+                $("<li>").html("<b>" + "ABCDE" + "</b>: " + req['ABCDE']).appendTo($ul);
+            $("<li>").html("<b>" + "Similarity" + "</b>: " + req['Similarity']).appendTo($ul);
+            $("<li>").html("<b>" + "Probability" + "</b>: " + req['Probability']).appendTo($ul);
             }
 
             window.location.href = "#curent_foto";
@@ -238,25 +268,28 @@ function add_foto() {
         success: function (resp) {
             if (resp["error"] === "no") {
                 alert("File has been uploaded successfully");
+                console.log("value: " + document.fotoForm.origin_illness.value);
+                console.log("ззз value: " + document.fotoForm.origin_illness.options.name);
+                console.log("ззз value: " + document.fotoForm.origin_illness.options.selectedIndex);
                 var data = {
-                    origin_illness: document.fotoForm.origin_illness.value,
-                    duration_illness: document.fotoForm.duration_illness.value,
-                    change_form: document.fotoForm.change_form.value,
-                    change_size: document.fotoForm.change_size.value,
-                    change_color: document.fotoForm.change_color.value,
-                    change_sensitivity: document.fotoForm.change_sensitivity.value,
-                    crusts_and_bleeding: document.fotoForm.crusts_and_bleeding.value,
-                    tumor_pain: document.fotoForm.tumor_pain.value,
-                    satellite: document.fotoForm.satellite.value,
-                    inflammations: document.fotoForm.inflammations.value,
-                    uniform_coloring: document.fotoForm.uniform_coloring.value,
-                    skin_type: document.fotoForm.skin_type.value,
+                    origin_illness: document.fotoForm.origin_illness.options.selectedIndex,
+                    duration_illness: document.fotoForm.duration_illness.options.selectedIndex,
+                    change_form: document.fotoForm.change_form.options.selectedIndex,
+                    change_size: document.fotoForm.change_size.options.selectedIndex,
+                    change_color: document.fotoForm.change_color.options.selectedIndex,
+                    change_sensitivity: document.fotoForm.change_sensitivity.options.selectedIndex,
+                    crusts_and_bleeding: document.fotoForm.crusts_and_bleeding.options.selectedIndex,
+                    tumor_pain: document.fotoForm.tumor_pain.options.selectedIndex,
+                    satellite: document.fotoForm.satellite.options.selectedIndex,
+                    inflammations: document.fotoForm.inflammations.options.selectedIndex,
+                    uniform_coloring: document.fotoForm.uniform_coloring.options.selectedIndex,
+                    skin_type: document.fotoForm.skin_type.options.selectedIndex,
                     tumor_diameter: document.fotoForm.tumor_diameter.value,
-                    tumor_form: document.fotoForm.tumor_form.value,
-                    tumor_surface: document.fotoForm.tumor_surface.value,
-                    tumor_outline: document.fotoForm.tumor_outline.value,
-                    tumor_localization: document.fotoForm.tumor_localization.value,
-                    device: document.fotoForm.device.value,
+                    tumor_form: document.fotoForm.tumor_form.options.selectedIndex,
+                    tumor_surface: document.fotoForm.tumor_surface.options.selectedIndex,
+                    tumor_outline: document.fotoForm.tumor_outline.options.selectedIndex,
+                    tumor_localization: document.fotoForm.tumor_localization.options.selectedIndex,
+                    device: document.fotoForm.device.options.selectedIndex,
                     date: document.fotoForm.date.value,
                     comments: document.fotoForm.comments.value,
                     id: resp["id"],
@@ -274,7 +307,7 @@ function add_foto() {
 }
 
 function sendForAnalysis(id) {
-    alert(id);
+//    alert(id);
     var data = {
         id: id
     };
@@ -333,5 +366,5 @@ function checkResults() {
                 }
             }
         });
-    }, 10000);
+    }, 1000);
 }

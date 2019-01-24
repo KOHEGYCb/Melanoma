@@ -1,10 +1,20 @@
 package by.bntu.dmitry.web.servlets;
 
+import by.bntu.dmitry.constants.ConfigConstants;
+import by.bntu.dmitry.constants.Destinations;
 import by.bntu.dmitry.dao.FotoDAO;
 import by.bntu.dmitry.entities.Foto;
 import by.bntu.dmitry.entities.User;
+import by.bntu.dmitry.enums.Device;
+import by.bntu.dmitry.enums.DurationIllness;
+import by.bntu.dmitry.enums.OriginIllness;
+import by.bntu.dmitry.enums.TumorForm;
+import by.bntu.dmitry.enums.TumorLocalization;
+import by.bntu.dmitry.enums.TumorOutline;
+import by.bntu.dmitry.enums.TumorSurface;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import javax.servlet.ServletException;
@@ -24,32 +34,32 @@ public class CreateFotoFormServlet extends ManagerServlet {
         System.out.println("Strat Servlet Foto");
 
         JsonObject jo = new Gson().fromJson(req.getReader(), JsonObject.class);
-        String origin_illness = jo.get("origin_illness").getAsString();
-        String duration_illness = jo.get("duration_illness").getAsString();
-        String change_form = jo.get("change_form").getAsString();
-        String change_size = jo.get("change_size").getAsString();
-        String change_color = jo.get("change_color").getAsString();
-        String change_sensitivity = jo.get("change_sensitivity").getAsString();
-        String crusts_and_bleeding = jo.get("crusts_and_bleeding").getAsString();
-        String tumor_pain = jo.get("tumor_pain").getAsString();
-        String satellite = jo.get("satellite").getAsString();
-        String inflammations = jo.get("inflammations").getAsString();
-        String uniform_coloring = jo.get("uniform_coloring").getAsString();
-        String skin_type = jo.get("skin_type").getAsString();
+        int origin_illness = jo.get("origin_illness").getAsInt();
+        int duration_illness = jo.get("duration_illness").getAsInt();
+        int change_form = jo.get("change_form").getAsInt();
+        int change_size = jo.get("change_size").getAsInt();
+        int change_color = jo.get("change_color").getAsInt();
+        int change_sensitivity = jo.get("change_sensitivity").getAsInt();
+        int crusts_and_bleeding = jo.get("crusts_and_bleeding").getAsInt();
+        int tumor_pain = jo.get("tumor_pain").getAsInt();
+        int satellite = jo.get("satellite").getAsInt();
+        int inflammations = jo.get("inflammations").getAsInt();
+        int uniform_coloring = jo.get("uniform_coloring").getAsInt();
+        int skin_type = jo.get("skin_type").getAsInt();
         int tumor_diameter = jo.get("tumor_diameter").getAsInt();
-        String tumor_form = jo.get("tumor_form").getAsString();
-        String tumor_surface = jo.get("tumor_surface").getAsString();
-        String tumor_outline = jo.get("tumor_outline").getAsString();
-        String tumor_localization = jo.get("tumor_localization").getAsString();
-        String device = jo.get("device").getAsString();
+        int tumor_form = jo.get("tumor_form").getAsInt();
+        int tumor_surface = jo.get("tumor_surface").getAsInt();
+        int tumor_outline = jo.get("tumor_outline").getAsInt();
+        int tumor_localization = jo.get("tumor_localization").getAsInt();
+        int device = jo.get("device").getAsInt();
         String date = jo.get("date").getAsString();
-        String comments = jo.get("comments").getAsString();
+        String comments = setToCyrillic(jo.get("comments").getAsString());
         int id = jo.get("id").getAsInt();
         String directory = jo.get("dir").getAsString();
 
         Foto foto = new Foto();
-        foto.setOriginIllness(origin_illness);
-        foto.setDurationIllness(duration_illness);
+        foto.setOriginIllness(OriginIllness.setOriginIllness(origin_illness));
+        foto.setDurationIllness(DurationIllness.setDurationIllness(duration_illness));
         foto.setChangeForm(change_form);
         foto.setChangeSize(change_size);
         foto.setChangeColor(change_color);
@@ -61,18 +71,56 @@ public class CreateFotoFormServlet extends ManagerServlet {
         foto.setUniformColoring(uniform_coloring);
         foto.setSkinType(skin_type);
         foto.setTumor_diameter(tumor_diameter);
-        foto.setTumorForm(tumor_form);
-        foto.setTumorSurface(tumor_surface);
-        foto.setTumorOutline(tumor_outline);
-        foto.setTumorLocalization(tumor_localization);
-        foto.setDevice(device);
+        foto.setTumorForm(TumorForm.setTumorForm(tumor_form));
+        foto.setTumorSurface(TumorSurface.setTumorSurface(tumor_surface));
+        foto.setTumorOutline(TumorOutline.setTumorOutline(tumor_outline));
+        foto.setTumorLocalization(TumorLocalization.setTumorLocalization(tumor_localization));
+        foto.setDevice(Device.setDevice(device));
         foto.setDate(Date.valueOf(date));
         foto.setComments(comments);
         foto.setDirectory(directory);
         foto.setId(id);
         foto.setUser((User) req.getSession().getAttribute("user"));
         FotoDAO.INSTANCE.updateEntity(foto);
-        
+
+        String fileName = "";
+        boolean isDotFind = false;
+        for (int i = foto.getDirectory().length() - 1; i >= 0; i--) {
+            if (isDotFind) {
+                fileName = foto.getDirectory().charAt(i) + fileName;
+            } else {
+                if (foto.getDirectory().charAt(i) == '.') {
+                    isDotFind = true;
+                }
+            }
+        }
+        String path = ConfigConstants.IMAGE_FOLDER + fileName + ".txt";
+        FileOutputStream fos = new FileOutputStream(path);
+//                      + " "        +"-0.02";
+        String params = foto.getChangeSize() + "\n" + "-0.02";
+        byte[] b = params.getBytes();
+        fos.write(b);
+        fos.close();
+
         forward("/body.jsp", req, resp);
+    }
+    
+    private String setToCyrillic (String str) {
+        String newStr = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (((int) str.charAt(i) >= 65) && ((int) str.charAt(i) <= 90) || ((int) str.charAt(i) >= 97) && ((int) str.charAt(i) <= 122) || ((int) str.charAt(i) >= 49) && ((int) str.charAt(i) <= 58) || (str.charAt(i) == ' ')) {
+                newStr = newStr + str.charAt(i);
+            } else {
+                if ((int) str.charAt(i) == 208) {
+                    int ch = (int) str.charAt(i + 1) + 896;
+                    newStr = newStr + (char) ch;
+                }
+                if ((int) str.charAt(i) == 209) {
+                    int ch = (int) str.charAt(i + 1) + 960;
+                    newStr = newStr + (char) ch;
+                }
+            }
+        }
+        return newStr;
     }
 }

@@ -6,18 +6,24 @@ package by.bntu.dmitry.enums;
  */
 public enum OriginIllness {
 
-    INNATE(1),
-    OBTAINED(2),
-    DO_NOT_KNOW(3);
+    INNATE(1, "врожденное"),
+    OBTAINED(2, "приобретенное"),
+    DO_NOT_KNOW(0, "нет данных");
 
     private int id;
+    private String name;
 
-    private OriginIllness(int id) {
+    private OriginIllness(int id, String name) {
         this.id = id;
+        this.name = name;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public static OriginIllness setOriginIllness(int id) {
@@ -26,6 +32,8 @@ public enum OriginIllness {
                 return INNATE;
             case 2:
                 return OBTAINED;
+            case 0:
+                return DO_NOT_KNOW;
             default:
                 return null;
         }

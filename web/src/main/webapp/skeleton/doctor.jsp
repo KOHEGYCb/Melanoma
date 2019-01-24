@@ -19,29 +19,29 @@
 
 <div class="menu">
     <ul>
-        <li><a href="#profile">Profile</a></li>
-        <li><a href="#create">Create user</a></li>
-        <li><a href="#tables">Check tables</a></li>
+        <li><a href="#profile">Профиль</a></li>
+        <li><a href="#create">Создать пациента</a></li>
+        <li><a href="#tables">Просмотр таблиц</a></li>
     </ul>
 </div>
 <div class="page" id="tables">
     <input type="radio" name="inset" value="" id="tab_my_pacient" checked>
-    <label for="tab_my_pacient">My pacients</label>
+    <label for="tab_my_pacient">Мои пациенты</label>
     <input type="radio" name="inset" value="" id="tab_free_pacient">
-    <label for="tab_free_pacient">Free pacients</label>
+    <label for="tab_free_pacient">Свободные пациенты</label>
     <input type="radio" name="inset" value="" id="tab_all_pacient">
-    <label for="tab_all_pacient">All pacients</label>
+    <label for="tab_all_pacient">Все пациенты</label>
     <input type="radio" name="inset" value="" id="tab_foto">
-    <label for="tab_foto">Fotos</label>
+    <label for="tab_foto">Фотографии</label>
 
     <div id="my_pacient">
         <table>
             <tr>
                 <td>№</td>
-                <td>Full name</td>
-                <td>Age</td>
-                <td>Gender</td>
-                <td>Number of photos</td>
+                <td>ФИО</td>
+                <td>Дата рождения</td>
+                <td>Пол</td>
+                <td>Количество фотографий</td>
             </tr>
             <%                ArrayList<User> doctorsUsers = UserDAO.INSTANCE.getEntitiesByDoctor((User) session.getAttribute("user"));
                 for (int i = 0; i < doctorsUsers.size(); i++) {
@@ -62,10 +62,10 @@
         <table>
             <tr>
                 <td>№</td>
-                <td>Full name</td>
-                <td>Age</td>
-                <td>Gender</td>
-                <td>Number of photos</td>
+                <td>ФИО</td>
+                <td>Дата рождения</td>
+                <td>Пол</td>
+                <td>Количество фотографий</td>
             </tr>
             <%
                 ArrayList<User> freeUsers = UserDAO.INSTANCE.getEntitiesWithoutDoctor();
@@ -89,11 +89,11 @@
         <table>
             <tr>
                 <td>№</td>
-                <td>Full name</td>
-                <td>Doctor</td>
-                <td>Age</td>
-                <td>Gender</td>
-                <td>Number of photos</td>
+                <td>ФИО</td>
+                <td>ФИО врача</td>
+                <td>Дата рождения</td>
+                <td>Пол</td>
+                <td>Количество фотографий</td>
             </tr>
             <%
                 ArrayList<User> allPacients = UserDAO.INSTANCE.getAllPacients();
@@ -124,13 +124,13 @@
                     if (result == null) {
             %>
             <div class="element">
-                <img id="image_<%= all_foto.get(i).getId() %>" src="http://192.168.221.79:8084/web/images/dir/<%= all_foto.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= all_foto.get(i).getId()%>)">
+                <img id="image_<%= all_foto.get(i).getId() %>" src="http://80.94.168.91:8080/melanoma/images/dir/<%= all_foto.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= all_foto.get(i).getId()%>)">
             </div>
             <%
                     } else {
             %>
             <div class="element">
-                <img id="image_<%= all_foto.get(i).getId() %>" class="done" src="http://192.168.221.79:8084/web/images/dir/<%= all_foto.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= all_foto.get(i).getId()%>)">
+                <img id="image_<%= all_foto.get(i).getId() %>" class="done" src="http://80.94.168.91:8080/melanoma/images/dir/<%= all_foto.get(i).getDirectory()%>" onclick="clickOnElement('loadFoto', <%= all_foto.get(i).getId()%>)">
             </div>
             <%
                     }
@@ -138,7 +138,7 @@
             %>
         </div>
     </div>
-</div>
+    </div>
 <div class="page" id="create">
     <%@include file="CreateFakeUserForm.jsp" %>
 </div>

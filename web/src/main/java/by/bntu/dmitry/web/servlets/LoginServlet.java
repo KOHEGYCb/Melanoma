@@ -1,11 +1,13 @@
 package by.bntu.dmitry.web.servlets;
 
+
 import by.bntu.dmitry.constants.ConfigConstants;
 import by.bntu.dmitry.constants.NamePatterns;
 import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.Role;
 import by.bntu.dmitry.services.logsServices.LogServices;
+import by.bntu.dmitry.web.servlets.ManagerServlet;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.File;
@@ -14,6 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author dmitry
  */
-@WebServlet("/login")
+@WebServlet("/login/*")
 public class LoginServlet extends ManagerServlet {
 
     @Override
@@ -94,11 +97,13 @@ public class LoginServlet extends ManagerServlet {
 
                             File dir = new File(ConfigConstants.IMAGE_FOLDER + newUser.getId());
                             dir.mkdirs();
-
-                            LogServices.INSTANCE.SignInLog(newUser);
+                            File dir_out = new File(ConfigConstants.IMAGE_OUTPUT_FOLDER + newUser.getId());
+                            dir_out.mkdirs();
+                            
+//                            LogServices.INSTANCE.SignInLog(newUser);
                             HttpSession session = req.getSession();
                             session.setAttribute("user", newUser);
-                            LogServices.INSTANCE.LogInLog(newUser);
+//                            LogServices.INSTANCE.LogInLog(newUser);
                         } else {
                             _a = "Login is used";
                         }
