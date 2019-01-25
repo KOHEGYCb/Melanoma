@@ -107,7 +107,7 @@ function clickOnElement(action, id) {
                     break;
 
                 case 2:
-                    $("<li class='foto'>").html("<img src='http://192.168.221.66:8080/web/images/dir/" + req['directory'] + "'>").appendTo($ul);
+                    $("<li class='foto'>").html("<img src='images/dir/" + req['directory'] + "'>").appendTo($ul);
                     break;
                 default:
 
@@ -124,7 +124,7 @@ function clickOnElement(action, id) {
                         break;
 
                     case 2:
-                        $("<li class='foto'>").html("<img src='http://192.168.221.66:8080/web/images_out/dir/" + req['a_foto'] + "'>").appendTo($ul);
+                        $("<li class='a_foto' id='a_foto'>").html("<img src='images_out/dir/" + req['a_foto'] + "'>").appendTo($ul);
                         break;
                     default:
 
@@ -132,40 +132,117 @@ function clickOnElement(action, id) {
                 }
 
             }
-            $("<li>").html("<b>" + "ID" + "</b>: " + req['id']).appendTo($ul);
-            $("<li>").html("<b>" + "Происхождение болезни" + "</b>: " + req['origin_illness']).appendTo($ul);
-            $("<li>").html("<b>" + "Длительность болезни" + "</b>: " + req['duration_illness']).appendTo($ul);
-            $("<li>").html("<b>" + "Изменение формы" + "</b>: " + req['change_form']).appendTo($ul);
-            $("<li>").html("<b>" + "Изменение размера" + "</b>: " + req['change_size']).appendTo($ul);
-            $("<li>").html("<b>" + "Изменение цвета" + "</b>: " + req['change_color']).appendTo($ul);
-            $("<li>").html("<b>" + "Изменение чувствительности" + "</b>: " + req['change_sensitivity']).appendTo($ul);
-            $("<li>").html("<b>" + "Наличие корок и кровоточивости" + "</b>: " + req['crusts_and_bleeding']).appendTo($ul);
-            $("<li>").html("<b>" + "Болезненность опухоли" + "</b>: " + req['tumor_pain']).appendTo($ul);
-            $("<li>").html("<b>" + "Сателлиты" + "</b>: " + req['satellite']).appendTo($ul);
-            $("<li>").html("<b>" + "Наличие воспаления" + "</b>: " + req['inflammations']).appendTo($ul);
-            $("<li>").html("<b>" + "Равномерная окраска" + "</b>: " + req['uniform_coloring']).appendTo($ul);
-            $("<li>").html("<b>" + "Тип кожи" + "</b>: " + req['skin_type']).appendTo($ul);
-            $("<li>").html("<b>" + "Диаметр опухоли" + "</b>: " + req['tumor_diameter'] + " мм").appendTo($ul);
-            $("<li>").html("<b>" + "Форма опухоли" + "</b>: " + req['tumor_form']).appendTo($ul);
-            $("<li>").html("<b>" + "Поверхность опухоли" + "</b>: " + req['tumor_surface']).appendTo($ul);
-            $("<li>").html("<b>" + "Очертания опухоли" + "</b>: " + req['tumor_outline']).appendTo($ul);
-            $("<li>").html("<b>" + "Локализация опухоли" + "</b>: " + req['tumor_localization']).appendTo($ul);
-            $("<li>").html("<b>" + "Устройство" + "</b>: " + req['device']).appendTo($ul);
-            $("<li>").html("<b>" + "Дата создания" + "</b>: " + req['date']).appendTo($ul);
-            $("<li>").html("<b>" + "Комментарий" + "</b>: " + req['comments']).appendTo($ul);
+//            $("<li>").html("<b>" + "ID" + "</b>: " + req['id']).appendTo($ul);
+//            $("<li>").html("<b>" + "Происхождение болезни" + "</b>: " + req['origin_illness']).appendTo($ul);
+            if (req['ABCDE'] !== undefined) {
+                var $show_btn = $("<div class='show_btn' id='show_btn' onclick='showAFoto()'>").html("Показать").appendTo($ul);
+            }
+            var $block;
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Происхождение болезни" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['origin_illness']).appendTo($block);
+//            $("<li>").html("<b>" + "Длительность болезни" + "</b>: " + req['duration_illness']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Длительность болезни" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['duration_illness']).appendTo($block);
+//            $("<li>").html("<b>" + "Изменение формы" + "</b>: " + req['change_form']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Изменение формы" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['change_form']).appendTo($block);
+//            $("<li>").html("<b>" + "Изменение размера" + "</b>: " + req['change_size']).appendTo($block);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Изменение размера" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['change_size']).appendTo($block);
+//            $("<li>").html("<b>" + "Изменение цвета" + "</b>: " + req['change_color']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Изменение цвета" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['change_color']).appendTo($block);
+//            $("<li>").html("<b>" + "Изменение чувствительности" + "</b>: " + req['change_sensitivity']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Изменение чувствительности" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['change_sensitivity']).appendTo($block);
+//            $("<li>").html("<b>" + "Наличие корок и кровоточивости" + "</b>: " + req['crusts_and_bleeding']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Наличие корок и кровоточивости" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['crusts_and_bleeding']).appendTo($block);
+//            $("<li>").html("<b>" + "Болезненность опухоли" + "</b>: " + req['tumor_pain']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Болезненность опухоли" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['tumor_pain']).appendTo($block);
+//            $("<li>").html("<b>" + "Сателлиты" + "</b>: " + req['satellite']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Сателлиты" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['satellite']).appendTo($block);
+//            $("<li>").html("<b>" + "Наличие воспаления" + "</b>: " + req['inflammations']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Наличие воспаления" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['inflammations']).appendTo($block);
+//            $("<li>").html("<b>" + "Равномерная окраска" + "</b>: " + req['uniform_coloring']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Равномерная окраска" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['uniform_coloring']).appendTo($block);
+//            $("<li>").html("<b>" + "Тип кожи" + "</b>: " + req['skin_type']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Тип кожи" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['skin_type']).appendTo($block);
+//            $("<li>").html("<b>" + "Диаметр опухоли" + "</b>: " + req['tumor_diameter'] + " мм").appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Диаметр опухоли" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['tumor_diameter']).appendTo($block);
+//            $("<li>").html("<b>" + "Форма опухоли" + "</b>: " + req['tumor_form']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Форма опухоли" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['tumor_form']).appendTo($block);
+//            $("<li>").html("<b>" + "Поверхность опухоли" + "</b>: " + req['tumor_surface']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Поверхность опухоли" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['tumor_surface']).appendTo($block);
+//            $("<li>").html("<b>" + "Очертания опухоли" + "</b>: " + req['tumor_outline']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Очертания опухоли" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['tumor_outline']).appendTo($block);
+//            $("<li>").html("<b>" + "Локализация опухоли" + "</b>: " + req['tumor_localization']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Локализация опухоли" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['tumor_localization']).appendTo($block);
+//            $("<li>").html("<b>" + "Устройство" + "</b>: " + req['device']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Устройство" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['device']).appendTo($block);
+//            $("<li>").html("<b>" + "Дата создания" + "</b>: " + req['date']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Дата создания" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['date']).appendTo($block);
+//            $("<li>").html("<b>" + "Комментарий" + "</b>: " + req['comments']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "Комментарий" + "</b>: ").appendTo($block);
+            $("<li class='answer'>").html(req['comments']).appendTo($block);
+//            $("<li>").html("<b>" + "RSA" + "</b>: " + req['rsa']).appendTo($ul);
+            $block = $("<div class='block_list'>").html("").appendTo($ul);
+            $("<li class='parameter'>").html("<b>" + "RSA" + "</b>: ").appendTo($block);
+            $("<li class='answer' id='rsa'>").html(req['rsa']).appendTo($block);
+//            $block = $("<div class='block_list'>").html("").appendTo($ul);
+//            $("<li class='parameter'>").html("<b>" + "RSA" + "</b>: ").appendTo($block);
+//            $("<li class='answer'>").html("<input type='text' name='rsa' pattern='([0]{1}){1}|((([0]{1}[.,]{1}){1}|([-]{1}[0]{1}[.,]{1}){1})(([0]{1}[0-9]{1}){1}|([1]{1}){1}){1}){1}' required/>").appendTo($block);
+//            console.log('ABCDE: ' + req['ABCDE']);
+            if (req['ABCDE'] !== undefined) {
 
+            
 
-//            $.each(req, function (index, item) {
-//                $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
-//            });
-            console.log('ABCDE: ' + req['ABCDE']);
-            if (req['ABCDE'] === undefined) {
-                var $button = $("<div class='button' onclick='sendForAnalysis(" + req['id'] + ")'>").appendTo($("#element"));
-                $button.text("Отправить на анализ");
-            } else {
-                $("<li>").html("<b>" + "ABCDE" + "</b>: " + req['ABCDE']).appendTo($ul);
-                $("<li>").html("<b>" + "Similarity" + "</b>: " + req['Similarity']).appendTo($ul);
-                $("<li>").html("<b>" + "Probability" + "</b>: " + req['Probability']).appendTo($ul);
+                var $rsa_btn = $("<div class='rsa_btn' id='rsa_btn' onclick='changeRsa()'>").html("Изменить").appendTo($ul);
+
+//                $("<li>").html("<b>" + "ABCDE" + "</b>: " + req['ABCDE']).appendTo($ul);
+                $block = $("<div class='block_list'>").html("").appendTo($ul);
+                $("<li class='parameter'>").html("<b>" + "ABCDE" + "</b>: ").appendTo($block);
+                $("<li class='answer'>").html(req['ABCDE']).appendTo($block);
+//                $("<li>").html("<b>" + "Similarity" + "</b>: " + req['Similarity']).appendTo($ul);
+                $block = $("<div class='block_list'>").html("").appendTo($ul);
+                $("<li class='parameter'>").html("<b>" + "Similarity" + "</b>: ").appendTo($block);
+                $("<li class='answer'>").html(req['Similarity']).appendTo($block);
+//                $("<li>").html("<b>" + "Probability" + "</b>: " + req['Probability']).appendTo($ul);
+                $block = $("<div class='block_list'>").html("").appendTo($ul);
+                $("<li class='parameter'>").html("<b>" + "Probability" + "</b>: ").appendTo($block);
+                $("<li class='answer'>").html(req['Probability']).appendTo($block);
             }
 
             window.location.href = "#curent_foto";

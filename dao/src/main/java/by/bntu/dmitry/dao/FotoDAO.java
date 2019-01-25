@@ -115,48 +115,6 @@ public enum FotoDAO implements AbstractDAO<Foto> {
         return amount;
     }
 
-//    @Override
-//    public void createEntity(Foto foto) {
-//        Connection connection = null;
-//        PreparedStatement statement = null;
-//        try {
-//            connection = ConnectionPool.INSTANCE.getConnection();
-//            statement = connection.prepareStatement(SQLRequests.CREATE_FOTO);
-////            statement.setInt(1, foto.getUser().getId());
-//            statement.setInt(2, foto.getId_tumor());
-//            statement.setInt(3, foto.getOriginIllness().getId());
-//            statement.setInt(4, foto.getDurationIllness().getId());
-//            statement.setInt(5, foto.getChangeForm());
-//            statement.setInt(6, foto.getChangeSize());
-//            statement.setInt(7, foto.getChangeColor());
-//            statement.setInt(8, foto.getChangeSensivity());
-//            statement.setInt(9, foto.getCrustsAndBleeding());
-//            statement.setInt(10, foto.getTumorPain());
-//            statement.setInt(11, foto.getSatellite());
-//            statement.setInt(12, foto.getInflammations());
-//            statement.setInt(13, foto.getUniformColoring());
-//            statement.setInt(14, foto.getSkinType());
-//            statement.setInt(15, foto.getTumor_diameter());
-//            statement.setInt(16, foto.getTumorForm().getId());
-//            statement.setInt(17, foto.getTumorSurface().getId());
-//            statement.setInt(18, foto.getTumorOutline().getId());
-//            statement.setInt(19, foto.getTumorLocalization().getId());
-//            statement.setInt(20, foto.getDevice().getId());
-//            statement.setDate(21, foto.getDate());
-//            statement.setString(22, foto.getComments());
-//            statement.setInt(23, foto.getDiagnosisPreliminary().getId());
-//            statement.setInt(24, foto.getDiagnosisFinal().getId());
-//            statement.setInt(25, foto.getResultComputerAnalysisProbability());
-//            statement.setInt(26, foto.getResultComputerAnalysisSimilar());
-//            statement.setInt(27, foto.getPlacedInDatabase());
-//            statement.setString(28, foto.getDirectory());
-//            statement.executeUpdate();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(FotoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            releaseConnection(connection, statement);
-//        }
-//    }
     @Override
     public void createEntity(Foto foto) {
         Connection connection = null;
@@ -164,33 +122,6 @@ public enum FotoDAO implements AbstractDAO<Foto> {
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.CREATE_FOTO_);
-//            statement.setInt(1, foto.getUser().getId());
-//            statement.setInt(2, foto.getId_tumor());
-//            statement.setInt(3, foto.getOriginIllness().getId());
-//            statement.setInt(4, foto.getDurationIllness().getId());
-//            statement.setInt(5, foto.getChangeForm());
-//            statement.setInt(6, foto.getChangeSize());
-//            statement.setInt(7, foto.getChangeColor());
-//            statement.setInt(8, foto.getChangeSensivity());
-//            statement.setInt(9, foto.getCrustsAndBleeding());
-//            statement.setInt(10, foto.getTumorPain());
-//            statement.setInt(11, foto.getSatellite());
-//            statement.setInt(12, foto.getInflammations());
-//            statement.setInt(13, foto.getUniformColoring());
-//            statement.setInt(14, foto.getSkinType());
-//            statement.setInt(15, foto.getTumor_diameter());
-//            statement.setInt(16, foto.getTumorForm().getId());
-//            statement.setInt(17, foto.getTumorSurface().getId());
-//            statement.setInt(18, foto.getTumorOutline().getId());
-//            statement.setInt(19, foto.getTumorLocalization().getId());
-//            statement.setInt(20, foto.getDevice().getId());
-//            statement.setDate(21, foto.getDate());
-//            statement.setString(22, foto.getComments());
-//            statement.setInt(23, foto.getDiagnosisPreliminary().getId());
-//            statement.setInt(24, foto.getDiagnosisFinal().getId());
-//            statement.setInt(25, foto.getResultComputerAnalysisProbability());
-//            statement.setInt(26, foto.getResultComputerAnalysisSimilar());
-//            statement.setInt(27, foto.getPlacedInDatabase());
             statement.setInt(1, foto.getUser().getId());            
             statement.setString(2, foto.getDirectory());
             statement.executeUpdate();
@@ -236,7 +167,8 @@ public enum FotoDAO implements AbstractDAO<Foto> {
 //            statement.setInt(26, foto.getResultComputerAnalysisSimilar());
 //            statement.setInt(27, foto.getPlacedInDatabase());
             statement.setString(22, foto.getDirectory());
-            statement.setInt(23, foto.getId());
+            statement.setDouble(23, foto.getRsa());
+            statement.setInt(24, foto.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(FotoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -323,7 +255,8 @@ public enum FotoDAO implements AbstractDAO<Foto> {
         foto.setResultComputerAnalysisSimilar(resultSet.getInt(SQLColumns.FOTO_RESULT_COMPUTER_ANALYSIS_SIMILAR));
         foto.setPlacedInDatabase(resultSet.getInt(SQLColumns.FOTO_PLACED_IN_DATABASE));
         foto.setDirectory(resultSet.getString(SQLColumns.FOTO_DIRECTORY));
-
+        foto.setRsa(resultSet.getDouble(SQLColumns.FOTO_RSA));
+        
         return foto;
     }
 

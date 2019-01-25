@@ -59,7 +59,7 @@ public class LoadFotoInfoServlet extends HttpServlet {
         map.put("date", foto.getDate() + "");
         map.put("comments", foto.getComments() + "");
         map.put("directory", foto.getDirectory() + "");
-
+        map.put("rsa", foto.getRsa() + "");
         if (result != null) {
             map.put("ABCDE", result.getAbcde().getDesc());
             map.put("Similarity", result.getSimilarity().getDesc());

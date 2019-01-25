@@ -120,7 +120,8 @@ public class SQLRequests {
             //            + "result_computer_analysis_probability = ?,"
             //            + "result_computer_analysis_similar = ?,"
             //            + "placed_in_database = ?,"
-            + "directory = ? "
+            + "directory = ? ,"
+            + "rsa = ?"
             + "WHERE id = ?;";
     public static final String DELETE_FOTO = "";
 

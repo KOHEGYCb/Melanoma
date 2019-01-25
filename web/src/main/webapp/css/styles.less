@@ -62,14 +62,14 @@ body, html{
             transition: .3s;
         }
         input:focus{
-            background: @light-gray;
+            background: @light-gray-text;
             color: @dark-green;     
         }
-        input[type="submit"]:hover{
+        input[type="button"]:hover{
             background: @dark-green-hover;
             cursor: pointer;
         }
-        input[type="submit"]:active{
+        input[type="button"]:active{
             background: @light-gray;
             color: @dark-green;     
         }
@@ -967,15 +967,99 @@ div.page#pacient{
                 border: 1px solid @light-green;
                 margin: 3px;
             }
-            li.foto{
+            li.foto, li.a_foto{
                 padding: 0;
                 background: @light-gray-text
             }
-            li.foto{
+            li.foto, li.a_foto{
                 img{
                     width: 300px;
                     height: 300px;
                 }
+            }
+            li.a_foto{
+                display: none;
+                position: relative;
+                margin-top: -308px;
+            }
+            li.a_foto{
+                img{
+
+                }
+            }
+
+            div.block_list{
+                border: 1px solid @light-green;
+                width: 620px;
+                margin: 5px 0 0 0;
+                transition: .3s;
+            }
+            div.block_list:hover{
+                background: @dark-green-hover;
+            }
+            li.parameter{
+                border: none
+            }
+            li.answer{
+                left: 310px;
+                margin-top: -40px;
+                position: relative;
+                border: none;
+                border-left: 1px solid @light-green;
+            }
+
+            li{
+                input{
+                    border: 1px solid @light-green;
+                    border-radius: 5px;
+                    display: block;
+                    width: 295px;
+                    margin: 0 6px 6px 0px;
+                    padding: 0;
+                    background: @dark-green;
+                    height: 35px;
+                    color: @light-gray-text;
+                    font-size: 20px;
+                    transition: .3s;
+                    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+                }
+                input:focus{
+                    background: @light-gray;
+                    color: @dark-green;
+                }
+            }
+
+            div.show_btn, 
+            div.rsa_btn{
+                border-radius: 5px;
+                display: block;
+                width: 200px;
+                margin: 0 6px 6px 15px;
+                padding: 5px 0 0;
+                background: @green;
+                min-height: 30px;
+                color: @light-gray-text;
+                font-size: 20px;
+                text-align: center;
+                transition: .3s;
+                position: relative;
+                left: 300px;
+                margin-top: -40px;
+                cursor: pointer;
+            }
+            div.show_btn:hover,
+                div.rsa_btn:hover{
+                background: @green-hover;
+            }
+
+            div.show_btn:active,
+                div.rsa_btn:active{
+                background: #cbcbc9;
+                color: @dark-gray;     
+            }
+            div.rsa_btn{
+                left: 625px;
+                margin: -34px 3px 3px 3px;
             }
         }
     }

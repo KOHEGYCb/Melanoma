@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 public class ParseResultsServices {
 
     public static Result getResult(Foto foto) throws IOException {
-        System.out.println("\n\nStart Parse File");
+//        System.out.println("\n\nStart Parse File");
         Result result = null;
 
         String fileName = "";
@@ -66,6 +66,8 @@ public class ParseResultsServices {
                             map.put(param, "");
                             key = param;
                             param = "";
+                            break;
+                        case 13:
                             break;
                         default:
                             param = param + (char) ch;

@@ -1,4 +1,4 @@
-package charsets;
+package by.bntu.dmitry.services.charsets;
 
 /**
  *

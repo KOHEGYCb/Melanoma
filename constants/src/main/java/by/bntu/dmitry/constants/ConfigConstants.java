@@ -39,7 +39,7 @@ public class ConfigConstants {
                 DATABASE_PASSWORD = "154789";
 
                 IMAGE_FOLDER = "C:/Users/user/Documents/NetBeansProjects/Melanoma/web/src/main/webapp/images/dir/";
-                IMAGE_OUTPUT_FOLDER = "C:/Users/user/Documents/NetBeansProjects/Melanoma/web/src/main/webapp/images_out";
+                IMAGE_OUTPUT_FOLDER = "C:/Users/user/Documents/NetBeansProjects/Melanoma/web/src/main/webapp/images_out/dir/";
                 SERIAL_FOLDER = "C:/Users/user/Documents/NetBeansProjects/Melanoma/serial";
                 break;
         }

@@ -63,8 +63,30 @@ function toggleHelp(id) {
 //        document.getElementById(elName).style.display = "block";
         document.getElementById(elName).style.opacity = "1";
         document.getElementById(elName).style.left = "-4%";
-    } else{
+    } else {
         document.getElementById(elName).style.opacity = "0";
         document.getElementById(elName).style.left = "-1000px";
     }
+}
+
+function showAFoto() {
+    var a_foto = document.getElementById('a_foto');
+    var btn = document.getElementById('show_btn');
+    if (window.getComputedStyle(a_foto).getPropertyValue('display') === 'block') {
+        a_foto.style.display = 'none';
+        btn.textContent = "Показать";
+    } else {
+        a_foto.style.display = 'block';
+        btn.textContent = "Оригинал";
+    }
+}
+function changeRsa() {
+    var rsa_btn = document.getElementById('rsa_btn');
+    if (rsa_btn.childNodes[0].wholeText === "Изменить") {
+        var elem = document.getElementById('rsa');
+        var old_rsa = elem.childNodes[0].wholeText;
+        rsa_btn.textContent = "Сохранить";
+        elem.innerHTML = "<input type='text' name='rsa' value='" + old_rsa + "' pattern='([0]{1}){1}|((([0]{1}[.,]{1}){1}|([-]{1}[0]{1}[.,]{1}){1})(([0]{1}[0-9]{1}){1}|([1]{1}){1}){1}){1}' required/>";
+    }
+    
 }
