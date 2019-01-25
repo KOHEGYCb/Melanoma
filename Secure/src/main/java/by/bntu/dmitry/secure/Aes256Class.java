@@ -18,7 +18,7 @@ import javax.crypto.SecretKey;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 public class Aes256Class implements Serializable{
 

@@ -10,7 +10,7 @@ import java.sql.Date;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 public enum UserServices {
 
@@ -28,8 +28,8 @@ public enum UserServices {
     /*    to do    */
     public static int getUserAge(User user) {
         int age = 0;
-        UserForm userForm = UserFormDAO.INSTANCE.getEntityByUser(user);
-        Date date = new Date(System.currentTimeMillis());
+//        UserForm userForm = UserFormDAO.INSTANCE.getEntityByUser(user);
+//        Date date = new Date(System.currentTimeMillis());
 
         return age;
     }

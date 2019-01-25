@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 @WebServlet("/takePatientServlet")
 public class TakePatientServlet extends ManagerServlet {

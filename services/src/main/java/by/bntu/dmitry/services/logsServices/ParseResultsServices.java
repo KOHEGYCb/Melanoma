@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 public class ParseResultsServices {
 

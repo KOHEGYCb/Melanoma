@@ -2,7 +2,7 @@ package charsets;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 public class CyrillicMethods {
 

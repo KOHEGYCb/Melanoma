@@ -5,7 +5,7 @@ import java.io.IOException;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 public class Test {
     public static void main(String[] args) throws IOException {

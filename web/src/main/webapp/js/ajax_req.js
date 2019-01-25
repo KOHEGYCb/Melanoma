@@ -1,3 +1,5 @@
+/* global computer_type */
+
 function logOut() {
     var data = {};
     $.ajax({
@@ -95,9 +97,40 @@ function clickOnElement(action, id) {
             document.getElementById('element').innerHTML = "";
 
             var $ul = $("<ul>").appendTo($("#element"));
-            $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + req['directory'] + "'>").appendTo($ul);
-            if (!(req['a_foto'] === undefined)){
-                $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images_out/dir/" + req['a_foto'] + "'>").appendTo($ul);
+
+            switch (computer_type) {
+                case 0:
+                    $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + req['directory'] + "'>").appendTo($ul);
+                    break;
+
+                case 1:
+                    break;
+
+                case 2:
+                    $("<li class='foto'>").html("<img src='http://192.168.221.66:8080/web/images/dir/" + req['directory'] + "'>").appendTo($ul);
+                    break;
+                default:
+
+                    break;
+            }
+
+            if (!(req['a_foto'] === undefined)) {
+                switch (computer_type) {
+                    case 0:
+                        $("<li class='foto'>").html("<img src='http://80.94.168.91:8080/melanoma/images_out/dir/" + req['a_foto'] + "'>").appendTo($ul);
+                        break;
+
+                    case 1:
+                        break;
+
+                    case 2:
+                        $("<li class='foto'>").html("<img src='http://192.168.221.66:8080/web/images_out/dir/" + req['a_foto'] + "'>").appendTo($ul);
+                        break;
+                    default:
+
+                        break;
+                }
+
             }
             $("<li>").html("<b>" + "ID" + "</b>: " + req['id']).appendTo($ul);
             $("<li>").html("<b>" + "Происхождение болезни" + "</b>: " + req['origin_illness']).appendTo($ul);
@@ -121,7 +154,7 @@ function clickOnElement(action, id) {
             $("<li>").html("<b>" + "Дата создания" + "</b>: " + req['date']).appendTo($ul);
             $("<li>").html("<b>" + "Комментарий" + "</b>: " + req['comments']).appendTo($ul);
 
-            
+
 //            $.each(req, function (index, item) {
 //                $("<li>").html("<b>" + index + "</b>: " + item).appendTo($ul);
 //            });
@@ -129,10 +162,10 @@ function clickOnElement(action, id) {
             if (req['ABCDE'] === undefined) {
                 var $button = $("<div class='button' onclick='sendForAnalysis(" + req['id'] + ")'>").appendTo($("#element"));
                 $button.text("Отправить на анализ");
-            }else{
+            } else {
                 $("<li>").html("<b>" + "ABCDE" + "</b>: " + req['ABCDE']).appendTo($ul);
-            $("<li>").html("<b>" + "Similarity" + "</b>: " + req['Similarity']).appendTo($ul);
-            $("<li>").html("<b>" + "Probability" + "</b>: " + req['Probability']).appendTo($ul);
+                $("<li>").html("<b>" + "Similarity" + "</b>: " + req['Similarity']).appendTo($ul);
+                $("<li>").html("<b>" + "Probability" + "</b>: " + req['Probability']).appendTo($ul);
             }
 
             window.location.href = "#curent_foto";
@@ -171,7 +204,23 @@ function clickOnElement(action, id) {
 //                    $("<div class='element'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + item + "'>").appendTo($gallary);
 //                    console.log("ITEM: " + index.substr(5));
 //                    console.log(req['fotoId_'+index.substr(5)]);
-                    $("<div class='element'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + item + "' onclick='clickOnElement(\"loadFoto\","+ req['fotoId_'+index.substr(5)] +")'>").appendTo($gallary);
+
+
+                    switch (computer_type) {
+                        case 0:
+                            $("<div class='element'>").html("<img src='http://80.94.168.91:8080/melanoma/images/dir/" + item + "' onclick='clickOnElement(\"loadFoto\"," + req['fotoId_' + index.substr(5)] + ")'>").appendTo($gallary);
+                            break;
+
+                        case 1:
+                            break;
+
+                        case 2:
+                            $("<div class='element'>").html("<img src='http://192.168.221.66:8080/web/images/dir/" + item + "' onclick='clickOnElement(\"loadFoto\"," + req['fotoId_' + index.substr(5)] + ")'>").appendTo($gallary);
+                            break;
+                        default:
+
+                            break;
+                    }
                 }
             });
             var elemSize = 236;
@@ -292,6 +341,7 @@ function add_foto() {
                     device: document.fotoForm.device.options.selectedIndex,
                     date: document.fotoForm.date.value,
                     comments: document.fotoForm.comments.value,
+                    rsa: document.fotoForm.rsa.value,
                     id: resp["id"],
                     dir: resp["dir"]
                 };

@@ -21,7 +21,7 @@ import javax.servlet.http.Part;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 @WebServlet("/fileFotoSave")
 @MultipartConfig

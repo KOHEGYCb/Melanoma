@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 @WebServlet("/createFoto")
 public class CreateFotoFormServlet extends ManagerServlet {
@@ -55,6 +55,9 @@ public class CreateFotoFormServlet extends ManagerServlet {
         String date = jo.get("date").getAsString();
         String comments = setToCyrillic(jo.get("comments").getAsString());
         int id = jo.get("id").getAsInt();
+        String rsa_text = jo.get("rsa").getAsString();
+        rsa_text = rsa_text.replace(",", ".");
+        double rsa = Double.parseDouble(rsa_text);
         String directory = jo.get("dir").getAsString();
 
         Foto foto = new Foto();

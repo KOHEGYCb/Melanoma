@@ -14,6 +14,7 @@ body, html{
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: 'Ubuntu', arial;
 }
 
 /*
@@ -613,10 +614,12 @@ body, html{
     h3{
         color: @light-gray-text;
         margin: 0;
-        padding: 0;
+        padding: 5px 0;
         display: block;
         width: 100%;
         text-align: center;
+        background-color: rgba(0,0,0,.3);
+        border-radius: 5px;
     }
 
     form{
@@ -649,8 +652,13 @@ body, html{
         div.block{
             float: left;
             width: 45%;
-            margin: 2.5%;
+            margin: 2% 0.5%;
+            padding: 0 2% 2% 2%;
             height: 70px;
+            position: relative;
+            background-color: rgba(0,0,0,.3);
+            border-radius: 5px;
+            /*border: 1px solid red;*/
         }
 
         div.block{
@@ -707,7 +715,7 @@ body, html{
                 /*border: 1px solid @red;*/
             }
 
-            div{
+            div.dropdown{
                 width: 100%;
                 background: @dark-green;
                 height: 35px;
@@ -716,7 +724,7 @@ body, html{
 
             }
 
-            div:before{
+            div.dropdown:before{
                 content: "";
                 display: block;
                 width: 1px;
@@ -727,7 +735,7 @@ body, html{
                 background: @dark-gray;
             }
 
-            div:after{
+            div.dropdown:after{
                 content: "";
                 display: block;
                 position: absolute;
@@ -739,7 +747,7 @@ body, html{
                 border-color: @light-gray transparent transparent transparent;
             }
 
-            div{
+            div.dropdown{
                 select{
                     background: transparent;
                     color: @light-gray-text;
@@ -761,6 +769,52 @@ body, html{
                 select:focus{
                     background: @light-gray;
                     color: @dark-green;
+                }
+            }
+
+            div.help{
+
+            }
+
+            div.help{
+                div.textHelp{
+                    border: 1px solid @light-gray;
+                    padding: 15px;
+                    border-radius: 5px;
+                    position: absolute;
+                    background: @light-gray-text;
+                    color: @dark-green;
+                    width: 100%;
+                    bottom: 85px;
+                    left: -4%;
+                    /*display: none;*/
+                    z-index: 5;
+                    opacity: 0;
+                    left: -1000px;
+                    transition-duration: .3s;
+                    transition-property: opacity;
+                }
+
+                div.imgHelp{
+                    /*border: 1px solid yellow;*/
+                    height: 25px;
+                    width: 25px;
+                    background: @dark-green url(question.png);
+                    background-size: 15px 15px;
+                    background-position: 5px, 5px;
+                    background-repeat: no-repeat;
+                    border-radius: 50%;
+                    position: absolute;
+                    margin-top: 5px;
+                    transition: .3s;
+                    right: 5%;
+                    bottom: 60px;
+                    border: 1px solid @light-gray;
+                    z-index: 6;
+                }
+                div.imgHelp:hover{
+                    background-color: @dark-green-hover;
+                    cursor: pointer;
                 }
             }
         }

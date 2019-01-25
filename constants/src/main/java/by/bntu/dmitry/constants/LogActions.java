@@ -2,7 +2,7 @@ package by.bntu.dmitry.constants;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 public class LogActions {
     public static final String SIGN_IN = "Sign in new user";

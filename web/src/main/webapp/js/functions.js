@@ -54,3 +54,17 @@ function setMaxDate() {
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("foto_date").setAttribute("max", today);
 }
+
+function toggleHelp(id) {
+    var elName = "help_" + id;
+    console.log(window.getComputedStyle(document.getElementById(elName)).getPropertyValue('left'));
+//transition-delay: .3s;
+    if (window.getComputedStyle(document.getElementById(elName)).getPropertyValue('left') === "-1000px") {
+//        document.getElementById(elName).style.display = "block";
+        document.getElementById(elName).style.opacity = "1";
+        document.getElementById(elName).style.left = "-4%";
+    } else{
+        document.getElementById(elName).style.opacity = "0";
+        document.getElementById(elName).style.left = "-1000px";
+    }
+}
