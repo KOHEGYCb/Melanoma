@@ -12,6 +12,7 @@
         <link href="http://allfont.ru/allfont.css?fonts=ubuntu" rel="stylesheet" type="text/css" />
         <link rel="stylesheet/less" type="text/css" href="css/styles.less" />
         <script src="js/less.js" type="text/javascript"></script>
+        <script src="js/variables.js" type="text/javascript"></script>
         <script src="js/constants.js" type="text/javascript"></script>
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <script src="http://malsup.github.com/jquery.form.js"></script> 

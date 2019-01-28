@@ -93,7 +93,8 @@ function clickOnElement(action, id) {
     switch (action) {
         case "loadFoto":
             var req = getElement("LoadFotoInfoServlet", data);
-
+            foto_id = req['id'];
+            foto_directory = req['directory'];
             document.getElementById('element').innerHTML = "";
 
             var $ul = $("<ul>").appendTo($("#element"));
@@ -232,17 +233,17 @@ function clickOnElement(action, id) {
                 var $rsa_btn = $("<div class='rsa_btn' id='rsa_btn' onclick='changeRsa()'>").html("Изменить").appendTo($ul);
 
 //                $("<li>").html("<b>" + "ABCDE" + "</b>: " + req['ABCDE']).appendTo($ul);
-                $block = $("<div class='block_list'>").html("").appendTo($ul);
-                $("<li class='parameter'>").html("<b>" + "ABCDE" + "</b>: ").appendTo($block);
-                $("<li class='answer'>").html(req['ABCDE']).appendTo($block);
+                $block = $("<div id='abcde__b' class='block_list'>").html("").appendTo($ul);
+                $("<li id='abcde_p' class='parameter'>").html("<b>" + "ABCDE" + "</b>: ").appendTo($block);
+                $("<li id='abcde_a' class='answer'>").html(req['ABCDE']).appendTo($block);
 //                $("<li>").html("<b>" + "Similarity" + "</b>: " + req['Similarity']).appendTo($ul);
-                $block = $("<div class='block_list'>").html("").appendTo($ul);
-                $("<li class='parameter'>").html("<b>" + "Similarity" + "</b>: ").appendTo($block);
-                $("<li class='answer'>").html(req['Similarity']).appendTo($block);
+                $block = $("<div id='similarity_b' class='block_list'>").html("").appendTo($ul);
+                $("<li id='similarity_p' class='parameter'>").html("<b>" + "Similarity" + "</b>: ").appendTo($block);
+                $("<li id='similarity_a' class='answer'>").html(req['Similarity']).appendTo($block);
 //                $("<li>").html("<b>" + "Probability" + "</b>: " + req['Probability']).appendTo($ul);
-                $block = $("<div class='block_list'>").html("").appendTo($ul);
-                $("<li class='parameter'>").html("<b>" + "Probability" + "</b>: ").appendTo($block);
-                $("<li class='answer'>").html(req['Probability']).appendTo($block);
+                $block = $("<div id='probability_b' class='block_list'>").html("").appendTo($ul);
+                $("<li id='probability_p' class='parameter'>").html("<b>" + "Probability" + "</b>: ").appendTo($block);
+                $("<li id='probability_a' class='answer'>").html(req['Probability']).appendTo($block);
             }
 
             window.location.href = "#curent_foto";
@@ -481,7 +482,9 @@ function checkResults() {
             async: true,
             data: JSON.stringify(),
             success: function (response) {
-                if (!response === null) {
+                console.log("check is success");
+//                if (!response === null) {
+//                    console.log("resp is not null");
                     $.each(response, function (index, item) {
                         var n = [];
                         var element = document.getElementById('image_' + item);
@@ -490,8 +493,8 @@ function checkResults() {
                             alert("photo was processed");
                         }
                     });
-                }
+//                }
             }
         });
-    }, 1000);
+    }, 10000);
 }

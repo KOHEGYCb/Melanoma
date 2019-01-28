@@ -123,6 +123,9 @@ public class SQLRequests {
             + "directory = ? ,"
             + "rsa = ?"
             + "WHERE id = ?;";
+    public static final String UPDATE_FOTO_RSA = "UPDATE melanoma.foto SET "
+            + "rsa = ?"
+            + "WHERE id = ?;";
     public static final String DELETE_FOTO = "";
 
     public static final String GET_AMOUNT_FOTO_BY_USER_ID = "SELECT count(*) as \"amount\" FROM melanoma.foto where user_id=?;";

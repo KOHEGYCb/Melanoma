@@ -282,4 +282,20 @@ public enum FotoDAO implements AbstractDAO<Foto> {
         return foto;
 
     }
+
+    public void updateRSA(int id, double rsa) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = ConnectionPool.INSTANCE.getConnection();
+            statement = connection.prepareStatement(SQLRequests.UPDATE_FOTO_RSA);
+            statement.setDouble(1, rsa);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FotoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            releaseConnection(connection, statement);
+        }
+    }
 }
