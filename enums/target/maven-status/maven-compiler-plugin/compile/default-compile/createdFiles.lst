@@ -1,0 +1,14 @@
+by/bntu/dmitry/enums/Sex.class
+by/bntu/dmitry/enums/DiagnosisFinal.class
+by/bntu/dmitry/enums/Device.class
+by/bntu/dmitry/enums/Role.class
+by/bntu/dmitry/enums/DiagnosisPreliminary.class
+by/bntu/dmitry/enums/Probability.class
+by/bntu/dmitry/enums/TumorLocalization.class
+by/bntu/dmitry/enums/TumorOutline.class
+by/bntu/dmitry/enums/TumorSurface.class
+by/bntu/dmitry/enums/DurationIllness.class
+by/bntu/dmitry/enums/Similarity.class
+by/bntu/dmitry/enums/TumorForm.class
+by/bntu/dmitry/enums/OriginIllness.class
+by/bntu/dmitry/enums/ABCDE.class

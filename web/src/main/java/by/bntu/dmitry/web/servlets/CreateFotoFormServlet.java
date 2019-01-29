@@ -87,7 +87,7 @@ public class CreateFotoFormServlet extends ManagerServlet {
         foto.setId(id);
         foto.setUser((User) req.getSession().getAttribute("user"));
         FotoDAO.INSTANCE.updateEntity(foto);
-
+        System.out.println("Sart param file generation");
         String fileName = "";
         boolean isDotFind = false;
         for (int i = foto.getDirectory().length() - 1; i >= 0; i--) {
@@ -100,12 +100,13 @@ public class CreateFotoFormServlet extends ManagerServlet {
             }
         }
         String path = ConfigConstants.IMAGE_FOLDER + fileName + ".txt";
+        System.out.println("Make path: " + path);
         FileOutputStream fos = new FileOutputStream(path);
         String params = foto.getChangeSize() + "\n" + rsa;
         byte[] b = params.getBytes();
         fos.write(b);
         fos.close();
-
+        
         forward("/body.jsp", req, resp);
     }
     

@@ -1,4 +1,26 @@
 #!/bin/bash
+cd /home/dmitry/Yandex.Disk/+Java/melanoma/Melanoma/
 mvn clean install
-scp -r web/target/web-1.0-SNAPSHOT/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma
 
+#scp -r web/target/web-1.0-SNAPSHOT/css/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma/css/*
+#scp -r web/target/web-1.0-SNAPSHOT/js/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma/js/*
+#scp -r web/target/web-1.0-SNAPSHOT/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma
+#scp -r web/target/web-1.0-SNAPSHOT/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma
+#scp -r web/target/web-1.0-SNAPSHOT/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma
+#scp -r web/target/web-1.0-SNAPSHOT/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma
+#scp -r web/target/web-1.0-SNAPSHOT/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma
+#scp -r web/target/web-1.0-SNAPSHOT/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma
+#scp -r web/target/web-1.0-SNAPSHOT/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma
+#scp -r web/target/web-1.0-SNAPSHOT/* udsmm@80.94.168.91:/opt/tomcat/apache-tomcat/webapps/melanoma
+
+#css
+#js
+#META-INF
+#skeleton
+#WEB-INF
+#body.jsp
+#footer.jsp
+#header.jsp
+#index.jsp
+#login.jsp
+#Tomcat.dpf

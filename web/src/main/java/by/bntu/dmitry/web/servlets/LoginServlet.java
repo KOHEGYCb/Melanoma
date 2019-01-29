@@ -70,6 +70,7 @@ public class LoginServlet extends ManagerServlet {
                                 _a = "all right";
                                 HttpSession session = req.getSession();
                                 session.setAttribute("user", user);
+                                System.out.println("Programer Comment: User ID: " + user.getId());
 //                                LogServices.INSTANCE.LogInLog(user);
                             } else {
                                 _login = login;
