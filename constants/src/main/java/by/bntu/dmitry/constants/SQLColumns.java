@@ -42,6 +42,7 @@ public class SQLColumns {
     public static final String FOTO_RESULT_COMPUTER_ANALYSIS_SIMILAR = "result_computer_analysis_similar";
     public static final String FOTO_PLACED_IN_DATABASE = "placed_in_database";
     public static final String FOTO_DIRECTORY = "directory";
+    public static final String FOTO_RSA = "rsa";
 
     public static final String LOGS_ID = "id";
     public static final String LOGS_DATE = "date";
@@ -52,7 +53,7 @@ public class SQLColumns {
     public static final String PACIENT_ID_PACIENT = "user_id_pacient";
     public static final String PACIENT_ID_DOCTOR = "user_id_doctor";
     public static final String PACIENT_DIRECTION_HISTOLOGY = "direction_of_histology";
-    
+
     public static final String USER_FORM_ID = "id";
     public static final String USER_FORM_USER_ID = "user_id";
     public static final String USER_FORM_NAME = "name";
@@ -67,7 +68,7 @@ public class SQLColumns {
     public static final String USER_FORM_IMMUNOSUPPRESSIVE_THERAPY = "immunosuppressive_therapy";
     public static final String USER_FORM_PRESENCE_ULCERATION = "presence_of_ulceration";
     public static final String USER_FORM_HOSPITAL = "hospital";
-    
+
     public static final String AMOUNT = "amount";
 
 }

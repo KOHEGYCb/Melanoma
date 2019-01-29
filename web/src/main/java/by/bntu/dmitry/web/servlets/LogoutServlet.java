@@ -1,7 +1,5 @@
 package by.bntu.dmitry.web.servlets;
 
-import by.bntu.dmitry.entities.User;
-import by.bntu.dmitry.services.logsServices.LogServices;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

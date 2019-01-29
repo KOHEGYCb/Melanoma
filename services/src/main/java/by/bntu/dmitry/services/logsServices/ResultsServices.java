@@ -6,7 +6,7 @@ import by.bntu.dmitry.enums.Similarity;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 public class ResultsServices {
     

@@ -21,11 +21,11 @@ import javax.servlet.http.Part;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 @WebServlet("/fileFotoSave")
 @MultipartConfig
-public class fileFotoSaveServlet extends ManagerServlet {
+public class FileFotoSaveServlet extends ManagerServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,7 +48,6 @@ public class fileFotoSaveServlet extends ManagerServlet {
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         String dir = user.getId() + "/";
         File file = new File(ConfigConstants.IMAGE_FOLDER + dir);
-        System.out.println("File: " + file.getAbsolutePath());
         if (fileType.toLowerCase().equals(".jpg")) {
             dir = dir + (FotoDAO.INSTANCE.getAmountByUserId(user)) + ".jpg";
         } else {
@@ -62,8 +61,7 @@ public class fileFotoSaveServlet extends ManagerServlet {
 //                }
 //            }
         }
-        System.out.println("File is valid");
-        Map<String, String> map = null;
+        Map<String, String> map;
         if (isValid) {
             InputStream fileContent = filePart.getInputStream();
 //            System.out.println("68");

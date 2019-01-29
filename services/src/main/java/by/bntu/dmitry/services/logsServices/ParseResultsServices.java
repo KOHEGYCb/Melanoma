@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 public class ParseResultsServices {
 
@@ -43,7 +43,6 @@ public class ParseResultsServices {
         File file = new File(path);
         if (file.isFile()) {
             FileInputStream fis = null;
-//            System.out.println("file is found");
             result = new Result();
             try {
                 fis = new FileInputStream(file);
@@ -68,8 +67,9 @@ public class ParseResultsServices {
                             key = param;
                             param = "";
                             break;
+                        case 13:
+                            break;
                         default:
-//                            System.out.println(ch + " : " + (char) ch);
                             param = param + (char) ch;
                             break;
                     }
@@ -104,10 +104,8 @@ public class ParseResultsServices {
                 }
             }
         } else {
-//            System.out.println("file is not found");
         }
 
-//        System.out.println("end.\n\n");
         return result;
     }
 

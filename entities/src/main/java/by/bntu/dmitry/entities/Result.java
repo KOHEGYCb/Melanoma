@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 public class Result {
     

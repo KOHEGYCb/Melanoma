@@ -5,14 +5,16 @@ import by.bntu.dmitry.constants.SQLColumns;
 import by.bntu.dmitry.constants.SQLRequests;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.entities.UserForm;
+import by.bntu.dmitry.secure.Aes256Class;
+//import by.bntu.dmitry.secure.Aes256Class;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
 
 /**
  *
@@ -90,13 +92,14 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
     public void createEntity(UserForm userForm) {
         Connection connection = null;
         PreparedStatement statement = null;
+        Aes256Class ac = new Aes256Class();
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.CREATE_USER_FORM);
             statement.setInt(1, userForm.getUser().getId());
-            statement.setString(2, userForm.getName());
-            statement.setString(3, userForm.getSurname());
-            statement.setString(4, userForm.getPatronymic());
+            statement.setString(2, new String(ac.makeAes(userForm.getName().getBytes(), Cipher.ENCRYPT_MODE)));
+            statement.setString(3, new String(ac.makeAes(userForm.getSurname().getBytes(), Cipher.ENCRYPT_MODE)));
+            statement.setString(4, new String(ac.makeAes(userForm.getPatronymic().getBytes(), Cipher.ENCRYPT_MODE)));
             statement.setDate(5, userForm.getBirthday());
             statement.setInt(6, userForm.getSex().getId());
             statement.setInt(7, userForm.getRelativeMelanoma());
@@ -117,13 +120,14 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
     public void createStartEntity(UserForm userForm) {
         Connection connection = null;
         PreparedStatement statement = null;
+        Aes256Class ac = new Aes256Class();
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.CREATE_START_USER_FORM);
             statement.setInt(1, userForm.getUser().getId());
-            statement.setString(2, userForm.getName());
-            statement.setString(3, userForm.getSurname());
-            statement.setString(4, userForm.getPatronymic());
+            statement.setString(2, new String(ac.makeAes(userForm.getName().getBytes(), Cipher.ENCRYPT_MODE)));
+            statement.setString(3, new String(ac.makeAes(userForm.getSurname().getBytes(), Cipher.ENCRYPT_MODE)));
+            statement.setString(4, new String(ac.makeAes(userForm.getPatronymic().getBytes(), Cipher.ENCRYPT_MODE)));
             statement.setDate(5, userForm.getBirthday());
             statement.setInt(6, userForm.getSex().getId());
             statement.executeUpdate();
@@ -138,13 +142,14 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
     public void updateEntity(UserForm userForm) {
         Connection connection = null;
         PreparedStatement statement = null;
+        Aes256Class ac = new Aes256Class();
         try {
             connection = ConnectionPool.INSTANCE.getConnection();
             statement = connection.prepareStatement(SQLRequests.UPDATE_USER_FORM);
             statement.setInt(1, userForm.getUser().getId());
-            statement.setString(2, userForm.getName());
-            statement.setString(3, userForm.getSurname());
-            statement.setString(4, userForm.getPatronymic());
+            statement.setString(2, new String(ac.makeAes(userForm.getName().getBytes(), Cipher.ENCRYPT_MODE)));
+            statement.setString(3, new String(ac.makeAes(userForm.getSurname().getBytes(), Cipher.ENCRYPT_MODE)));
+            statement.setString(4, new String(ac.makeAes(userForm.getPatronymic().getBytes(), Cipher.ENCRYPT_MODE)));
             statement.setDate(5, userForm.getBirthday());
             statement.setInt(6, userForm.getSex().getId());
             statement.setInt(7, userForm.getRelativeMelanoma());
@@ -210,12 +215,13 @@ public enum UserFormDAO implements AbstractDAO<UserForm> {
     }
 
     private UserForm getUserForm(ResultSet resultSet) throws SQLException {
+        Aes256Class ac = new Aes256Class();
         UserForm userForm = new UserForm();
         userForm.setId(resultSet.getInt(SQLColumns.USER_FORM_ID));
         userForm.setUser(UserDAO.INSTANCE.getEntityById(resultSet.getInt(SQLColumns.USER_FORM_USER_ID)));
-        userForm.setName(resultSet.getString(SQLColumns.USER_FORM_NAME));
-        userForm.setSurname(resultSet.getString(SQLColumns.USER_FORM_SURNAME));
-        userForm.setPatronymic(resultSet.getString(SQLColumns.USER_FORM_PATRONYMIC));
+        userForm.setName(new String(ac.makeAes(resultSet.getString(SQLColumns.USER_FORM_NAME).getBytes(), Cipher.DECRYPT_MODE)));
+        userForm.setSurname(new String(ac.makeAes(resultSet.getString(SQLColumns.USER_FORM_SURNAME).getBytes(), Cipher.DECRYPT_MODE)));
+        userForm.setPatronymic(new String(ac.makeAes(resultSet.getString(SQLColumns.USER_FORM_PATRONYMIC).getBytes(), Cipher.DECRYPT_MODE)));
         userForm.setBirthday(resultSet.getDate(SQLColumns.USER_FORM_BIRTHDAY));
         userForm.setSex(resultSet.getInt(SQLColumns.USER_FORM_SEX));
         userForm.setRelativeMelanoma(resultSet.getInt(SQLColumns.USER_FORM_RELATIVE_MELANOMA));

@@ -24,3 +24,5 @@ entities/target/test-classes/\.netbeans_automatic_build
 *.class
 
 web/src/main/webapp/images/
+/Secure/target/
+/web/src/main/webapp/images_out/

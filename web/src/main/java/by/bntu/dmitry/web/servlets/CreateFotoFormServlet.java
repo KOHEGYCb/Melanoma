@@ -12,6 +12,7 @@ import by.bntu.dmitry.enums.TumorForm;
 import by.bntu.dmitry.enums.TumorLocalization;
 import by.bntu.dmitry.enums.TumorOutline;
 import by.bntu.dmitry.enums.TumorSurface;
+import by.bntu.dmitry.services.charsets.CyrillicMethods;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.FileOutputStream;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 @WebServlet("/createFoto")
 public class CreateFotoFormServlet extends ManagerServlet {
@@ -53,8 +54,11 @@ public class CreateFotoFormServlet extends ManagerServlet {
         int tumor_localization = jo.get("tumor_localization").getAsInt();
         int device = jo.get("device").getAsInt();
         String date = jo.get("date").getAsString();
-        String comments = setToCyrillic(jo.get("comments").getAsString());
+        String comments = CyrillicMethods.setToCyrillic(jo.get("comments").getAsString());
         int id = jo.get("id").getAsInt();
+        String rsa_text = jo.get("rsa").getAsString();
+        rsa_text = rsa_text.replace(",", ".");
+        double rsa = Double.parseDouble(rsa_text);
         String directory = jo.get("dir").getAsString();
 
         Foto foto = new Foto();
@@ -79,6 +83,7 @@ public class CreateFotoFormServlet extends ManagerServlet {
         foto.setDate(Date.valueOf(date));
         foto.setComments(comments);
         foto.setDirectory(directory);
+        foto.setRsa(rsa);
         foto.setId(id);
         foto.setUser((User) req.getSession().getAttribute("user"));
         FotoDAO.INSTANCE.updateEntity(foto);
@@ -96,8 +101,7 @@ public class CreateFotoFormServlet extends ManagerServlet {
         }
         String path = ConfigConstants.IMAGE_FOLDER + fileName + ".txt";
         FileOutputStream fos = new FileOutputStream(path);
-//                      + " "        +"-0.02";
-        String params = foto.getChangeSize() + "\n" + "-0.02";
+        String params = foto.getChangeSize() + "\n" + rsa;
         byte[] b = params.getBytes();
         fos.write(b);
         fos.close();
@@ -105,22 +109,4 @@ public class CreateFotoFormServlet extends ManagerServlet {
         forward("/body.jsp", req, resp);
     }
     
-    private String setToCyrillic (String str) {
-        String newStr = "";
-        for (int i = 0; i < str.length(); i++) {
-            if (((int) str.charAt(i) >= 65) && ((int) str.charAt(i) <= 90) || ((int) str.charAt(i) >= 97) && ((int) str.charAt(i) <= 122) || ((int) str.charAt(i) >= 49) && ((int) str.charAt(i) <= 58) || (str.charAt(i) == ' ')) {
-                newStr = newStr + str.charAt(i);
-            } else {
-                if ((int) str.charAt(i) == 208) {
-                    int ch = (int) str.charAt(i + 1) + 896;
-                    newStr = newStr + (char) ch;
-                }
-                if ((int) str.charAt(i) == 209) {
-                    int ch = (int) str.charAt(i + 1) + 960;
-                    newStr = newStr + (char) ch;
-                }
-            }
-        }
-        return newStr;
-    }
 }

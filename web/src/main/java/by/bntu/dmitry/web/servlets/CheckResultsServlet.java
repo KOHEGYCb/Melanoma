@@ -17,7 +17,7 @@ import java.util.Map;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 @WebServlet("/checkResultServlet")
 public class CheckResultsServlet extends ManagerServlet {

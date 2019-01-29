@@ -1,18 +1,12 @@
 package by.bntu.dmitry.web.servlets;
 
 import by.bntu.dmitry.dao.FotoDAO;
-import by.bntu.dmitry.dao.UserDAO;
-import by.bntu.dmitry.dao.UserFormDAO;
 import by.bntu.dmitry.entities.Foto;
 import by.bntu.dmitry.entities.Result;
-import by.bntu.dmitry.entities.User;
-import by.bntu.dmitry.entities.UserForm;
 import by.bntu.dmitry.services.logsServices.ParseResultsServices;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -23,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 @WebServlet(name = "LoadFotoInfoServlet", urlPatterns = {"/LoadFotoInfoServlet"})
 public class LoadFotoInfoServlet extends HttpServlet {
@@ -38,7 +32,7 @@ public class LoadFotoInfoServlet extends HttpServlet {
 
         Result result = ParseResultsServices.getResult(foto);
 
-        Map<String, String> map = new LinkedHashMap<String, String>();
+        Map<String, String> map = new LinkedHashMap<>();
         map.put("id", foto.getId() + "");
         map.put("origin_illness", foto.getOriginIllness().getName());
         map.put("duration_illness", foto.getDurationIllness().getName());
@@ -65,7 +59,7 @@ public class LoadFotoInfoServlet extends HttpServlet {
         map.put("date", foto.getDate() + "");
         map.put("comments", foto.getComments() + "");
         map.put("directory", foto.getDirectory() + "");
-
+        map.put("rsa", foto.getRsa() + "");
         if (result != null) {
             map.put("ABCDE", result.getAbcde().getDesc());
             map.put("Similarity", result.getSimilarity().getDesc());

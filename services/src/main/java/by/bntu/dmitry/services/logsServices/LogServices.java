@@ -7,7 +7,7 @@ import by.bntu.dmitry.constants.LogActions;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 public enum LogServices {
 

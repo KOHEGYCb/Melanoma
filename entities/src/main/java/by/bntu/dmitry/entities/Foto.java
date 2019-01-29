@@ -47,6 +47,15 @@ public class Foto extends AbstractEntity {
     private int resultComputerAnalysisSimilar;
     private int placedInDatabase;
     private String directory;
+    private double rsa;
+
+    public double getRsa() {
+        return rsa;
+    }
+
+    public void setRsa(double rsa) {
+        this.rsa = rsa;
+    }
 
     public int getTumorDiameter() {
         return tumorDiameter;

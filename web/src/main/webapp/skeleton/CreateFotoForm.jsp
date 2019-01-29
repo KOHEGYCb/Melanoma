@@ -10,7 +10,7 @@
     <form id="fotoForm" method="Post" name="fotoForm" enctype="multipart/form-data" action="fileFotoSave">
         <div class="block">
             <span>Происхождение болезни: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="origin_illness" value="${origin_illness}">
                     <option name="origin_illness_none">Нет данных</option>
                     <option name="origin_illness_innate">Врожденное</option>
@@ -21,7 +21,7 @@
 
         <div class="block">
             <span>Длительность болезни: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="duration_illness" value="${duration_illness}">
                     <option name="no_info_about_changes">Нет сведений об изменениях</option>
                     <option name="changes_in_clinical_picture">Изменение клинического очага картины</option>
@@ -32,7 +32,7 @@
 
         <div class="block">
             <span>Изменение формы: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="change_form" value="${change_form}">
                     <option name="change_form_none">Нет данных</option>
                     <option name="change_form_yes">Да</option>
@@ -43,7 +43,7 @@
 
         <div class="block">
             <span>Изменение размера: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="change_size" value="${change_size}">
                     <option name="change_size_none">Нет данных</option>
                     <option name="change_size_yes">Да</option>
@@ -54,7 +54,7 @@
 
         <div class="block">
             <span>Изменение цвета: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="change_color" value="${change_color}">
                     <option name="change_color_none">Нет данных</option>
                     <option name="change_color_yes">Да</option>
@@ -65,7 +65,7 @@
 
         <div class="block">
             <span>Изменение чувствительности: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="change_sensitivity" value="${change_sensitivity}">
                     <option name="change_sensitivity_none">Нет данных</option>
                     <option name="change_sensitivity_yes">Да</option>
@@ -76,7 +76,7 @@
 
         <div class="block">
             <span>Наличие корок и кровоточивости: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="crusts_and_bleeding" value="${crusts_and_bleeding}">
                     <option name="crusts_and_bleeding_none">Нет данных</option>
                     <option name="crusts_and_bleeding_yes">Да</option>
@@ -87,7 +87,7 @@
 
         <div class="block">
             <span>Болезненность опухоли: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="tumor_pain" value="${tumor_pain}">
                     <option name="tumor_pain_none">Нет данных</option>
                     <option name="tumor_pain_yes">Да</option>
@@ -98,7 +98,7 @@
 
         <div class="block">
             <span>Сателлиты: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="satellite" value="${satellite}">
                     <option name="satellite_none">Нет данных</option>
                     <option name="satellite_yes">Да</option>
@@ -109,7 +109,7 @@
 
         <div class="block">
             <span>Наличие воспаления: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="inflammations" value="${inflammations}">
                     <option name="inflammations_none">Нет данных</option>
                     <option name="inflammations_yes">Да</option>
@@ -120,7 +120,7 @@
 
         <div class="block">
             <span>Равномерная окраска: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="uniform_coloring" value="${uniform_coloring}">
                     <option name="uniform_coloring_none">Нет данных</option>
                     <option name="uniform_coloring_yes">Да</option>
@@ -131,7 +131,7 @@
 
         <div class="block">                    
             <span>Тип кожи: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="skin_type" value="${skin_type}">
                     <option name="skin_type_none">Нет данных</option>
                     <option name="skin_type_1">1</option>
@@ -151,7 +151,7 @@
 
         <div class="block">
             <span>Форма опухоли: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="tumor_form" value="${tumor_form}">
                     <option name="flat">Плоская</option>
                     <option name="tuberous">Бугристая</option>
@@ -164,7 +164,7 @@
 
         <div class="block">
             <span>Поверхность опухоли: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="tumor_surface" value="${tumor_surface}">
                     <option name="smooth">Гладкая</option>
                     <option name="tuberosity">Бугристая</option>
@@ -177,7 +177,7 @@
 
         <div class="block">
             <span>Очертания опухоли: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="tumor_outline" value="${tumor_outline}">
                     <option name="clear">Четкие</option>
                     <option name="fuzzy">Нечеткие</option>
@@ -187,7 +187,7 @@
 
         <div class="block">
             <span>Локализация опухоли: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="tumor_localization" value="${tumor_localization}">
                     <option name="scalp">Волосистая часть головы</option>
                     <option name="face">Лицо</option>
@@ -220,7 +220,7 @@
 
         <div class="block">
             <span>Устройство: </span>
-            <div>
+            <div class="dropdown">
                 <select size="1"  name="device" value="${device}">
                     <option name="dermatoscop">Дерматоскоп</option>
                     <option name="camera">Фотокамера</option>
@@ -238,11 +238,23 @@
             <textarea name="comments" ></textarea>
         </div>
 
-        <br>
-        <input type="file" name="file"/>
-        <br/>
+        <div class="block">
+            <div class="help">
+                <div class="textHelp" id="help_1">Параметр RSA - <br>Пример: -0,2</div>
+                <div class="imgHelp" onclick="toggleHelp(1)"></div>
+            </div>
+            <span>RSA: </span>
+            <!--            <label for=""></label>-->
+            <input type="text" name="rsa" value="${rsa}" pattern="([0]{1}){1}|((([0]{1}[.,]{1}){1}|([-]{1}[0]{1}[.,]{1}){1})(([0]{1}[0-9]{1}){1}|([1]{1}){1}){1}){1}" required/>
+        </div>
+
+        <div class="block">
+            <span>Фотография: </span>
+            <input type="file" name="file"/>
+        </div>
         <input type="submit" name="createFotoForm" value="Добавить фото" onclick="add_foto()"/>
-        <h3>${err}</h3>
-        
+        <!--<input type="submit" name="createFotoForm" value="Добавить фото" onclick="echo('wow')"/>-->
+        <!--<h3>${err}</h3>-->
+
     </form>
 </div>

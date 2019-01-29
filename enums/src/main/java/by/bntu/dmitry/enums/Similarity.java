@@ -2,7 +2,7 @@ package by.bntu.dmitry.enums;
 
 /**
  *
- * @author user
+ * @author dmitry
  */
 public enum Similarity {
     

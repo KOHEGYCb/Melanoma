@@ -14,6 +14,7 @@ body, html{
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: 'Ubuntu', arial;
 }
 
 /*
@@ -61,14 +62,14 @@ body, html{
             transition: .3s;
         }
         input:focus{
-            background: @light-gray;
+            background: @light-gray-text;
             color: @dark-green;     
         }
-        input[type="submit"]:hover{
+        input[type="button"]:hover{
             background: @dark-green-hover;
             cursor: pointer;
         }
-        input[type="submit"]:active{
+        input[type="button"]:active{
             background: @light-gray;
             color: @dark-green;     
         }
@@ -613,10 +614,12 @@ body, html{
     h3{
         color: @light-gray-text;
         margin: 0;
-        padding: 0;
+        padding: 5px 0;
         display: block;
         width: 100%;
         text-align: center;
+        background-color: rgba(0,0,0,.3);
+        border-radius: 5px;
     }
 
     form{
@@ -649,8 +652,13 @@ body, html{
         div.block{
             float: left;
             width: 45%;
-            margin: 2.5%;
+            margin: 2% 0.5%;
+            padding: 0 2% 2% 2%;
             height: 70px;
+            position: relative;
+            background-color: rgba(0,0,0,.3);
+            border-radius: 5px;
+            /*border: 1px solid red;*/
         }
 
         div.block{
@@ -707,7 +715,7 @@ body, html{
                 /*border: 1px solid @red;*/
             }
 
-            div{
+            div.dropdown{
                 width: 100%;
                 background: @dark-green;
                 height: 35px;
@@ -716,7 +724,7 @@ body, html{
 
             }
 
-            div:before{
+            div.dropdown:before{
                 content: "";
                 display: block;
                 width: 1px;
@@ -727,7 +735,7 @@ body, html{
                 background: @dark-gray;
             }
 
-            div:after{
+            div.dropdown:after{
                 content: "";
                 display: block;
                 position: absolute;
@@ -739,7 +747,7 @@ body, html{
                 border-color: @light-gray transparent transparent transparent;
             }
 
-            div{
+            div.dropdown{
                 select{
                     background: transparent;
                     color: @light-gray-text;
@@ -761,6 +769,52 @@ body, html{
                 select:focus{
                     background: @light-gray;
                     color: @dark-green;
+                }
+            }
+
+            div.help{
+
+            }
+
+            div.help{
+                div.textHelp{
+                    border: 1px solid @light-gray;
+                    padding: 15px;
+                    border-radius: 5px;
+                    position: absolute;
+                    background: @light-gray-text;
+                    color: @dark-green;
+                    width: 100%;
+                    bottom: 85px;
+                    left: -4%;
+                    /*display: none;*/
+                    z-index: 5;
+                    opacity: 0;
+                    left: -1000px;
+                    transition-duration: .3s;
+                    transition-property: opacity;
+                }
+
+                div.imgHelp{
+                    /*border: 1px solid yellow;*/
+                    height: 25px;
+                    width: 25px;
+                    background: @dark-green url(question.png);
+                    background-size: 15px 15px;
+                    background-position: 5px, 5px;
+                    background-repeat: no-repeat;
+                    border-radius: 50%;
+                    position: absolute;
+                    margin-top: 5px;
+                    transition: .3s;
+                    right: 5%;
+                    bottom: 60px;
+                    border: 1px solid @light-gray;
+                    z-index: 6;
+                }
+                div.imgHelp:hover{
+                    background-color: @dark-green-hover;
+                    cursor: pointer;
                 }
             }
         }
@@ -913,15 +967,99 @@ div.page#pacient{
                 border: 1px solid @light-green;
                 margin: 3px;
             }
-            li.foto{
+            li.foto, li.a_foto{
                 padding: 0;
                 background: @light-gray-text
             }
-            li.foto{
+            li.foto, li.a_foto{
                 img{
                     width: 300px;
                     height: 300px;
                 }
+            }
+            li.a_foto{
+                display: none;
+                position: relative;
+                margin-top: -308px;
+            }
+            li.a_foto{
+                img{
+
+                }
+            }
+
+            div.block_list{
+                border: 1px solid @light-green;
+                width: 620px;
+                margin: 5px 0 0 0;
+                transition: .3s;
+            }
+            div.block_list:hover{
+                background: @dark-green-hover;
+            }
+            li.parameter{
+                border: none
+            }
+            li.answer{
+                left: 310px;
+                margin-top: -40px;
+                position: relative;
+                border: none;
+                border-left: 1px solid @light-green;
+            }
+
+            li{
+                input{
+                    border: 1px solid @light-green;
+                    border-radius: 5px;
+                    display: block;
+                    width: 295px;
+                    margin: 0 6px 6px 0px;
+                    padding: 0;
+                    background: @dark-green;
+                    height: 35px;
+                    color: @light-gray-text;
+                    font-size: 20px;
+                    transition: .3s;
+                    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+                }
+                input:focus{
+                    background: @light-gray;
+                    color: @dark-green;
+                }
+            }
+
+            div.show_btn, 
+            div.rsa_btn{
+                border-radius: 5px;
+                display: block;
+                width: 200px;
+                margin: 0 6px 6px 15px;
+                padding: 5px 0 0;
+                background: @green;
+                min-height: 30px;
+                color: @light-gray-text;
+                font-size: 20px;
+                text-align: center;
+                transition: .3s;
+                position: relative;
+                left: 300px;
+                margin-top: -40px;
+                cursor: pointer;
+            }
+            div.show_btn:hover,
+                div.rsa_btn:hover{
+                background: @green-hover;
+            }
+
+            div.show_btn:active,
+                div.rsa_btn:active{
+                background: #cbcbc9;
+                color: @dark-gray;     
+            }
+            div.rsa_btn{
+                left: 625px;
+                margin: -34px 3px 3px 3px;
             }
         }
     }
