@@ -17,14 +17,14 @@
 
 <div class="menu">
     <ul>
-        <li><a href="#foto">Фотографии</a></li>
+        <li><a href="#foto">Fotos</a></li>
     </ul>
 </div>
 <div class="page" id="foto">
     <input type="radio" name="inset" value="" id="user_fotos" checked>
-    <label for="user_fotos">Мои фотографии</label>
+    <label for="user_fotos">My fotos</label>
     <input type="radio" name="inset" value="" id="user_new_foto">
-    <label for="user_new_foto">Добавить фотографию</label>
+    <label for="user_new_foto">Add new foto</label>
 
     <div class="user_fotos_block" id="user_foto_tab">
         <div id="gallery">
@@ -54,7 +54,7 @@
     </div>
 </div>
 <div class="page" id="curent_foto">
-    <h1>Параметры фотографии</h1>
+    <h1>Foto's parameters</h1>
     <div id="element"></div>
-    <div class="button" onclick="clickOnBackButton()">Назад</div>
+    <div class="button" onclick="clickOnBackButton()">Back</div>
 </div>
