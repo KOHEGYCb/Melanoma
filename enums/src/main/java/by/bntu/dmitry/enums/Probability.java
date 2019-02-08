@@ -6,9 +6,9 @@ package by.bntu.dmitry.enums;
  */
 public enum Probability {
 
-    _0_15("вероятность меланомы небольшая"),
-    _15_25("есть риск меланомы"),
-    _25_100("высокий риск меланомы"),
+    _0_15("The probability of melanoma is small"),
+    _15_25("There is a risk of melanoma"),
+    _25_100("High risk of melanoma"),
     NONE("undefined");
 //     _0_15("the probability of melanoma is small"),
 //    _15_25("there is a risk of melanoma"),

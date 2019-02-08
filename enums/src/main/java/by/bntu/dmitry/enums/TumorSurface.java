@@ -6,11 +6,11 @@ package by.bntu.dmitry.enums;
  */
 public enum TumorSurface {
 
-    SMOOTH(0, "Гладкая"),
-    TUBEROSITY(1, "Бугристая"),
-    FINE_GRAINED(2, "Мелкозернистая"),
-    WITH_KERATOSIS(3, "С кератозом"),
-    MOIST(4, "Мокнущая");
+    SMOOTH(0, "Smooth"),
+    TUBEROSITY(1, "Tuberosity"),
+    FINE_GRAINED(2, "Fine grained"),
+    WITH_KERATOSIS(3, "With keratosis"),
+    MOIST(4, "Moist");
 
     private int id;
     private String name;

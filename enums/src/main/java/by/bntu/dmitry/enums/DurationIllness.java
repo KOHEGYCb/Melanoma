@@ -6,9 +6,9 @@ package by.bntu.dmitry.enums;
  */
 public enum DurationIllness {
 
-    NO_INFO_ABOUT_CHANGES(0, "Нет сведений об изменениях"),
-    CHANGES_IN_CLINICAL_PICTURE(1, "Изменение клинического очага картины"),
-    NO_CHANGES_DURING_3_MONTH(2, "Отсутствие изменений в течение 3-ех месяцев");
+    NO_INFO_ABOUT_CHANGES(0, "No info about changes"),
+    CHANGES_IN_CLINICAL_PICTURE(1, "Changes in clinical picture"),
+    NO_CHANGES_DURING_3_MONTH(2, "No changes during 3 month");
 
     private int id;
     private String name;

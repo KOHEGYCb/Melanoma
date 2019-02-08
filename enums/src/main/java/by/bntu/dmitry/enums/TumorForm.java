@@ -6,11 +6,11 @@ package by.bntu.dmitry.enums;
  */
 public enum TumorForm {
 
-    FLAT(0, "Плоская"),
-    TUBEROUS(1, "Бугристая"),
-    NODULAR(2, "Узловая"),
-    HEMISPHERICAL(3, "Полусферическая"),
-    MUSHROOM_SHAPED(4, "Грибовидная");
+    FLAT(0, "Flat"),
+    TUBEROUS(1, "Tuberous"),
+    NODULAR(2, "Nodular"),
+    HEMISPHERICAL(3, "Hemispherical"),
+    MUSHROOM_SHAPED(4, "Mushroom shaped");
 
     private int id;
     private String name;

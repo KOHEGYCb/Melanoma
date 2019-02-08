@@ -6,8 +6,8 @@ package by.bntu.dmitry.enums;
  */
 public enum TumorOutline {
 
-    CLEAR(0, "четкие"),
-    FUZZY(1, "нечеткие");
+    CLEAR(0, "Clear"),
+    FUZZY(1, "Fuzzy");
 
     private final int id;
     private String name;

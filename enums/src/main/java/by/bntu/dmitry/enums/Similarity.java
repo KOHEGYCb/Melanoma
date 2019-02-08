@@ -10,9 +10,9 @@ public enum Similarity {
 //    _2("there is a risk of melanoma"),
 //    _3_4("high risk of melanoma"),
 //    NONE("undefined");
-    _0_1("вероятность меланомы небольшая"),
-    _2("есть риск меланомы"),
-    _3_4("высокий риск меланомы"),
+    _0_1("The probability of melanoma is small"),
+    _2("There is a risk of melanoma"),
+    _3_4("High risk of melanoma"),
     NONE("undefined");
     
     String desc;

@@ -180,11 +180,11 @@ public class Foto extends AbstractEntity {
     public String getChangeFormName() {
         switch (changeForm){
             case 1:
-                return "Да";
+                return "Yes";
             case 2:
-                return "Нет";
+                return "No";
             case 0:
-                return "Нет данных";
+                return "Don't know";
             default :
                 return "null";
         }
@@ -213,11 +213,11 @@ public class Foto extends AbstractEntity {
     public String getChangeSizeName() {
         switch (changeSize){
             case 1:
-                return "Да";
+                return "Yes";
             case 2:
-                return "Нет";
+                return "No";
             case 0:
-                return "Нет данных";
+                return "Don't know";
             default :
                 return "null";
         }
@@ -246,11 +246,11 @@ public class Foto extends AbstractEntity {
     public String getChangeColorName() {
         switch (changeColor){
             case 1:
-                return "Да";
+                return "Yes";
             case 2:
-                return "Нет";
+                return "No";
             case 0:
-                return "Нет данных";
+                return "Don't know";
             default :
                 return "null";
         }
@@ -279,11 +279,11 @@ public class Foto extends AbstractEntity {
     public String getChangeSensivityName() {
         switch (changeSensivity){
             case 1:
-                return "Да";
+                return "Yes";
             case 2:
-                return "Нет";
+                return "No";
             case 0:
-                return "Нет данных";
+                return "Don't know";
             default :
                 return "null";
         }
@@ -312,11 +312,11 @@ public class Foto extends AbstractEntity {
     public String getCrustsAndBleedingName() {
         switch (crustsAndBleeding){
             case 1:
-                return "Да";
+                return "Yes";
             case 2:
-                return "Нет";
+                return "No";
             case 0:
-                return "Нет данных";
+                return "Don't know";
             default :
                 return "null";
         }
@@ -345,11 +345,11 @@ public class Foto extends AbstractEntity {
     public String getTumorPainName() {
         switch (tumorPain){
             case 1:
-                return "Да";
+                return "Yes";
             case 2:
-                return "Нет";
+                return "No";
             case 0:
-                return "Нет данных";
+                return "Don't know";
             default :
                 return "null";
         }
@@ -378,11 +378,11 @@ public class Foto extends AbstractEntity {
     public String getSatelliteName() {
         switch (satellite){
             case 1:
-                return "Да";
+                return "Yes";
             case 2:
-                return "Нет";
+                return "No";
             case 0:
-                return "Нет данных";
+                return "Don't know";
             default :
                 return "null";
         }
@@ -411,11 +411,11 @@ public class Foto extends AbstractEntity {
     public String getInflammationsName() {
         switch (inflammations){
             case 1:
-                return "Да";
+                return "Yes";
             case 2:
-                return "Нет";
+                return "No";
             case 0:
-                return "Нет данных";
+                return "Don't know";
             default :
                 return "null";
         }
@@ -444,11 +444,11 @@ public class Foto extends AbstractEntity {
     public String getUniformColoringName() {
         switch (uniformColoring){
             case 1:
-                return "Да";
+                return "Yes";
             case 2:
-                return "Нет";
+                return "No";
             case 0:
-                return "Нет данных";
+                return "Don't know";
             default :
                 return "null";
         }

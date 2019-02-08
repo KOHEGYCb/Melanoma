@@ -6,9 +6,9 @@ package by.bntu.dmitry.enums;
  */
 public enum OriginIllness {
 
-    INNATE(1, "врожденное"),
-    OBTAINED(2, "приобретенное"),
-    DO_NOT_KNOW(0, "нет данных");
+    INNATE(1, "Innate"),
+    OBTAINED(2, "Obtained"),
+    DO_NOT_KNOW(0, "Don't know");
 
     private int id;
     private String name;

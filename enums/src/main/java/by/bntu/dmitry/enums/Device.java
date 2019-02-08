@@ -5,8 +5,8 @@ package by.bntu.dmitry.enums;
  * @author dmitry
  */
 public enum Device {
-    DERMATOSCOP(0, "Дерматоскоп"),
-    CAMERA(1, "Фотокамера");
+    DERMATOSCOP(0, "Dermatoscop"),
+    CAMERA(1, "Camera");
 
     private int id;
     private String name;
