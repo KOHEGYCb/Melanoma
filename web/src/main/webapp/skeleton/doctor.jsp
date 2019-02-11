@@ -19,20 +19,20 @@
 
 <div class="menu">
     <ul>
-        <li><a href="#profile">Профиль</a></li>
-        <li><a href="#create">Создать пациента</a></li>
-        <li><a href="#tables">Просмотр таблиц</a></li>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#create">Create user</a></li>
+        <li><a href="#tables">Check tables</a></li>
     </ul>
 </div>
 <div class="page" id="tables">
     <input type="radio" name="inset" value="" id="tab_my_pacient" checked>
-    <label for="tab_my_pacient">Мои пациенты</label>
+    <label for="tab_my_pacient">My pacients</label>
     <input type="radio" name="inset" value="" id="tab_free_pacient">
-    <label for="tab_free_pacient">Свободные пациенты</label>
+    <label for="tab_free_pacient">Free pacients</label>
     <input type="radio" name="inset" value="" id="tab_all_pacient">
-    <label for="tab_all_pacient">Все пациенты</label>
+    <label for="tab_all_pacient">All pacients</label>
     <input type="radio" name="inset" value="" id="tab_foto">
-    <label for="tab_foto">Фотографии</label>
+    <label for="tab_foto">Fotos</label>
 
     <div id="my_pacient">
         <table>
@@ -144,7 +144,7 @@
 </div>
 <div class="page" id="profile">Profile</div>
 <div class="page" id="pacient">
-    <h1>Pacient</h1>
+    <h1 id="pacient_header"></h1>
     <div id="element"></div>
     <div class="button" onclick="clickOnBackButton()">Back</div>
 </div>

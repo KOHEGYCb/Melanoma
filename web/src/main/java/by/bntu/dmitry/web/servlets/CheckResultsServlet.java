@@ -24,6 +24,7 @@ public class CheckResultsServlet extends ManagerServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("Start check results");
         Map<Integer, Integer> map = new HashMap<>();
         if (req.getSession().getAttribute("user") != null) {
             User user = (User) req.getSession().getAttribute("user");
@@ -33,6 +34,7 @@ public class CheckResultsServlet extends ManagerServlet {
 
             for (int i = 0; i < fotos.size(); i++) {
                 Result result = ParseResultsServices.getResult(fotos.get(i));
+                System.out.println(result);
                 if (result != null) {
                     map.put(map.size() + 1, fotos.get(i).getId());
 //                    results.add(result);

@@ -15,6 +15,8 @@ public class ConfigConstants {
     public static String IMAGE_FOLDER;
     public static String IMAGE_OUTPUT_FOLDER;
     public static String SERIAL_FOLDER;
+    
+    public static String SETTINGS_LANG;
 
     static {
         switch (DeviceType.DEVICE_TYPE) {
@@ -25,6 +27,8 @@ public class ConfigConstants {
                 IMAGE_FOLDER = "/opt/tomcat/apache-tomcat/webapps/melanoma/images/dir/";
                 IMAGE_OUTPUT_FOLDER = "/opt/tomcat/apache-tomcat/webapps/melanoma/images_out/dir/";
                 SERIAL_FOLDER = "C:/Users/user/Documents/NetBeansProjects/Melanoma/serial";
+                
+                SETTINGS_LANG = "";
                 break;
             case 1:
 //                DATABASE_USERNAME = "dmitry";
@@ -33,6 +37,8 @@ public class ConfigConstants {
 //                IMAGE_FOLDER = "C:/Users/user/Documents/NetBeansProjects/Melanoma/web/src/main/webapp/images/dir/";
 //                IMAGE_OUTPUT_FOLDER = "";
 //                SERIAL_FOLDER = "C:/Users/user/Documents/NetBeansProjects/Melanoma/serial";
+                
+                SETTINGS_LANG = "";
                 break;
             case 2:
                 DATABASE_USERNAME = "dmitry";
@@ -41,6 +47,8 @@ public class ConfigConstants {
                 IMAGE_FOLDER = "C:/Users/user/Documents/NetBeansProjects/Melanoma/web/src/main/webapp/images/dir/";
                 IMAGE_OUTPUT_FOLDER = "C:/Users/user/Documents/NetBeansProjects/Melanoma/web/src/main/webapp/images_out/dir/";
                 SERIAL_FOLDER = "C:/Users/user/Documents/NetBeansProjects/Melanoma/serial";
+                
+                SETTINGS_LANG = "C:/Users/user/Documents/NetBeansProjects/Melanoma/settings/lang.set";
                 break;
         }
     }

@@ -23,6 +23,18 @@
     %>
     <div class="info">Hello, <%=str%></div>
     <div class="logo">M E L A B A S E</div>
+    <div class="" id="settings">
+        <div class="settings_btn" id="settings_btn" onclick="toogleSettings()"></div>
+        <div class="" id="settings_panel">
+            <div class="list" id="set_lang">
+                <span>Language</span>
+                <!--<div id="lang_prev" onclick="changeLang(-1)"></div>-->
+                <div class="lang" id="lang_ru" onclick="changeLang(1)">RU</div>
+                <div class="lang" id="lang_en" onclick="changeLang(0)">EN</div>
+                <!--<div id="lang_next" onclick="changeLang(1)"></div>-->
+            </div>
+        </div>
+    </div>
     <div class="logout">
         <form method="post">
             <input type="button" name="log_out" value="Log Out" onclick="logOut()">

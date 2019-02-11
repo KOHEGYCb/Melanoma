@@ -106,7 +106,7 @@ public class CreateFotoFormServlet extends ManagerServlet {
         fos.write(b);
         fos.close();
 
-        forward("/body.jsp", req, resp);
+        forward("/", req, resp);
     }
     
 }

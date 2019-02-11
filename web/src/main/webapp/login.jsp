@@ -6,6 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="reg">
+    <div class="login_lang">
+        <div class="lang_btn" id="lang_ru" onclick="changeLang(1)"><span>RU</span></div>
+        <div class="lang_btn" id="lang_en" onclick="changeLang(0)"><span>EN</span></div>
+    </div>
     <form id="login"  method="post" name="loginForm">
         <span>Login: </span><input type="text" value="${login}" name="login" /><br/>
         <span>Password: </span><input type="password" value="" name="password" /><br/>

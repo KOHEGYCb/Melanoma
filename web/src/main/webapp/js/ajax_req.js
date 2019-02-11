@@ -1,4 +1,4 @@
-/* global computer_type */
+/* global computer_type, pacient_header, cur_lang, user_add_foto_form_origin, user_add_foto_form_duration, user_add_foto_form_form_change, user_add_foto_form_size, user_add_foto_form_color, user_add_foto_form_sensitivity, user_add_foto_form_crusts, user_add_foto_form_pain, user_add_foto_form_satellite, user_add_foto_form_uniform_coloring, user_add_foto_form_skin, user_add_foto_form_inflammations, user_add_foto_form_diameter, user_add_foto_form_form, user_add_foto_form_surface, user_add_foto_form_outline, user_add_foto_form_localization, user_add_foto_form_device, user_add_foto_form_date, user_add_foto_form_comment */
 
 function logOut() {
     var data = {};
@@ -22,14 +22,16 @@ function logIn(id) {
             log_in: true,
             sign_in: false,
             login: document.loginForm.login.value,
-            password: document.loginForm.password.value
+            password: document.loginForm.password.value,
+            lang: cur_lang
         };
     } else {
         var data = {
             log_in: false,
             sign_in: true,
             login: document.loginForm.login.value,
-            password: document.loginForm.password.value
+            password: document.loginForm.password.value,
+            lang: cur_lang
         };
     }
 
@@ -41,6 +43,18 @@ function logIn(id) {
         success: function (response) {
             document.getElementById('root').innerHTML = "";
             document.getElementById('root').innerHTML = response;
+            translatePage();
+            switch (cur_lang) {
+                case 0:
+                    document.getElementById('lang_en').classList.add("lang_current");
+                    document.getElementById('lang_ru').classList.remove("lang_current");
+                    break;
+                case 1:
+                    document.getElementById('lang_en').classList.remove("lang_current");
+                    document.getElementById('lang_ru').classList.add("lang_current");
+                    break;
+            }
+            printSettings();
         }
     });
 }
@@ -245,11 +259,11 @@ function clickOnElement(action, id) {
             }
 
             window.location.href = "#curent_foto";
-
+            translateFotoInfo();
             break;
         case "loadUser":
             var req = getElement("LoadUserInfoServlet", data);
-
+            document.getElementById('pacient_header').textContent = pacient_header;
             document.getElementById('element').innerHTML = "";
 
             var $ul = $("<ul>").appendTo($("#element"));
@@ -384,6 +398,19 @@ function createFoto(data) {
             radiobtn.checked = false;
             radiobtn = document.getElementById("user_fotos");
             radiobtn.checked = true;
+            translatePage();
+            switch (cur_lang) {
+                case 0:
+                    document.getElementById('lang_en').classList.add("lang_current");
+                    document.getElementById('lang_ru').classList.remove("lang_current");
+                    break;
+                case 1:
+                    document.getElementById('lang_en').classList.remove("lang_current");
+                    document.getElementById('lang_ru').classList.add("lang_current");
+                    break;
+            }
+            printSettings();
+
         }
     });
 }
@@ -483,16 +510,16 @@ function checkResults() {
                 console.log("check is success");
 //                if (!response === null) {
 //                    console.log("resp is not null");
-                    $.each(response, function (index, item) {
-                        var n = [];
-                        var element = document.getElementById('image_' + item);
-                        if (!element.classList.contains('done')) {
-                            element.classList.add('done');
-                            alert("photo was processed");
-                        }
-                    });
+                $.each(response, function (index, item) {
+                    var n = [];
+                    var element = document.getElementById('image_' + item);
+                    if (!element.classList.contains('done')) {
+                        element.classList.add('done');
+                        alert("photo was processed");
+                    }
+                });
 //                }
             }
         });
-    }, 10000);
+    }, 900000);
 }

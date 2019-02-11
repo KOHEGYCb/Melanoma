@@ -7,6 +7,7 @@ import by.bntu.dmitry.dao.UserDAO;
 import by.bntu.dmitry.entities.User;
 import by.bntu.dmitry.enums.Role;
 import by.bntu.dmitry.services.logsServices.LogServices;
+import by.bntu.dmitry.services.settings.Lang;
 import by.bntu.dmitry.web.servlets.ManagerServlet;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -36,6 +37,7 @@ public class LoginServlet extends ManagerServlet {
         boolean sign_in = jo.get("sign_in").getAsBoolean();
         String login = jo.get("login").getAsString();
         String password = jo.get("password").getAsString();
+        int lang = jo.get("lang").getAsInt();
 
         String _a = "";
         String _login = "";
@@ -70,6 +72,7 @@ public class LoginServlet extends ManagerServlet {
                                 _a = "all right";
                                 HttpSession session = req.getSession();
                                 session.setAttribute("user", user);
+                                session.setAttribute("lang", Lang.GetLangAsInt(user));
 //                                LogServices.INSTANCE.LogInLog(user);
                             } else {
                                 _login = login;
@@ -104,6 +107,11 @@ public class LoginServlet extends ManagerServlet {
                             HttpSession session = req.getSession();
                             session.setAttribute("user", newUser);
 //                            LogServices.INSTANCE.LogInLog(newUser);
+
+
+
+                            Lang.addUser(newUser, lang);
+                            session.setAttribute("lang", Lang.GetLangAsInt(newUser));
                         } else {
                             _a = "Login is used";
                         }
@@ -113,7 +121,8 @@ public class LoginServlet extends ManagerServlet {
         }
         req.setAttribute("login", _login);
         req.setAttribute("a", _a);
-        forward("/body.jsp", req, resp);
+//        forward("/body.jsp", req, resp);
+        forward("/", req, resp);
     }
 
 }
