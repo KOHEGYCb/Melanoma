@@ -1,4 +1,4 @@
-package by.bntu.dmitry.services.logsServices;
+package by.bntu.dmitry.services.results;
 
 import by.bntu.dmitry.enums.ABCDE;
 import by.bntu.dmitry.enums.Probability;

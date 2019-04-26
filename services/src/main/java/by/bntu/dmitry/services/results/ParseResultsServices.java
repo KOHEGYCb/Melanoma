@@ -1,5 +1,6 @@
-package by.bntu.dmitry.services.logsServices;
+package by.bntu.dmitry.services.results;
 
+import by.bntu.dmitry.services.results.ResultsServices;
 import by.bntu.dmitry.constants.ConfigConstants;
 import by.bntu.dmitry.dao.FotoDAO;
 import by.bntu.dmitry.entities.Foto;
@@ -39,7 +40,7 @@ public class ParseResultsServices {
             }
         }
         String path = ConfigConstants.IMAGE_OUTPUT_FOLDER + fileName + ".txt";
-
+        System.out.println(path);
         File file = new File(path);
         if (file.isFile()) {
             FileInputStream fis = null;
