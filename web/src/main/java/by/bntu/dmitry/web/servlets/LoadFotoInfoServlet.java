@@ -3,7 +3,7 @@ package by.bntu.dmitry.web.servlets;
 import by.bntu.dmitry.dao.FotoDAO;
 import by.bntu.dmitry.entities.Foto;
 import by.bntu.dmitry.entities.Result;
-import by.bntu.dmitry.services.logsServices.ParseResultsServices;
+import by.bntu.dmitry.services.results.ParseResultsServices;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;

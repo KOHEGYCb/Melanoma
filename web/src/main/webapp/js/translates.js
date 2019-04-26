@@ -114,7 +114,7 @@ var doctor_fotos = {
 };
 
 var user_foto_parameter = {
-    0: "Foto's parameters",
+    0: "Foto parameters",
     1: "Параметры фотографии"
 };
 

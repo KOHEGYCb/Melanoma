@@ -148,7 +148,7 @@ function clickOnElement(action, id) {
 
             }
             if (req['ABCDE'] !== undefined) {
-                var $show_btn = $("<div class='show_btn' id='show_btn' onclick='showAFoto()'>").html("Показать").appendTo($ul);
+                var $show_btn = $("<div class='show_btn' id='show_btn' onclick='showAFoto()'>").html("Show").appendTo($ul);
             }
             var $block;
             $block = $("<div class='block_list'>").html("").appendTo($ul);
@@ -239,8 +239,6 @@ function clickOnElement(action, id) {
 //            $("<li class='answer'>").html("<input type='text' name='rsa' pattern='([0]{1}){1}|((([0]{1}[.,]{1}){1}|([-]{1}[0]{1}[.,]{1}){1})(([0]{1}[0-9]{1}){1}|([1]{1}){1}){1}){1}' required/>").appendTo($block);
 //            console.log('ABCDE: ' + req['ABCDE']);
             if (req['ABCDE'] !== undefined) {
-
-
 
                 var $rsa_btn = $("<div class='rsa_btn' id='rsa_btn' onclick='changeRsa()'>").html("Change").appendTo($ul);
 
@@ -370,7 +368,7 @@ function workWithPatients(servlet, id) {
 //    alert(servlet);
 }
 
-function clickOnBackButton() {
+function clickOnButton() {
     switch (window.location.href.substr(window.location.href.indexOf("#"))) {
         case "#pacient":
             window.location.href = "#tables";
@@ -521,5 +519,5 @@ function checkResults() {
 //                }
             }
         });
-    }, 900000);
+    }, 10000);
 }

@@ -1,4 +1,4 @@
-package by.bntu.dmitry.services.logsServices;
+package by.bntu.dmitry.services;
 
 import by.bntu.dmitry.dao.PacientDAO;
 import by.bntu.dmitry.dao.UserDAO;

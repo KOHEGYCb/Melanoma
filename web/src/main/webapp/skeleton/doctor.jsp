@@ -146,10 +146,10 @@
 <div class="page" id="pacient">
     <h1 id="pacient_header"></h1>
     <div id="element"></div>
-    <div class="button" onclick="clickOnBackButton()">Back</div>
+    <div class="button" onclick="clickOnButton()">Back</div>
 </div>
 <div class="page" id="curent_foto">
-    <h1>Foto's parameters</h1>
+    <h1>Foto parameters</h1>
     <div id="element"></div>
-    <div class="button" onclick="clickOnBackButton()">Back</div>
+    <div class="button" onclick="clickOnButton()">Back</div>
 </div>

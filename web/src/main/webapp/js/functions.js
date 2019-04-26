@@ -74,25 +74,25 @@ function showAFoto() {
     var btn = document.getElementById('show_btn');
     if (window.getComputedStyle(a_foto).getPropertyValue('display') === 'block') {
         a_foto.style.display = 'none';
-        btn.textContent = "Показать";
+        btn.textContent = "Show";
     } else {
         a_foto.style.display = 'block';
-        btn.textContent = "Оригинал";
+        btn.textContent = "Original";
     }
 }
 function changeRsa() {
     var rsa_btn = document.getElementById('rsa_btn');
     var elem = document.getElementById('rsa');
-    if (rsa_btn.childNodes[0].wholeText === "Изменить") {
+    if (rsa_btn.childNodes[0].wholeText === "Change") {
         var old_rsa = elem.childNodes[0].wholeText;
-        rsa_btn.textContent = "Сохранить";
+        rsa_btn.textContent = "Save";
         elem.innerHTML = "\
 <form id='newRSA' method='Post' name='newRSA' enctype='multipart/form-data'>\
 <input type='text' name='rsa' value='" + old_rsa + "' pattern='([0]{1}){1}|((([0]{1}[.,]{1}){1}|([-]{1}[0]{1}[.,]{1}){1})(([0]{1}[0-9]{1}){1}|([1]{1}){1}){1}){1}' required/>\
 </form>";
         return;
     }
-    if (rsa_btn.childNodes[0].wholeText === "Сохранить") {
+    if (rsa_btn.childNodes[0].wholeText === "Save") {
         var new_rsa = document.newRSA.rsa.value;
         var data = {
             id: foto_id,
@@ -111,8 +111,8 @@ function changeRsa() {
                 document.getElementById('abcde__b').remove();
                 document.getElementById('similarity_b').remove();
                 document.getElementById('probability_b').remove();
-                rsa_btn.textContent = "Изменить";
-                if (document.getElementById('show_btn').childNodes[0].wholeText === "Оригинал") {
+                rsa_btn.textContent = "Change";
+                if (document.getElementById('show_btn').childNodes[0].wholeText === "Original") {
                     showAFoto();
                     document.getElementById('show_btn').remove();
                 }

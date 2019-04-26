@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import by.bntu.dmitry.entities.User;
-import by.bntu.dmitry.services.logsServices.ParseResultsServices;
+import by.bntu.dmitry.services.results.ParseResultsServices;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.HashMap;
